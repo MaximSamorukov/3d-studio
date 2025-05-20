@@ -8,8 +8,8 @@
 }
 
 .inner_container {
-   max-width: 1250px;
-   width: 1250px;
+   max-width: 1350px;
+   width: 1350px;
    height: fit-content;
    display: flex;
    justify-content: flex-start;
@@ -37,20 +37,3 @@
    padding-left: 30px;
 }
 
-.menuItem {
-   width: fit-content;
-   height: fit-content;
-   font-size: 20px;
-   font-weight: 700;
-
-   &Hover {
-      width: fit-content;
-      height: fit-content;
-      font-size: 20px;
-      font-weight: 700;
-
-      &:hover {
-         color: #E49E00
-      }
-   }
-}

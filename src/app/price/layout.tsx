@@ -1,4 +1,4 @@
-import s from './style.module.scss';
+import React from 'react'
 
 export default function Layout({
    children,
@@ -6,8 +6,8 @@ export default function Layout({
    children: React.ReactNode;
  }>) {
    return (
-      <div className={s.layoutContainer}>
-          {children}
+      <div>
+         {children}
       </div>
    );
  }

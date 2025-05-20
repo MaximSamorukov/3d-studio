@@ -1,14 +1,17 @@
 import Image from 'next/image';
-import Link from 'next/link'
-import s from './style.module.scss'
+import Link from 'next/link';
 import ContactWidget from '../MainMenuItemContactWidget'
+import s from './style.module.scss'
+import MenuItem from '../MenuItem';
+import { menuItems } from './constants';
 
 export default function Header() {
+
   return (
     <div className={s.container}>
        <div className={s.inner_container}>
          <div className={s.logoImg_container}>
-            <Link href='/3d_printing'>
+            <Link href={'/3d_printing'}>
                <Image
                   src="/logo.svg"
                   width={100}
@@ -18,21 +21,9 @@ export default function Header() {
             </Link>
          </div>
          <div className={s.menuItems_container}>
-            <div className={s.menuItemHover}>
-               <Link href='/3d_printing'>3D-печать</Link>
-            </div>
-            <div className={s.menuItemHover}>
-               <Link href='/3d_modeling'>3D-моделирование</Link>
-            </div>
-            <div className={s.menuItemHover}>
-               <Link href='/plastic'>Типы пластика</Link>
-            </div>
-            <div className={s.menuItemHover}>
-               <Link href='/logistic'>Доставка и оплата</Link>
-            </div>
-            <div className={s.menuItemHover}>
-               <Link href='/contacts'>Контакты</Link>
-            </div>
+            {menuItems.map((i) => (
+               <MenuItem key={i.href} href={i.href} label={i.label} />
+            ))}
             <div className={s.menuItem}>
                <ContactWidget />
             </div>

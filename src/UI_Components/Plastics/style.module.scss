@@ -1,0 +1,19 @@
+.container {
+   width: 900px;
+   height: 35px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: row;
+   margin-top: 5px;
+}
+
+.item {
+   color: #E49E00;
+   font-size: 35px;
+   font-weight: bold;
+   width: fit-content;
+   box-sizing: border-box;
+   padding-right: 40px;
+   padding-left: 40px;
+}
