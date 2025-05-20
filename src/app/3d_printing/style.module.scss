@@ -48,8 +48,8 @@
          height: 450px;
          color: black;
          display: grid;
-         grid-template-columns: [first] 150px [second] 1fr [end];
-         grid-template-rows: [r-first] 90px [r-second] 170px [r-third] 70px [r-fourth] 70px [r-end];
+         grid-template-columns: [first] minmax(10px, 400px) [second] 1fr [end];
+         grid-template-rows: [r-first] 60px [r-second] 170px [r-third] 70px [r-fourth] 70px [r-end];
       }
    }
    &SubLabel {
