@@ -3,7 +3,8 @@ import Link from "next/link";
 import ContactWidget from "../MainMenuItemContactWidget";
 import s from "./style.module.scss";
 import MenuItem from "../MenuItem";
-import { menuItems } from "./constants";
+import { footerMenu, logoText, menuItems } from "./constants";
+import { FooterMenuItem } from "../FooterMenuItem";
 
 export default function Footer() {
   return (
@@ -13,14 +14,14 @@ export default function Footer() {
           <Link href={"/3d_printing"}>
             <Image src="/logo.svg" width={100} height={100} alt="logo" />
           </Link>
-        </div>
-        <div className={s.menuItems_container}>
-          {menuItems.map((i) => (
-            <MenuItem key={i.href} href={i.href} label={i.label} />
-          ))}
-          <div className={s.menuItem}>
-            <ContactWidget />
+          <div className={s.logoImg_logo}>
+            <span>{logoText}</span>
           </div>
+        </div>
+        <div className={s.baseMenuContainer}>
+          {footerMenu.map((i) => (
+            <FooterMenuItem key={i.value} type={i.value} header={i.label} />
+          ))}
         </div>
       </div>
     </div>

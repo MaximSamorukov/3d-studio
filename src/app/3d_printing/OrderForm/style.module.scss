@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @keyframes pulseBorder {
   0% {
     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
@@ -52,7 +54,7 @@
 
 @mixin grid-position($index) {
   $col: if($index % 2 == 0, 2, 1);
-  $row: ceil($index / 2);
+  $row: math.ceil(math.div($index, 2));
 
   grid-column: #{$col};
   grid-row: #{$row};
