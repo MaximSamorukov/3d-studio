@@ -1,6 +1,7 @@
 import { Benefits } from './Benefits'
 import { MakeOrder } from './MakeOrder'
 import { MakeOrderButton } from './MakeOrderButton'
+import { OrderForm } from './OrderForm'
 import s from './style.module.scss'
 import Plastics from '@/UI_Components/Plastics'
 
@@ -22,6 +23,7 @@ export default function Printing3D() {
       <Benefits />
       <MakeOrderButton />
       <MakeOrder />
+      <OrderForm />
     </div>
   )
 }

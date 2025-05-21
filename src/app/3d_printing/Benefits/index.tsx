@@ -8,8 +8,8 @@ export const Benefits = () => {
          Преимущества изготовления изделий методом 3-D печати
       </div>
       <div className={s.benefitsStepsContainer}>
-         {benefits.map((i) => (
-            <div className={s.benefitsStepContainer}>
+         {benefits.map((i, index) => (
+            <div key={index} className={s.benefitsStepContainer}>
                <div className={s.benefitsStepHeader}>
                   {i.feature}
                </div>

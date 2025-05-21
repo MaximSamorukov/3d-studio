@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/UI_Components/Header";
 import ActionPanel from "@/UI_Components/ActionPanel";
+import Footer from "@/UI_Components/Footer";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -27,6 +28,9 @@ export default function RootLayout({
         <ActionPanel />
         </header>
         {children}
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );
