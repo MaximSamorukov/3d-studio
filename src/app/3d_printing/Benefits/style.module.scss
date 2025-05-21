@@ -1,3 +1,15 @@
+@keyframes pulseBorder {
+   0% {
+     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+   }
+   50% {
+     box-shadow: 0 0 8px rgba(228, 158, 0, 1);
+   }
+   100% {
+     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+   }
+ }
+
 .benefits {
    &Container {
       margin-top: 40px;
@@ -47,6 +59,12 @@
          border:1px solid #E49E00;
          display:inline-block;
          cursor:pointer;
+
+         &:hover {
+            box-shadow: 0 0 8px #E49E00;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: pulseBorder 2s infinite;
+          }
       }
       &Header {
          font-weight: bold;
