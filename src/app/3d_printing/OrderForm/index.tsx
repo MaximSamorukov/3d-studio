@@ -13,51 +13,33 @@ export const OrderForm = () => {
                 {field.label}
                 {field.required && <span className={s.required}>*</span>}
               </label>
-
-              {field.inputType === "text input" && (
-                <input
-                  type="text"
-                  required={field.required}
-                  placeholder={field.description}
-                  className={s.inputField}
-                />
-              )}
-
-              {field.inputType === "textarea input" && (
-                <textarea
-                  required={field.required}
-                  placeholder={field.description}
-                  className={s.textareaField}
-                />
-              )}
-
-              {field.inputType === "file upload" && (
-                <input
-                  type="file"
-                  required={field.required}
-                  className={s.inputField}
-                />
-              )}
-
-              {field.inputType === "selector" && (
-                <select className={cn(s.inputField, s.inputSelectField)}>
-                  <option>PLA</option>
-                  <option>ABS</option>
-                  <option>PETG</option>
-                  <option>Другой</option>
-                </select>
-              )}
-
-              {field.inputType === "color selector" && (
-                <input type="color" className={s.colorPicker} />
-              )}
-
-              {field.inputType === "checkbox" && (
-                <label className={s.checkbox}>
-                  <input type="checkbox" />
-                  <span>{field.description}</span>
-                </label>
-              )}
+              <input
+                type="text"
+                required={field.required}
+                placeholder={field.description}
+                className={s.inputField}
+              />
+              <textarea
+                required={field.required}
+                placeholder={field.description}
+                className={s.textareaField}
+              />
+              <input
+                type="file"
+                required={field.required}
+                className={s.inputField}
+              />
+              <select className={cn(s.inputField, s.inputSelectField)}>
+                <option>PLA</option>
+                <option>ABS</option>
+                <option>PETG</option>
+                <option>Другой</option>
+              </select>
+              <input type="color" className={s.colorPicker} />
+              <label className={s.checkbox}>
+                <input type="checkbox" />
+                <span>{field.description}</span>
+              </label>
             </div>
           );
         })}
