@@ -1,4 +1,3 @@
-import { benefits } from './constants';
 import s from './style.module.scss';
 
 export const OrderForm = () => {
