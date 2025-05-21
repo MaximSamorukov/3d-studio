@@ -1,7 +1,4 @@
 import cn from 'classnames';
-import Image from 'next/image';
-import Link from 'next/link'
-import ContactWidget from '../MainMenuItemContactWidget'
 import s from './style.module.scss'
 
 export default function ActionPanel() {

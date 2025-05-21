@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import s from './style.module.scss'
 import Plastics from '@/UI_Components/Plastics'
 

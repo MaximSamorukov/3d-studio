@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 import Header from "@/UI_Components/Header";
 import ActionPanel from "@/UI_Components/ActionPanel";
 
