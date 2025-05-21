@@ -41,10 +41,9 @@ export const FooterMenuItem = ({
         <div className={s.header}>{header}</div>
         <div className={s.bodySocialsContainer}>
           {socials.map((i) => (
-            <div className={s.bodySocialsItem}>
+            <div key={i} className={s.bodySocialsItem}>
               <Image
                 className={s.bodySocialsItemIcon}
-                key={i}
                 src={`/footer/socials_${i}_footer.png`}
                 alt={i}
                 width={50}
