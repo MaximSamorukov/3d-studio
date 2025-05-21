@@ -10,7 +10,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Студия 3D печати",
+  title: "Студия 3D-печати",
   description: "Печать пластиковых изделий на заказ из пластика",
 };
 

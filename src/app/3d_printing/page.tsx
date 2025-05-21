@@ -1,3 +1,6 @@
+import { Benefits } from './Benefits'
+import { MakeOrder } from './MakeOrder'
+import { MakeOrderButton } from './MakeOrderButton'
 import s from './style.module.scss'
 import Plastics from '@/UI_Components/Plastics'
 
@@ -6,7 +9,7 @@ export default function Printing3D() {
     <div className={s.pageContainer}>
       <div className={s.pageMainLabelContainer}>
         <div className={s.pageMainLabel}>
-          3D печать 
+          3D-печать 
         </div>
         <div className={s.pageSubLabelOne}>
           инженерных и декоративных
@@ -16,6 +19,9 @@ export default function Printing3D() {
         </div>
       </div>
       <Plastics />
+      <Benefits />
+      <MakeOrderButton />
+      <MakeOrder />
     </div>
   )
 }

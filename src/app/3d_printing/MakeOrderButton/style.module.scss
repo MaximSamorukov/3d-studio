@@ -1,0 +1,56 @@
+@keyframes pulseBorder {
+   0% {
+     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+   }
+   50% {
+     box-shadow: 0 0 8px rgba(228, 158, 0, 1);
+   }
+   100% {
+     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+   }
+ }
+ 
+ .makeOrderBtn {
+   height: 150px;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+ 
+   &Container {
+     all: unset;
+     cursor: pointer;
+     width: 400px;
+     height: 50px;
+     border: 2px solid white;
+     background-color: #000000;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     color: white;
+
+ 
+     &:hover {
+       color: #E49E00;
+       border-color: #E49E00;
+       transform: scale(1.001);
+       box-shadow: 0 0 8px #E49E00;
+       transition: transform 0.2s ease, box-shadow 0.2s ease;
+       animation: pulseBorder 2s infinite;
+     }
+ 
+     &:active {
+       transform: scale(0.98);
+       box-shadow: 0 0 10px #E49E00;
+     }
+   }
+ 
+   &Label {
+     font-weight: bold;
+     font-size: 20px;
+     text-shadow: 0 0 8px rgba(228, 158, 0, 0.4);
+   }
+ }
+ 
