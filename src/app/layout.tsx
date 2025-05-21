@@ -24,8 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.variable}>
         <header>
-        <Header />
-        <ActionPanel />
+          <Header />
+          <ActionPanel />
         </header>
         {children}
         <footer>

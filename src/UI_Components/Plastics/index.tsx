@@ -1,5 +1,5 @@
-import { plastics } from './constants'
-import s from './style.module.scss'
+import { plastics } from "./constants";
+import s from "./style.module.scss";
 
 export default function Plastics() {
   return (
@@ -10,5 +10,5 @@ export default function Plastics() {
         </div>
       ))}
     </div>
-  )
+  );
 }

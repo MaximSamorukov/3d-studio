@@ -1,7 +1,45 @@
-export const benefits= [
-   { feature: "Быстрота", description: "Изготовление прототипов в короткие сроки" },
-   { feature: "Экономия", description: "Экономия для штучного и мелкосерийного производства" },
-   { feature: "Инновации и Гибкость", description: "Эксперименты с материалами и формами" },
-   { feature: "Удобство модификаций", description: "Оперативное обновление геометрии и технологии" },
-   { feature: "Интеграция", description: "Идеально для прототипирования и мелкосерийного производства" }
- ]
+export const fields = [
+  {
+    label: "Загрузите модель",
+    description: "Загрузка файла",
+    required: false,
+    inputType: "file upload",
+  },
+  { label: "Имя", description: "Имя", required: true, inputType: "text input" },
+  {
+    label: "Телефон",
+    description: "Телефон",
+    required: true,
+    inputType: "text input",
+  },
+  {
+    label: "Email / Telegram / Whatsapp",
+    description: "email, whatsapp, Telegram",
+    required: false,
+    inputType: "text input",
+  },
+  {
+    label: "Комментарии",
+    description: "Комментарии",
+    required: false,
+    inputType: "textarea input",
+  },
+  {
+    label: "Тип пластика",
+    description: "Тип пластика",
+    required: false,
+    inputType: "selector",
+  },
+  {
+    label: "Цвет изделия",
+    description: "Цвет изделия",
+    required: false,
+    inputType: "color selector",
+  },
+  {
+    label: "Постобработка",
+    description: "Требуется ли постобработка",
+    required: false,
+    inputType: "checkbox",
+  },
+];
