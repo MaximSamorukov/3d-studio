@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import ContactWidget from "../MainMenuItemContactWidget";
 import s from "./style.module.scss";
-import MenuItem from "../MenuItem";
-import { footerMenu, logoText, menuItems } from "./constants";
+import { footerMenu, logoText } from "./constants";
 import { FooterMenuItem } from "../FooterMenuItem";
 
 export default function Footer() {
