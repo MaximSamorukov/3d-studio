@@ -1,10 +1,11 @@
-import { UnderWork } from "@/UI_Components/UnderWork";
 import React from "react";
+import { PriceCalculationForm } from "@/UI_Components/PriceCalculationForm";
+import s from "./style.module.scss";
 
 export default function Price() {
   return (
-    <div>
-      <UnderWork />
+    <div className={s.container}>
+      <PriceCalculationForm />
     </div>
   );
 }

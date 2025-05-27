@@ -1,0 +1,55 @@
+export const formFields = [
+  {
+    label: "Загрузка файла модели (*.STL, *.OBJ):",
+    placeholder: "Загрузите или перетащите файл",
+    name: "fileUpload",
+    formInputType: "file",
+    defaultValue: false,
+    values: undefined,
+  },
+  {
+    label: "Тип пластика:",
+    placeholder: "Выберите тип пластика",
+    name: "plasticType",
+    formInputType: "selector",
+    defaultValue: "PLA",
+    values: [
+      {
+        key: "PLA",
+        value: "PLA",
+      },
+    ],
+  },
+  {
+    label: "Ожидаемый вес изделия, г:",
+    placeholder: "Вес изделия",
+    name: "weight",
+    formInputType: "inputNumber",
+    defaultValue: 0,
+    values: undefined,
+  },
+  {
+    label: "Требуется моделирование:",
+    placeholder: undefined,
+    name: "withModeling",
+    formInputType: "checkbox",
+    defaultValue: false,
+    values: undefined,
+  },
+  {
+    label: "Требуется постобработка:",
+    placeholder: undefined,
+    name: "withPostProcessing",
+    formInputType: "checkbox",
+    defaultValue: false,
+    values: undefined,
+  },
+  {
+    label: "Ориентировочная стоимость:",
+    placeholder: "Ориентировочная стоимость",
+    name: "price",
+    formInputType: "textField",
+    defaultValue: undefined,
+    values: undefined,
+  },
+];

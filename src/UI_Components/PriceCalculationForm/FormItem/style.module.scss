@@ -1,0 +1,209 @@
+.field {
+  &Container {
+    width: 100%;
+    height: fit-content;
+    min-height: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &Label {
+    font-size: 16px;
+    width: 340px;
+
+    &FileField {
+      width: fit-content;
+    }
+    span {
+      white-space: nowrap;
+    }
+  }
+}
+
+.checkbox {
+  &Container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin-right: 20px;
+    &Label {
+      width: 40px;
+      font-size: 16px;
+    }
+    &Check {
+      width: 35px;
+      height: 35px;
+      border: 2px solid #e49e00;
+
+      &:hover {
+        color: #e49e00;
+        border-color: #e49e00;
+        transform: scale(1.001);
+        box-shadow: 0 0 8px #e49e00;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        animation: pulseBorder 2s infinite;
+      }
+    }
+  }
+}
+
+.textField {
+  &Container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  &Item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin-right: 20px;
+
+    span {
+      display: inline-block;
+    }
+  }
+}
+
+.inputNumber {
+  &Container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    border: 2px solid #e49e00;
+
+    &:hover {
+      color: #e49e00;
+      border-color: #e49e00;
+      transform: scale(1.001);
+      box-shadow: 0 0 8px #e49e00;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseBorder 2s infinite;
+    }
+  }
+}
+
+.inputText {
+  &Container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    border: 2px solid #e49e00;
+
+    &:hover {
+      color: #e49e00;
+      border-color: #e49e00;
+      transform: scale(1.001);
+      box-shadow: 0 0 8px #e49e00;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseBorder 2s infinite;
+    }
+  }
+}
+
+.inputSelector {
+  &Container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 35px;
+    border: 2px solid #e49e00;
+
+    &:hover {
+      color: #e49e00;
+      border-color: #e49e00;
+      transform: scale(1.001);
+      box-shadow: 0 0 8px #e49e00;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseBorder 2s infinite;
+    }
+  }
+}
+
+.fileField {
+  &Container {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-top: 0;
+  }
+  &Item {
+    box-shadow: 0 0 0 0.2px #e49e00;
+    border-radius: 10px;
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 12px;
+
+    &:hover {
+      color: #e49e00;
+      border-color: #e49e00;
+      transform: scale(1.001);
+      box-shadow: 0 0 8px #e49e00;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseBorder 2s infinite;
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+    }
+  }
+}
