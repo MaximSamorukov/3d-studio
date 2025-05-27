@@ -73,7 +73,17 @@
         rgba(black, 0.1) 100%
       );
 
-      &Icon {
+      &:hover {
+        background: radial-gradient(
+          circle,
+          rgba(rgb(0, 238, 255), 0.8) 8px,
+          rgba(rgb(0, 238, 255), 0.85) 12px,
+          rgba(rgb(0, 238, 255), 0.9) 15px,
+          rgba(rgb(0, 238, 255), 1) 18px,
+          rgba(rgb(0, 238, 255), 1) 20px,
+          rgba(black, 0.1) 25px,
+          rgba(rgb(0, 0, 0), 0.1) 100%
+        );
       }
     }
   }

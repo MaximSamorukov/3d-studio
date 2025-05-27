@@ -18,7 +18,7 @@ export default function ContactWidget({
           href="tel:+79250261737"
           className={cn(s.itemLabel, { [s.footer]: footer })}
         >
-          +7-925-026-17-37
+          <span>+7-925-026-17-37</span>
         </Link>
       </div>
       <div className={s.itemContainer}>
@@ -32,7 +32,7 @@ export default function ContactWidget({
           href="mailto:zakaz3D@yandex.ru?subject=Заказ"
           className={cn(s.itemLabel, { [s.footer]: footer })}
         >
-          zakaz3D@yandex.ru
+          <span>zakaz3D@yandex.ru</span>
         </Link>
       </div>
     </div>
