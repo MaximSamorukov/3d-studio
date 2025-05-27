@@ -2,7 +2,7 @@ export const filaments = [
   {
     name: "PLA",
     extendedName: "Polylactic Acid",
-    application: "Прототипирование, декоративные изделия, игрушки",
+    application: "Прототипирование, декоративные изделия, игрушки.",
     descriptions:
       "Легко печатается, не требует подогрева стола, подходит для начинающих.",
     properties: {
@@ -11,13 +11,13 @@ export const filaments = [
       strength: "средняя",
       flexibility: "низкая",
       shrinkage: "низкая",
-      notes: "Биоразлагаем, неустойчив к нагреву выше 60 °C",
+      notes: "Биоразлагаем, неустойчив к нагреву выше 60 °C.",
     },
   },
   {
     name: "PETG",
     extendedName: "Polyethylene Terephthalate Glycol",
-    application: "Функциональные детали, контейнеры, корпуса",
+    application: "Функциональные детали, контейнеры, корпуса.",
     descriptions:
       "Компромисс между PLA и ABS, устойчив к влаге и химии, прочный.",
     properties: {
@@ -26,13 +26,13 @@ export const filaments = [
       strength: "высокая",
       flexibility: "средняя",
       shrinkage: "низкая",
-      notes: "При перегреве возможна струйная утечка",
+      notes: "При перегреве возможна струйная утечка.",
     },
   },
   {
     name: "ABS",
     extendedName: "Acrylonitrile Butadiene Styrene",
-    application: "Корпуса, прочные технические детали",
+    application: "Корпуса, прочные технические детали.",
     descriptions:
       "Прочный и термостойкий, но склонен к усадке, требует камеры.",
     properties: {
@@ -41,13 +41,13 @@ export const filaments = [
       strength: "высокая",
       flexibility: "средняя",
       shrinkage: "высокая",
-      notes: "Выделяет пары — нужна вентиляция",
+      notes: "Выделяет пары — нужна вентиляция.",
     },
   },
   {
     name: "TPU",
     extendedName: "Thermoplastic Polyurethane",
-    application: "Гибкие детали, прокладки, защитные оболочки",
+    application: "Гибкие детали, прокладки, защитные оболочки.",
     descriptions: "Гибкий, прочный материал, требует медленной печати.",
     properties: {
       temperature: "210–240 °C",
@@ -55,13 +55,13 @@ export const filaments = [
       strength: "высокая",
       flexibility: "очень высокая",
       shrinkage: "низкая",
-      notes: "Сложности подачи, особенно в боудене",
+      notes: "Сложности подачи, особенно в боудене.",
     },
   },
   {
     name: "Nylon",
     extendedName: "Polyamide",
-    application: "Износостойкие, прочные детали, шестерни, крепёж",
+    application: "Износостойкие, прочные детали, шестерни, крепёж.",
     descriptions: "Прочный, гибкий и устойчивый, но сильно впитывает влагу.",
     properties: {
       temperature: "240–270 °C",
@@ -69,13 +69,13 @@ export const filaments = [
       strength: "очень высокая",
       flexibility: "высокая",
       shrinkage: "средняя",
-      notes: "Хранить в сухом месте, иначе печать проблемная",
+      notes: "Хранить в сухом месте, иначе печать проблемная.",
     },
   },
   {
     name: "ASA",
     extendedName: "Acrylic Styrene Acrylonitrile",
-    application: "Уличные конструкции, автокомпоненты",
+    application: "Уличные конструкции, автокомпоненты.",
     descriptions: "Похож на ABS, но устойчив к ультрафиолету и погоде.",
     properties: {
       temperature: "240–260 °C",
@@ -83,13 +83,13 @@ export const filaments = [
       strength: "высокая",
       flexibility: "средняя",
       shrinkage: "высокая",
-      notes: "Требует закрытой камеры",
+      notes: "Требует закрытой камеры.",
     },
   },
   {
     name: "PC",
     extendedName: "Polycarbonate",
-    application: "Механические и термостойкие изделия",
+    application: "Механические и термостойкие изделия.",
     descriptions: "Очень прочный и жаростойкий, но сложный в печати.",
     properties: {
       temperature: "260–310 °C",
@@ -97,7 +97,16 @@ export const filaments = [
       strength: "очень высокая",
       flexibility: "средняя",
       shrinkage: "высокая",
-      notes: "Требует камеры и термостойкого экструдера",
+      notes: "Требует камеры и термостойкого экструдера.",
     },
   },
 ];
+
+export const labels = {
+  temperature: "Температура печати",
+  bed: "Температура нагрева стола",
+  strength: "Относительная прочность",
+  flexibility: "Относительная пластичность",
+  shrinkage: "Объемная усадка",
+  notes: "Особенности",
+};
