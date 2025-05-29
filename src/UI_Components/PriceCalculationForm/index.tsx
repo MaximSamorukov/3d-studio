@@ -26,7 +26,12 @@ export const PriceCalculationForm = () => {
     },
   });
   const onSubmit: SubmitHandler<CalculationForm> = (data) => {
-    fetch("/api/calculate").then(console.log).catch(console.warn);
+    fetch("/api/calculate", {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then(console.log)
+      .catch(console.warn);
   };
   return (
     <div className={s.formContainer}>
