@@ -17,7 +17,7 @@ export const saveFile = async (file: Blob) => {
     const filePath = path.join(dirPath, filename);
 
     await writeFile(filePath, buffer);
-  } catch (_) {
+  } catch {
     throw new Error("Ошибка записи файла");
   }
 };

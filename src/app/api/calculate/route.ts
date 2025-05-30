@@ -20,7 +20,7 @@ export const POST = async (request: Request) => {
   if (file) {
     try {
       saveFile(file as Blob);
-    } catch (_) {
+    } catch {
       return new Response(null, { status: 500 });
     }
   }
