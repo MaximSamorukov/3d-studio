@@ -6,6 +6,7 @@ export enum FormInputTypeEnum {
   inputTextArea = "inputTextArea",
   selector = "selector",
   textField = "textField",
+  inputContacts = "inputContacts",
 }
 
 export type Option = { key: string; value: string };

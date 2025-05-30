@@ -10,28 +10,43 @@ import s from "./style.module.scss";
 
 export type CalculationForm = {
   plasticType: string;
-  fileUpload: File | null;
-  weight: string;
+  fileUpload: Blob;
+  inputContacts: string;
   withModeling: boolean;
   withPostProcessing: boolean;
 };
 export const PriceCalculationForm = () => {
   const methods = useForm<CalculationForm>({
     defaultValues: {
-      weight: "",
+      inputContacts: "",
       withModeling: false,
       withPostProcessing: false,
       plasticType: "PLA",
-      fileUpload: null,
+      fileUpload: undefined,
     },
   });
-  const onSubmit: SubmitHandler<CalculationForm> = (data) => {
-    fetch("/api/calculate", {
+  const onSubmit: SubmitHandler<CalculationForm> = async (data) => {
+    console.log(data);
+    const formData = new FormData();
+    const {
+      inputContacts,
+      withModeling,
+      withPostProcessing,
+      plasticType,
+      fileUpload,
+    } = data;
+    formData.append("inputContacts", inputContacts);
+    formData.append("withModeling", withModeling.toString());
+    formData.append("withPostProcessing", withPostProcessing.toString());
+    formData.append("plasticType", plasticType);
+    formData.append("fileUpload", fileUpload);
+
+    const res = await fetch("/api/calculate", {
       method: "POST",
-      body: JSON.stringify(data),
-    })
-      .then(console.log)
-      .catch(console.warn);
+      body: formData,
+    });
+
+    console.log(await res.json());
   };
   return (
     <div className={s.formContainer}>

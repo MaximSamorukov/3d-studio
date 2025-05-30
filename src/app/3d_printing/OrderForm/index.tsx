@@ -1,5 +1,6 @@
 import cn from "classnames";
 import s from "./style.module.scss";
+import { plastics } from "@/UI_Components/Plastics/constants";
 
 export const OrderForm = () => {
   return (
@@ -44,12 +45,9 @@ export const OrderForm = () => {
           <div className={s.gridItem2}>
             <label className={s.label}>Тип пластика</label>
             <select className={cn(s.inputField, s.inputSelectField)}>
-              <option>PLA</option>
-              <option>PETG</option>
-              <option>ABS</option>
-              <option>TPU</option>
-              <option>PA</option>
-              <option>HIPS</option>
+              {plastics.map((i) => (
+                <option key={i}>{i}</option>
+              ))}
               <option defaultChecked>Требуется консультация</option>
             </select>
           </div>

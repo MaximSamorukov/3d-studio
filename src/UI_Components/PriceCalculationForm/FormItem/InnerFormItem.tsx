@@ -5,6 +5,7 @@ import { InputText } from "./InputText";
 import { InputCheckbox } from "./InputCheckbox";
 import { TextField } from "./TextField";
 import { InputFile } from "./InputFile";
+import { InputContacts } from "./InputContacts";
 
 export const InnerFormItem: React.FC<{
   field: FormItemType;
@@ -14,6 +15,8 @@ export const InnerFormItem: React.FC<{
   switch (formInputType) {
     case FormInputTypeEnum.inputNumber:
       return <InputNumber field={field} />;
+    case FormInputTypeEnum.inputContacts:
+      return <InputContacts field={field} />;
     case FormInputTypeEnum.inputText:
       return <InputText field={field} />;
     case FormInputTypeEnum.selector:

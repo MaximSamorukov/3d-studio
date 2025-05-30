@@ -1,1 +1,1 @@
-export const plastics = ["PLA", "PETG", "ABS", "TPU", "PA", "HIPS"];
+export const plastics = ["PLA", "PETG", "ABS", "ASA", "TPU", "PA", "HIPS"];

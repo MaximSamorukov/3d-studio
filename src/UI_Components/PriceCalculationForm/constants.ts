@@ -21,14 +21,6 @@ export const formFields = [
     ],
   },
   {
-    label: "Ожидаемый вес изделия, г:",
-    placeholder: "Вес изделия",
-    name: "weight",
-    formInputType: "inputNumber",
-    defaultValue: 0,
-    values: undefined,
-  },
-  {
     label: "Требуется моделирование:",
     placeholder: undefined,
     name: "withModeling",
@@ -45,11 +37,42 @@ export const formFields = [
     values: undefined,
   },
   {
-    label: "Ориентировочная стоимость:",
+    label: "Телефон или email:",
+    placeholder: undefined,
+    name: "contacts",
+    formInputType: "inputContacts",
+    defaultValue: "",
+    values: undefined,
+  },
+  {
+    label: "Расчетные данные:",
     placeholder: "Ориентировочная стоимость",
     name: "price",
     formInputType: "textField",
     defaultValue: undefined,
     values: undefined,
+  },
+];
+
+export const technicalData = [
+  {
+    label: "Вес",
+    units: "г",
+    key: "weight",
+  },
+  {
+    label: "Объём",
+    units: "мм\u00B3",
+    key: "volume",
+  },
+  {
+    label: "Время печати",
+    units: "мин",
+    key: "time",
+  },
+  {
+    label: "Стоимость",
+    units: "руб",
+    key: "price",
   },
 ];
