@@ -16,7 +16,14 @@ export const InputCheckbox = ({ field }: { field: FormItemType }) => {
     <div className={s.checkboxContainer}>
       <div className={s.checkboxItem}>
         <div className={s.checkboxItemLabel}>Да</div>
-        <button onClick={() => onChange(true)} className={s.checkboxItemCheck}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+
+            onChange(true);
+          }}
+          className={s.checkboxItemCheck}
+        >
           {value && (
             <Image src="/check.png" alt="checked" width={32} height={32} />
           )}
@@ -24,7 +31,13 @@ export const InputCheckbox = ({ field }: { field: FormItemType }) => {
       </div>
       <div className={s.checkboxItem}>
         <div className={s.checkboxItemLabel}>Нет</div>
-        <button onClick={() => onChange(false)} className={s.checkboxItemCheck}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onChange(false);
+          }}
+          className={s.checkboxItemCheck}
+        >
           {!value && (
             <Image src="/check.png" alt="checked" width={32} height={32} />
           )}
