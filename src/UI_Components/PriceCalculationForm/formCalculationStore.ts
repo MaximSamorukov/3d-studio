@@ -13,9 +13,15 @@ class FormCalculationState {
     makeAutoObservable(this);
   }
 
-  setValue(key: string, value: any) {
-    this[key as keyof typeof this] = value;
+  setValue<
+    K extends keyof Pick<
+      FormCalculationState,
+      "weight" | "plasticType" | "volume" | "printTime" | "price"
+    >
+  >(key: K, value: string) {
+    this[key] = value;
   }
+
   requestCalculation(info: CalculationForm) {
     const formData = new FormData();
     formData.append("inputContacts", info.inputContacts);
