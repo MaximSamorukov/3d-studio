@@ -1,4 +1,5 @@
 import { prices } from "./constants";
+import { saveFile } from "./saveFile";
 
 export const POST = async (request: Request) => {
   const req = await request.formData();
@@ -11,6 +12,18 @@ export const POST = async (request: Request) => {
     price:
       prices[req.get("plasticType") as keyof typeof prices] || "нет данных",
   };
-  console.log(req);
+  const rawFile = req.get("fileUpload");
+  const isFileLike =
+    rawFile && typeof (rawFile as any).arrayBuffer === "function";
+  const file = isFileLike ? rawFile : null;
+
+  if (file) {
+    try {
+      saveFile(file as Blob);
+    } catch (e) {
+      return new Response(null, { status: 500 });
+    }
+  }
+
   return Response.json(calculation);
 };
