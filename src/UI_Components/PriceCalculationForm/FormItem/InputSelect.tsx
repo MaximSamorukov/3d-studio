@@ -4,7 +4,11 @@ import { plastics } from "@/UI_Components/Plastics/constants";
 import { useController, useFormContext } from "react-hook-form";
 import { FormItemType } from "../types";
 
-export const InputSelect = ({ field }: { field: FormItemType }) => {
+export const InputSelect = ({
+  field,
+}: {
+  field: FormItemType;
+}): React.JSX.Element => {
   const { control } = useFormContext();
   const {
     field: { onChange, value },

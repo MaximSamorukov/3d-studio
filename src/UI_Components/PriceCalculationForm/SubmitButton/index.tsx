@@ -4,8 +4,10 @@ import s from "./style.module.scss";
 
 export const SubmitButton = () => {
   return (
-    <button type="submit" className={cn(s.button, s.buttonSubmit)}>
-      Расчитать
-    </button>
+    <input
+      className={cn(s.button, s.buttonSubmit)}
+      type="submit"
+      value="Расчитать"
+    />
   );
 };

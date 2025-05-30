@@ -19,3 +19,19 @@ export type FormItemType = {
   defaultValue: number | string | boolean | undefined;
   values: undefined | string | number | Option[];
 };
+
+export type CalculationForm = {
+  plasticType: string;
+  fileUpload: Blob;
+  inputContacts: string;
+  withModeling: boolean;
+  withPostProcessing: boolean;
+};
+
+export type CalculationDataResponseType = {
+  weight: string;
+  plasticType: string;
+  volume: string;
+  printTime: string;
+  price: string;
+};

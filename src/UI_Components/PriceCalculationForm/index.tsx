@@ -1,21 +1,16 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { observer } from "mobx-react-lite";
 import { formFields } from "./constants";
-import { FormItemType } from "./types";
+import { CalculationForm, FormItemType } from "./types";
 import { FormItem } from "./FormItem";
 import { SubmitButton } from "./SubmitButton";
 
 import s from "./style.module.scss";
+import { formCalculationState } from "./formCalculationStore";
 
-export type CalculationForm = {
-  plasticType: string;
-  fileUpload: Blob;
-  inputContacts: string;
-  withModeling: boolean;
-  withPostProcessing: boolean;
-};
-export const PriceCalculationForm = () => {
+export const PriceCalculationForm = observer(() => {
   const methods = useForm<CalculationForm>({
     defaultValues: {
       inputContacts: "",
@@ -26,27 +21,7 @@ export const PriceCalculationForm = () => {
     },
   });
   const onSubmit: SubmitHandler<CalculationForm> = async (data) => {
-    console.log(data);
-    const formData = new FormData();
-    const {
-      inputContacts,
-      withModeling,
-      withPostProcessing,
-      plasticType,
-      fileUpload,
-    } = data;
-    formData.append("inputContacts", inputContacts);
-    formData.append("withModeling", withModeling.toString());
-    formData.append("withPostProcessing", withPostProcessing.toString());
-    formData.append("plasticType", plasticType);
-    formData.append("fileUpload", fileUpload);
-
-    const res = await fetch("/api/calculate", {
-      method: "POST",
-      body: formData,
-    });
-
-    console.log(await res.json());
+    formCalculationState.requestCalculation(data);
   };
   return (
     <div className={s.formContainer}>
@@ -67,4 +42,4 @@ export const PriceCalculationForm = () => {
       </FormProvider>
     </div>
   );
-};
+});
