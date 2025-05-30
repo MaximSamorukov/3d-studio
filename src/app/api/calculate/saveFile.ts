@@ -6,7 +6,7 @@ export const saveFile = async (file: Blob) => {
   if (!file || typeof file.stream !== "function") {
     throw new Error("Некорректный файл");
   }
-  const filename = (file as any).name;
+  const filename = (file as File).name;
   const dirPath = path.join(process.cwd(), "public", "uploads", "models");
   try {
     if (!fs.existsSync(dirPath)) {
@@ -17,7 +17,7 @@ export const saveFile = async (file: Blob) => {
     const filePath = path.join(dirPath, filename);
 
     await writeFile(filePath, buffer);
-  } catch (e) {
+  } catch (_) {
     throw new Error("Ошибка записи файла");
   }
 };

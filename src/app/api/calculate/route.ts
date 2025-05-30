@@ -14,13 +14,13 @@ export const POST = async (request: Request) => {
   };
   const rawFile = req.get("fileUpload");
   const isFileLike =
-    rawFile && typeof (rawFile as any).arrayBuffer === "function";
+    rawFile && typeof (rawFile as Blob).arrayBuffer === "function";
   const file = isFileLike ? rawFile : null;
 
   if (file) {
     try {
       saveFile(file as Blob);
-    } catch (e) {
+    } catch (_) {
       return new Response(null, { status: 500 });
     }
   }
