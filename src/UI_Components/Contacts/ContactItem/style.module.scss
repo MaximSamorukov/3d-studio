@@ -16,5 +16,15 @@
 
   &Description {
     margin-left: 30px;
+
+    &Map {
+      position: relative;
+      overflow: hidden;
+
+      iframe {
+        position: relative;
+        border: none;
+      }
+    }
   }
 }

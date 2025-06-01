@@ -1,5 +1,5 @@
 .container {
-  min-width: 800px;
+  min-width: 700px;
   height: fit-content;
 }
 
@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
   }
   &Label {
     width: fit-content;
@@ -21,31 +22,56 @@
 
 .body {
   &Container {
-    width: 100%;
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: flex-start;
+
+    &Column {
+      &First {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      &Second {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
   }
 }
 
-.item {
+.workingSchedule {
   &Container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 30px;
-    width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
   }
 
-  &Label {
+  &Header {
     font-size: 16px;
     font-weight: bold;
     height: 30px;
   }
 
-  &Description {
+  &Body {
+    height: fit-content;
+    display: flex;
     margin-left: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  &Item {
+    font-size: 16px;
+    height: 30px;
   }
 }
