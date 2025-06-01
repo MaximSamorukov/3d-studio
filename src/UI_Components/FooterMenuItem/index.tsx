@@ -40,15 +40,22 @@ export const FooterMenuItem = ({
       <div className={s.container}>
         <div className={s.header}>{header}</div>
         <div className={s.bodySocialsContainer}>
-          {socials.map((i) => (
-            <div key={i} className={s.bodySocialsItem}>
-              <Image
-                className={s.bodySocialsItemIcon}
-                src={`/footer/socials_${i}_footer.png`}
-                alt={i}
-                width={50}
-                height={50}
-              />
+          {socials.map(({ id, description }) => (
+            <div key={id} className={s.bodySocialsItem}>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.bodySocialsItemLink}
+                href={description}
+              >
+                <Image
+                  className={s.bodySocialsItemIcon}
+                  src={`/footer/socials_${id}_footer.png`}
+                  alt={id}
+                  width={50}
+                  height={50}
+                />
+              </Link>
             </div>
           ))}
         </div>

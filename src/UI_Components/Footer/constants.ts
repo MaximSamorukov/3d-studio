@@ -28,4 +28,13 @@ export const footerMenu = [
   },
 ];
 
-export const socials = ["vk", "tg"];
+export const socials = [
+  {
+    id: "tg",
+    description: "https://t.me/M_Camopykoff",
+  },
+  {
+    id: "vk",
+    description: "https://vk.com/club230694678",
+  },
+];

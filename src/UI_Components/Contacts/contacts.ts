@@ -18,6 +18,7 @@ export const contacts = [
     id: "telegram",
     label: "Telegram:",
     description: "@M_Camopykoff",
+    url: "https://t.me/M_Camopykoff",
   },
   {
     id: "vk",
