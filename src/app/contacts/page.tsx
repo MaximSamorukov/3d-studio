@@ -1,10 +1,10 @@
-import { UnderWork } from "@/UI_Components/UnderWork";
 import React from "react";
+import { Contacts } from "@/UI_Components/Contacts";
 
 export default function Printing3D() {
   return (
     <div>
-      <UnderWork />
+      <Contacts />
     </div>
   );
 }

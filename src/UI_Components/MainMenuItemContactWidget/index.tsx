@@ -23,16 +23,16 @@ export default function ContactWidget({
       </div>
       <div className={s.itemContainer}>
         <Link
-          href="mailto:zakaz3D@yandex.ru?subject=Заказ"
+          href="mailto:zakaz.print.3d@gmail.com?subject=Заказ"
           className={s.itemIcon}
         >
           <Image src="/email.svg" width={24} height={24} alt="email" />
         </Link>
         <Link
-          href="mailto:zakaz3D@yandex.ru?subject=Заказ"
+          href="mailto:zakaz.print.3d@gmail.com?subject=Заказ"
           className={cn(s.itemLabel, { [s.footer]: footer })}
         >
-          <span>zakaz3D@yandex.ru</span>
+          <span>zakaz.print.3d@gmail.com</span>
         </Link>
       </div>
     </div>
