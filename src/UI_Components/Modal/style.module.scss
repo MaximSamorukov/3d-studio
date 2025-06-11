@@ -1,0 +1,15 @@
+.button {
+  all: unset;
+  min-width: 80px;
+  width: fit-content;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 35px;
+  border: 1px solid white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+}

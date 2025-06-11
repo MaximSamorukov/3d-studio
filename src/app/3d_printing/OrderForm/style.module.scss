@@ -13,6 +13,19 @@
     box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
   }
 }
+@keyframes pulseBorderWithError {
+  0% {
+    box-shadow: 0 0 4px rgba(red, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 8px rgba(red, 1);
+  }
+
+  100% {
+    box-shadow: 0 0 4px rgba(red, 0.5);
+  }
+}
 
 .orderForm {
   max-width: 800px;
@@ -92,6 +105,14 @@
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
+  }
+  &WithError {
+    border: 2px solid red;
+    &:focus {
+      border-color: red;
+      box-shadow: 0 0 8px red;
+      animation: pulseBorderWithError 2s infinite;
+    }
   }
 }
 

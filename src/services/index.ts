@@ -8,3 +8,14 @@ export const calculatePrintPrice = (data: FormData) => {
     })
     .catch(() => ({}));
 };
+
+export const makeOrder = (data: FormData) => {
+  return fetch("/api/makeOrder", {
+    method: "POST",
+    body: data,
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch(() => ({}));
+};
