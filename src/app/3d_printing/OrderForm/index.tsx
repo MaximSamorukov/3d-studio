@@ -21,7 +21,7 @@ export type OrderFormFields = {
 };
 export const OrderForm = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { register, handleSubmit, watch, formState, reset } =
+  const { register, handleSubmit, formState, reset } =
     useForm<OrderFormFields>();
 
   console.log(formState.errors);
