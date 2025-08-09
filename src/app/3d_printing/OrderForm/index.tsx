@@ -24,7 +24,7 @@ export const OrderForm = () => {
   const { register, handleSubmit, formState, reset } =
     useForm<OrderFormFields>();
 
-  console.log(formState.errors);
+  console.log(formState.errors, "check");
 
   const onSubmit: SubmitHandler<OrderFormFields> = (data, e) => {
     e?.preventDefault();
