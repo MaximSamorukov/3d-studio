@@ -1,5 +1,5 @@
 import React from "react";
-import { Contacts } from "@/UI_Components/Contacts";
+import { Contacts } from "@/pages/Contacts";
 
 export default function Printing3D() {
   return (

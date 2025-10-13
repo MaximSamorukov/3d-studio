@@ -1,11 +1,6 @@
 import React from "react";
-import { PriceCalculationForm } from "@/UI_Components/PriceCalculationForm";
-import s from "./style.module.scss";
+import { PricePage } from "@/pages/price/page";
 
 export default function Price() {
-  return (
-    <div className={s.container}>
-      <PriceCalculationForm />
-    </div>
-  );
+  return <PricePage />;
 }

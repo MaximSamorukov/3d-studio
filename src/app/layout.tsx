@@ -5,10 +5,10 @@ import "@fontsource/roboto/700.css";
 
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import Header from "@/UI_Components/Header";
-import ActionPanel from "@/UI_Components/ActionPanel";
-import Footer from "@/UI_Components/Footer";
+import "@/app/globals.css";
+import Header from "@/widgets/common/ui/Header";
+import ActionPanel from "@/widgets/common/ui/ActionPanel";
+import Footer from "@/widgets/common/ui/Footer";
 
 const roboto = Roboto({
   variable: "--font-roboto",

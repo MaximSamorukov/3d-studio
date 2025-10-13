@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { menuItems, socials } from "../Footer/constants";
-import ContactWidget from "../MainMenuItemContactWidget";
+import ContactWidget from "../../../widgets/common/ui/MainMenuItemContactWidget";
 import s from "./style.module.scss";
 import Image from "next/image";
+import { menuItems, socials } from "@/app/config/constants";
 
 export const FooterMenuItem = ({
   type,

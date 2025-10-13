@@ -3,9 +3,9 @@
 import cn from "classnames";
 import s from "./style.module.scss";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { plastics } from "@/UI_Components/Plastics/constants";
+import { plastics } from "@/widgets/common/ui/Plastics/constants";
 import { makeOrder } from "@/services";
-import { ModalComponent } from "@/UI_Components/Modal";
+import { ModalComponent } from "@/widgets/common/ui/Modal";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { useState } from "react";
 
