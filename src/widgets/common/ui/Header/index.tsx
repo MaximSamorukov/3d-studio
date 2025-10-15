@@ -18,7 +18,7 @@ export default function Header() {
           {menuItems.map((i) => (
             <MenuItem key={i.href} href={i.href} label={i.label} />
           ))}
-          <div className={s.menuItem}>
+          <div>
             <ContactWidget />
           </div>
         </div>

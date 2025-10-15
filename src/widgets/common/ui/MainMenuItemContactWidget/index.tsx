@@ -2,6 +2,7 @@ import Image from "next/image";
 import cn from "classnames";
 import s from "./style.module.scss";
 import Link from "next/link";
+import { LoginButton } from "../LoginButton";
 
 export default function ContactWidget({
   footer = false,
@@ -35,6 +36,13 @@ export default function ContactWidget({
           <span>zakaz.print.3d@gmail.com</span>
         </Link>
       </div>
+      {!footer ? (
+        <div className={s.itemContainer}>
+          <LoginButton />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@
     "classnames": "^2.5.1",
     "mobx": "^6.13.7",
     "mobx-react-lite": "^4.1.0",
-    "next": "15.3.2",
+    "next": "^15.5.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.4",
@@ -31,6 +31,5 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "typescript": "^5"
-  },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  }
 }

@@ -1,0 +1,26 @@
+.itemContainer {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 30px;
+}
+.unset {
+  all: unset;
+}
+
+.itemIcon {
+  width: 25%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemLabel {
+  font-size: 16px;
+  span {
+    white-space: nowrap;
+  }
+}

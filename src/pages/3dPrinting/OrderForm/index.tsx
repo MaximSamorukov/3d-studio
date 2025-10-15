@@ -5,7 +5,7 @@ import s from "./style.module.scss";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { plastics } from "@/widgets/common/ui/Plastics/constants";
 import { makeOrder } from "@/services";
-import { ModalComponent } from "@/widgets/common/ui/Modal";
+import { OrderSuccesModal } from "@/widgets/common/ui/OrderSuccesModal";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { useState } from "react";
 
@@ -24,8 +24,6 @@ export const OrderForm = () => {
   const { register, handleSubmit, formState, reset } =
     useForm<OrderFormFields>();
 
-  console.log(formState.errors, "check");
-
   const onSubmit: SubmitHandler<OrderFormFields> = (data, e) => {
     e?.preventDefault();
     const formData = new FormData();
@@ -40,7 +38,7 @@ export const OrderForm = () => {
   };
   return (
     <StyledEngineProvider injectFirst>
-      <div className={s.orderFormContainer}>
+      <div id="order_form" className={s.orderFormContainer}>
         <form onSubmit={handleSubmit(onSubmit)} className={s.orderForm}>
           <div className={s.orderFormHeaderLabel}>Напишите нам</div>
           <div className={s.formGroup}>
@@ -155,7 +153,7 @@ export const OrderForm = () => {
             </button>
           </div>
         </form>
-        <ModalComponent open={openModal} />
+        <OrderSuccesModal open={openModal} />
       </div>
     </StyledEngineProvider>
   );
