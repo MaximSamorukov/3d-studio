@@ -1,13 +1,14 @@
+//"use client";
 import { makeAutoObservable } from "mobx";
 import { LoginFormType } from "./types";
-import { login as loginFn } from "@/services";
+import { signIn } from "next-auth/react";
 
 class FormLoginState {
   login = "";
   password = "";
 
   constructor() {
-    makeAutoObservable(this);
+    //makeAutoObservable(this);
   }
 
   setValue<K extends keyof Pick<FormLoginState, "login" | "password">>(
@@ -17,13 +18,23 @@ class FormLoginState {
     this[key] = value;
   }
 
-  loginHandler(data: LoginFormType) {
+  loginHandler(data: LoginFormType): Promise<boolean> {
+    console.log("auth", signIn);
     const formData = new FormData();
-    formData.append("login", data.login);
-    formData.append("password", data.password);
-    loginFn(formData).then((result) => {
-      console.log(result);
-    });
+    formData.append("login", data?.login);
+    formData.append("password", data?.password);
+    return signIn("Credentials", {
+      login: data.login,
+      password: data.password,
+    })
+      .then((result: any) => {
+        console.log("result", result);
+        return true;
+      })
+      .catch((e) => {
+        console.log(e);
+        return false;
+      });
   }
 }
 

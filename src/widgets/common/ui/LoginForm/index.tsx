@@ -1,20 +1,24 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { observer } from "mobx-react-lite";
 import { formFields } from "./constants";
 import { LoginFormType, FormItemType } from "./types";
 import { FormItem } from "./FormItem";
 import { SubmitButton } from "./SubmitButton";
+import { signIn } from "next-auth/react";
 
 import s from "./style.module.scss";
 import { formLoginState } from "./loginStore";
 
-export const LoginForm = observer(() => {
+export const LoginForm = () => {
   const methods = useForm<LoginFormType>();
-  const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
-    console.log("data", data);
-    formLoginState.loginHandler(data);
+  const router = useRouter();
+  const onSubmit: SubmitHandler<LoginFormType> = async (data, e) => {
+    e?.preventDefault();
+    //formLoginState.loginHandler(data).then(console.log);
+    // router.push("/crm/dashboard");
+    signIn("credentials", { redirectTo: "/crm" });
   };
   return (
     <div className={s.formContainer}>
@@ -35,4 +39,4 @@ export const LoginForm = observer(() => {
       </FormProvider>
     </div>
   );
-});
+};

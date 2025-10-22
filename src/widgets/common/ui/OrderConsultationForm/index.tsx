@@ -3,17 +3,17 @@ import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { observer } from "mobx-react-lite";
 import { formFields } from "./constants";
-import { LoginFormType, FormItemType } from "./types";
+import { ContactFormType, FormItemType } from "./types";
 import { FormItem } from "./FormItem";
 import { SubmitButton } from "./SubmitButton";
 
 import s from "./style.module.scss";
-import { formLoginState } from "./loginStore";
+import { formOrderConsultationState } from "./loginStore";
 
 export const OrderConsultationForm = observer(() => {
-  const methods = useForm<LoginFormType>();
-  const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
-    formLoginState.loginHandler(data);
+  const methods = useForm<ContactFormType>();
+  const onSubmit: SubmitHandler<ContactFormType> = async (data) => {
+    formOrderConsultationState.orderConsultationHandler(data);
   };
   return (
     <div className={s.formContainer}>

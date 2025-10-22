@@ -1,30 +1,28 @@
 import { makeAutoObservable } from "mobx";
-import { LoginFormType } from "./types";
-import { login as loginFn } from "@/services";
+import { ContactFormType } from "./types";
+import { orderConsultation } from "@/services";
 
-class FormLoginState {
-  login = "";
-  password = "";
+class FormOrderConsultationState {
+  contact = "";
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setValue<K extends keyof Pick<FormLoginState, "login" | "password">>(
+  setValue<K extends keyof Pick<ContactFormType, "contact">>(
     key: K,
     value: string
   ) {
     this[key] = value;
   }
 
-  loginHandler(data: LoginFormType) {
+  orderConsultationHandler(data: ContactFormType) {
     const formData = new FormData();
-    formData.append("login", data.login);
-    formData.append("password", data.password);
-    loginFn(formData).then((result) => {
+    formData.append("contact", data.contact);
+    orderConsultation(formData).then((result) => {
       console.log(result);
     });
   }
 }
 
-export const formLoginState = new FormLoginState();
+export const formOrderConsultationState = new FormOrderConsultationState();

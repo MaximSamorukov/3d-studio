@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/3d_printing",
         permanent: true,
       },
+      {
+        source: "/crm",
+        destination: "/crm/dashboard",
+        permanent: true,
+      },
     ];
   },
 };

@@ -20,15 +20,6 @@ export type FormItemType = {
   values: undefined | string | number | Option[];
 };
 
-export type LoginFormType = {
-  login: string;
-  password: string;
-};
-
-export type CalculationDataResponseType = {
-  weight: string;
-  plasticType: string;
-  volume: string;
-  printTime: string;
-  price: string;
+export type ContactFormType = {
+  contact: string;
 };

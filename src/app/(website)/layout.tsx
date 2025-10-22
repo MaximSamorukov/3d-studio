@@ -5,10 +5,11 @@
 
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "@/app/globals.css";
+import "@/app/(website)/globals.css";
 import Header from "@/widgets/common/ui/Header";
 import ActionPanel from "@/widgets/common/ui/ActionPanel";
 import Footer from "@/widgets/common/ui/Footer";
+import { ProviderSession } from "@/shared/common/SessionProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description: "Печать пластиковых изделий на заказ из пластика",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -28,14 +29,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <header>
-          <Header />
-          <ActionPanel />
-        </header>
-        {children}
-        <footer>
-          <Footer />
-        </footer>
+        <ProviderSession>
+          <header>
+            <Header />
+            <ActionPanel />
+          </header>
+          {children}
+          <footer>
+            <Footer />
+          </footer>
+        </ProviderSession>
       </body>
     </html>
   );
