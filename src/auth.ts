@@ -1,7 +1,9 @@
 import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { login as loginFn } from "@/services";
 import { ZodError } from "zod";
+import { NextResponse } from "next/server";
 
 export const {
   auth,
@@ -15,25 +17,34 @@ export const {
         login: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials) => {
-        console.log("credentials", credentials);
-
+      authorize: async ({ login, password }) => {
+        if (!login || !password) {
+          return null;
+        }
         const user = {
-          login: "maksim@maksi.ru",
-          password: "12345",
-        } as User;
+          login,
+          password,
+          email: login as string,
+        } as User & { email: string };
         return user;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
-  pages: {},
+  pages: {
+    error: "/auth_error",
+    signIn: "/auth_error",
+  },
   callbacks: {
-    session: async ({ session }) => {
-      console.log("session", session);
+    session: async ({ session, user }) => {
+      console.log("session>>>", session);
       return session;
     },
     authorized: async ({ auth }) => {
-      console.log("authorized", auth);
+      console.log("authorized>>>", auth);
       return true;
     },
   },

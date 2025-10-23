@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useRouter } from "next/navigation";
+import React, { FormEventHandler } from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { formFields } from "./constants";
 import { LoginFormType, FormItemType } from "./types";
@@ -9,16 +8,16 @@ import { SubmitButton } from "./SubmitButton";
 import { signIn } from "next-auth/react";
 
 import s from "./style.module.scss";
-import { formLoginState } from "./loginStore";
 
 export const LoginForm = () => {
   const methods = useForm<LoginFormType>();
-  const router = useRouter();
   const onSubmit: SubmitHandler<LoginFormType> = async (data, e) => {
     e?.preventDefault();
-    //formLoginState.loginHandler(data).then(console.log);
-    // router.push("/crm/dashboard");
-    signIn("credentials", { redirectTo: "/crm" });
+    signIn("credentials", { redirectTo: "/crm", ...data });
+  };
+  const onGoogleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    signIn("google");
   };
   return (
     <div className={s.formContainer}>
@@ -32,11 +31,22 @@ export const LoginForm = () => {
               <FormItem key={field.name} field={field} />
             ))}
           </div>
+          <div className={s.formPasswordRules}>
+            <span>
+              Пароль: Не менее 6 символов. Нижний регистр, верхний регистр,
+              цифры.
+            </span>
+          </div>
           <div className={s.formFooter}>
             <SubmitButton label="Войти" />
           </div>
         </form>
       </FormProvider>
+      <div className={s.formOtherProviders}>
+        <form onSubmit={onGoogleSubmit}>
+          <SubmitButton label="Вход через Google" />
+        </form>
+      </div>
     </div>
   );
 };

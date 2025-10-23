@@ -3,11 +3,16 @@ import s from "./style.module.scss";
 import { useController, useFormContext } from "react-hook-form";
 import { FormItemType } from "../types";
 
-export const InputNumber = ({ field: { name } }: { field: FormItemType }) => {
+export const InputNumber = ({
+  field: { name, rules },
+}: {
+  field: FormItemType;
+}) => {
   const { control } = useFormContext();
   const { field } = useController({
     name,
     control,
+    rules,
   });
   return (
     <div className={s.inputNumberContainer}>

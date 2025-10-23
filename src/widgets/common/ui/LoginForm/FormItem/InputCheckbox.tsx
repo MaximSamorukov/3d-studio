@@ -11,6 +11,7 @@ export const InputCheckbox = ({ field }: { field: FormItemType }) => {
   } = useController({
     name: field.name,
     control,
+    rules: field.rules,
   });
   return (
     <div className={s.checkboxContainer}>

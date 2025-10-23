@@ -6,7 +6,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@/app/(website)/globals.css";
-import { ProviderSession } from "@/shared/common/SessionProvider";
+import { Provider } from "@/shared/common/Provider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <ProviderSession>{children}</ProviderSession>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

@@ -32,11 +32,13 @@ export const ModalComponent: React.FC<ModalComponentProps> = ({
   onClose = () => {},
   children,
   withControl = true,
-  style = {
+  style = {},
+}) => {
+  const widhtAndHeight = {
     width: styles.width,
     height: styles.height,
-  },
-}) => {
+    ...style,
+  };
   const [isOpened, setOpened] = useState(false);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export const ModalComponent: React.FC<ModalComponentProps> = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={{ ...styles, ...style }}>
+      <Box sx={{ ...styles, ...widhtAndHeight }}>
         {children}
         {withControl && (
           <button className={s.button} onClick={onClose}>

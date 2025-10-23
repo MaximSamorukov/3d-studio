@@ -15,6 +15,7 @@ export const InputSelect = ({
   } = useController({
     name: field.name,
     control,
+    rules: field.rules,
   });
   return (
     <div className={s.inputSelectorContainer}>

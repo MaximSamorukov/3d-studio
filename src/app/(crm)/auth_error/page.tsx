@@ -1,11 +1,10 @@
 import Link from "next/link";
 import s from "./unauthorized.module.scss";
 
-export default function UnauthorizedPage() {
+export default function AuthErrorPage() {
   return (
     <div className={s.unauthorized}>
-      <h1>⛔ Отсутствует авторизация</h1>
-      <p>для нахождения на данной странице.</p>
+      <h1>⛔ Ошибка аутентификации</h1>
       <Link href="/">
         <p>Вернуться на главную страницу</p>
       </Link>

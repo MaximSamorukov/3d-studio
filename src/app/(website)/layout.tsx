@@ -9,7 +9,7 @@ import "@/app/(website)/globals.css";
 import Header from "@/widgets/common/ui/Header";
 import ActionPanel from "@/widgets/common/ui/ActionPanel";
 import Footer from "@/widgets/common/ui/Footer";
-import { ProviderSession } from "@/shared/common/SessionProvider";
+import { Provider } from "@/shared/common/Provider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <ProviderSession>
+        <Provider>
           <header>
             <Header />
             <ActionPanel />
@@ -38,7 +38,7 @@ export default async function RootLayout({
           <footer>
             <Footer />
           </footer>
-        </ProviderSession>
+        </Provider>
       </body>
     </html>
   );

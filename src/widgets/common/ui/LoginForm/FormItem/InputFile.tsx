@@ -5,7 +5,11 @@ import { useController, useFormContext } from "react-hook-form";
 import { FormItemType } from "../types";
 import s from "./style.module.scss";
 
-export const InputFile = ({ field: { name } }: { field: FormItemType }) => {
+export const InputFile = ({
+  field: { name, rules },
+}: {
+  field: FormItemType;
+}) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [active, setActive] = useState(false);
   const { control } = useFormContext();
@@ -14,6 +18,7 @@ export const InputFile = ({ field: { name } }: { field: FormItemType }) => {
   } = useController({
     name,
     control,
+    rules,
   });
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();

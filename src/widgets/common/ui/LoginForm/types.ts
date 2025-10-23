@@ -1,3 +1,5 @@
+import { UseControllerProps } from "react-hook-form";
+
 export enum FormInputTypeEnum {
   file = "file",
   checkbox = "checkbox",
@@ -7,6 +9,7 @@ export enum FormInputTypeEnum {
   selector = "selector",
   textField = "textField",
   inputContacts = "inputContacts",
+  password = "password",
 }
 
 export type Option = { key: string; value: string };
@@ -18,6 +21,7 @@ export type FormItemType = {
   formInputType: FormInputTypeEnum;
   defaultValue: number | string | boolean | undefined;
   values: undefined | string | number | Option[];
+  rules?: UseControllerProps["rules"];
 };
 
 export type LoginFormType = {

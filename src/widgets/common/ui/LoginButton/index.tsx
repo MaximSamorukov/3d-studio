@@ -21,7 +21,7 @@ export const LoginButton = () => {
   const handleCloseModal = useCallback(() => {
     setOpen(false);
   }, []);
-  console.log(session);
+
   return (
     <div className={s.itemContainer}>
       <button
@@ -40,6 +40,9 @@ export const LoginButton = () => {
         onClose={handleCloseModal}
         open={open}
         withControl={false}
+        style={{
+          height: 300,
+        }}
       >
         <LoginForm />
       </ModalComponent>
