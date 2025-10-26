@@ -1,12 +1,12 @@
-import { FormInputTypeEnum, FormItemType } from "../types";
-import { InputNumber } from "./InputNumber";
-import { InputSelect } from "./InputSelect";
-import { InputText } from "./InputText";
-import { InputCheckbox } from "./InputCheckbox";
-import { TextField } from "./TextField";
-import { InputFile } from "./InputFile";
-import { InputContacts } from "./InputContacts";
-import { InputPassword } from "./InputPassword";
+import { FormInputTypeEnum, FormItemType } from '../types';
+import { InputNumber } from './InputNumber';
+import { InputSelect } from './InputSelect';
+import { InputText } from './InputText';
+import { InputCheckbox } from './InputCheckbox';
+import { TextField } from './TextField';
+import { InputFile } from './InputFile';
+import { InputContacts } from './InputContacts';
+import { InputPassword } from './InputPassword';
 
 export const InnerFormItem: React.FC<{
   field: FormItemType;

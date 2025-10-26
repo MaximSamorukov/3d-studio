@@ -1,3 +1,15 @@
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(228, 158, 0, 1);
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+  }
+}
+
 .button {
   all: unset;
   border: 1px solid white;
@@ -8,8 +20,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 300px;
-  height: 35px;
 
   &:hover {
     color: #e49e00;
@@ -18,5 +28,13 @@
     box-shadow: 0 0 8px #e49e00;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: pulseBorder 2s infinite;
+  }
+
+  &OrderPrinting {
+    &Container {
+      width: 300px;
+      height: 35px;
+      margin-right: 30px;
+    }
   }
 }

@@ -1,22 +1,13 @@
-"use client";
-import cn from "classnames";
-import s from "./style.module.scss";
-import { OrderConsultationButton } from "../OrderConsultationButton";
+'use client';
+import cn from 'classnames';
+import s from './style.module.scss';
+import { OrderConsultationButton } from '../OrderConsultationButton';
+import { OrderButton } from '../OrderButton';
 
 export default function ActionPanel() {
-  const handleScroll = () => {
-    const el = document.getElementById("order_form");
-    el?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className={s.container}>
-      <button
-        onClick={handleScroll}
-        className={cn(s.button, s.buttonOrderPrintingContainer)}
-      >
-        Заказать 3D-печать
-      </button>
+      <OrderButton />
       <OrderConsultationButton />
     </div>
   );

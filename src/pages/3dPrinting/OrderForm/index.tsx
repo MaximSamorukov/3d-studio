@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import cn from "classnames";
-import s from "./style.module.scss";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { plastics } from "@/widgets/common/ui/Plastics/constants";
-import { makeOrder } from "@/services";
-import { OrderSuccesModal } from "@/widgets/common/ui/OrderSuccesModal";
-import { StyledEngineProvider } from "@mui/material/styles";
-import { useState } from "react";
+import cn from 'classnames';
+import s from './style.module.scss';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { plastics } from '@/widgets/common/ui/Plastics/constants';
+import { makeOrder } from '@/services';
+import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
+import { StyledEngineProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 export type OrderFormFields = {
   file: string;
@@ -49,7 +49,7 @@ export const OrderForm = () => {
                 max={20}
                 multiple
                 type="file"
-                {...register("file")}
+                {...register('file')}
                 className={cn(s.inputField, {
                   [s.inputFieldWithError]: formState.errors.file,
                 })}
@@ -61,7 +61,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register("name", { required: true })}
+                {...register('name', { required: true })}
                 type="text"
                 placeholder="Имя"
                 className={cn(s.inputField, {
@@ -76,7 +76,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register("phone", { required: true })}
+                {...register('phone', { required: true })}
                 type="tel"
                 placeholder="Телефон"
                 className={cn(s.inputField, {
@@ -91,7 +91,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register("email", { required: true })}
+                {...register('email', { required: true })}
                 type="email"
                 placeholder="Email"
                 className={cn(s.inputField, {
@@ -103,7 +103,7 @@ export const OrderForm = () => {
             <div className={s.gridItem2}>
               <label className={s.label}>Тип пластика</label>
               <select
-                {...register("plasticType")}
+                {...register('plasticType')}
                 className={cn(s.inputField, s.inputSelectField, {
                   [s.inputFieldWithError]: formState.errors.plasticType,
                 })}
@@ -118,7 +118,7 @@ export const OrderForm = () => {
             <div className={s.gridItem4}>
               <label className={s.label}>Цвет изделия</label>
               <input
-                {...register("color")}
+                {...register('color')}
                 type="color"
                 className={cn(s.colorPicker, {
                   [s.inputFieldWithError]: formState.errors.color,
@@ -129,7 +129,7 @@ export const OrderForm = () => {
             <div className={s.gridItem6}>
               <label className={s.label}>Требуется постобработка</label>
               <select
-                {...register("withPostprocessing")}
+                {...register('withPostprocessing')}
                 className={cn(s.inputField, s.inputSelectField, {
                   [s.inputFieldWithError]: formState.errors.withPostprocessing,
                 })}
@@ -142,7 +142,7 @@ export const OrderForm = () => {
             <div className={s.gridItem8}>
               <label className={s.label}>Комментарии</label>
               <textarea
-                {...register("comment")}
+                {...register('comment')}
                 placeholder="Комментарии"
                 className={s.textareaField}
               />
@@ -153,7 +153,7 @@ export const OrderForm = () => {
             </button>
           </div>
         </form>
-        <OrderSuccesModal open={openModal} />
+        <OrderSuccesModal open={openModal} setOpen={setOpenModal} />
       </div>
     </StyledEngineProvider>
   );

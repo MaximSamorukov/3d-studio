@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 @keyframes pulseBorder {
   0% {
@@ -39,7 +39,6 @@
   box-sizing: border-box;
   padding: 30px;
   &Container {
-    margin-top: 40px;
     width: 100%;
     color: white;
     display: flex;

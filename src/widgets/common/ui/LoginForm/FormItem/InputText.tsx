@@ -1,7 +1,7 @@
-import React from "react";
-import { FormItemType } from "../types";
-import s from "./style.module.scss";
-import { useForm, useFormContext } from "react-hook-form";
+import React from 'react';
+import { FormItemType } from '../types';
+import s from './style.module.scss';
+import { useForm, useFormContext } from 'react-hook-form';
 
 type FieldType = FormItemType & {
   defaultValue?: string | number;
@@ -9,7 +9,6 @@ type FieldType = FormItemType & {
 
 export const InputText = ({ field }: { field: FormItemType }) => {
   const methods = useFormContext();
-
   return (
     <div className={s.inputTextContainer}>
       <div className={s.inputTextItem}>

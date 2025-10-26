@@ -15,6 +15,7 @@
 .makeOrder {
   &Container {
     margin-top: 10px;
+    margin-bottom: 40px;
     width: 100%;
     color: white;
     display: flex;
@@ -70,9 +71,7 @@
 
       &:hover {
         box-shadow: 0 0 8px #e49e00;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
         animation: pulseBorder 2s infinite;
       }
     }

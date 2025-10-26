@@ -1,24 +1,26 @@
-"use client";
-import React, { FormEventHandler } from "react";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { formFields } from "./constants";
-import { LoginFormType, FormItemType } from "./types";
-import { FormItem } from "./FormItem";
-import { SubmitButton } from "./SubmitButton";
-import { signIn } from "next-auth/react";
+'use client';
+import React, { FormEventHandler } from 'react';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { formFields } from './constants';
+import { LoginFormType, FormItemType } from './types';
+import { FormItem } from './FormItem';
+import { SubmitButton } from './SubmitButton';
+import { signIn } from 'next-auth/react';
 
-import s from "./style.module.scss";
+import s from './style.module.scss';
+import { Errors } from './Errors';
 
 export const LoginForm = () => {
   const methods = useForm<LoginFormType>();
   const onSubmit: SubmitHandler<LoginFormType> = async (data, e) => {
     e?.preventDefault();
-    signIn("credentials", { redirectTo: "/crm", ...data });
+    await signIn('credentials', { redirectTo: '/crm', ...data });
   };
   const onGoogleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    signIn("google");
+    signIn('google', { redirectTo: '/crm' });
   };
+
   return (
     <div className={s.formContainer}>
       <div className={s.formHead}>
@@ -32,10 +34,7 @@ export const LoginForm = () => {
             ))}
           </div>
           <div className={s.formPasswordRules}>
-            <span>
-              Пароль: Не менее 6 символов. Нижний регистр, верхний регистр,
-              цифры.
-            </span>
+            <Errors />
           </div>
           <div className={s.formFooter}>
             <SubmitButton label="Войти" />

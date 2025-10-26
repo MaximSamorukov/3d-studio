@@ -1,10 +1,11 @@
-"use client";
-import s from "./style.module.scss";
+'use client';
+import { usePathname } from 'next/navigation';
+import s from './style.module.scss';
 
 export const MakeOrderButton = () => {
   const handleScroll = () => {
-    const el = document.getElementById("order_form");
-    el?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById('order_form');
+    el?.scrollIntoView({ behavior: 'smooth' });
   };
   return (
     <div className={s.makeOrderBtn}>

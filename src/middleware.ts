@@ -1,16 +1,18 @@
-import { auth } from "@/auth";
+import { auth } from '@/auth';
+import { NextApiRequest } from 'next';
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
-export const middleware = async (req: NextRequest) => {
-  const session = await auth();
-  console.log(session);
-  if (!session?.user) {
-    return NextResponse.redirect(new URL("/unauthorized", req.url));
-  }
+//export const middleware = async (req: NextRequest) => {
+//  const ses = await auth();
+//  console.log('session', ses, auth);
+//  if (!ses?.user) {
+//    return NextResponse.redirect(new URL('/unauthorized', req.url));
+//  }
 
-  NextResponse.next();
-};
+//  return NextResponse.next();
+//};
+export { auth as middleware } from '@/auth';
 export const config = {
-  matcher: ["/crm/:path*"],
+  matcher: ['/crm/:path*'],
 };
