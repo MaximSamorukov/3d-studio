@@ -1,13 +1,13 @@
 'use client';
 
 import cn from 'classnames';
-import s from './style.module.scss';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { plastics } from '@/widgets/common/ui/Plastics/constants';
 import { makeOrder } from '@/services';
 import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import s from './style.module.scss';
 
 export type OrderFormFields = {
   file: string;
@@ -28,10 +28,17 @@ export const OrderForm = () => {
     e?.preventDefault();
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value);
+      if (key === 'file') {
+        const file = (value as unknown as FileList).item(0);
+        console.log(value, file);
+        if (file) {
+          formData.append(key, file);
+        }
+      } else {
+        formData.append(key, value);
+      }
     });
     makeOrder(formData).then((result) => {
-      console.log(result);
       reset();
       setOpenModal(true);
     });
@@ -47,8 +54,8 @@ export const OrderForm = () => {
               <input
                 min={0}
                 max={20}
-                multiple
                 type="file"
+                multiple={false}
                 {...register('file')}
                 className={cn(s.inputField, {
                   [s.inputFieldWithError]: formState.errors.file,

@@ -18,7 +18,7 @@ export const OrderSuccesModal: React.FC<ModalComponentProps> = ({
     setOpen(false);
   };
   return (
-    <ModalComponent withControl={false} open={open}>
+    <ModalComponent withControl={false} open={open} onClose={onClose}>
       <div style={{ padding: 20 }}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Заказ успешно отправлен.

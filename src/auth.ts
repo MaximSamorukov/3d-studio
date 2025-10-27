@@ -25,7 +25,6 @@ export const {
       warn: console.warn,
       debug: console.debug,
     },
-    //adapter: NeonAdapter(pool),
     adapter: TypeORMAdapter({
       type: 'postgres',
       url: process.env.AUTH_TYPEORM_CONNECTION,
