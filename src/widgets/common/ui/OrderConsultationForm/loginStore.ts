@@ -1,27 +1,26 @@
-import { makeAutoObservable } from "mobx";
-import { ContactFormType } from "./types";
-import { orderConsultation } from "@/services";
+import { makeAutoObservable } from 'mobx';
+import { ContactFormType } from './types';
+import { orderConsultation } from '@/services';
 
 class FormOrderConsultationState {
-  contact = "";
+  contact = '';
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setValue<K extends keyof Pick<ContactFormType, "contact">>(
+  setValue<K extends keyof Pick<ContactFormType, 'contact'>>(
     key: K,
-    value: string
+    value: string,
   ) {
     this[key] = value;
   }
 
-  orderConsultationHandler(data: ContactFormType) {
+  async orderConsultationHandler(data: ContactFormType) {
     const formData = new FormData();
-    formData.append("contact", data.contact);
-    orderConsultation(formData).then((result) => {
-      console.log(result);
-    });
+    formData.append('contact', data.contact);
+    const result = await orderConsultation(formData);
+    return result;
   }
 }
 

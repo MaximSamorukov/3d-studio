@@ -7,6 +7,7 @@ import { makeOrder } from '@/services';
 import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 import s from './style.module.scss';
 
 export type OrderFormFields = {
@@ -21,16 +22,17 @@ export type OrderFormFields = {
 };
 export const OrderForm = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [savingOrderInprogress, setSavingOrderInProgress] = useState(false);
   const { register, handleSubmit, formState, reset } =
     useForm<OrderFormFields>();
 
   const onSubmit: SubmitHandler<OrderFormFields> = (data, e) => {
     e?.preventDefault();
+    setSavingOrderInProgress(true);
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (key === 'file') {
         const file = (value as unknown as FileList).item(0);
-        console.log(value, file);
         if (file) {
           formData.append(key, file);
         }
@@ -38,15 +40,25 @@ export const OrderForm = () => {
         formData.append(key, value);
       }
     });
-    makeOrder(formData).then((result) => {
-      reset();
-      setOpenModal(true);
-    });
+    makeOrder(formData)
+      .then((result) => {
+        setSavingOrderInProgress(false);
+        reset();
+        setOpenModal(true);
+      })
+      .catch(() => {
+        setSavingOrderInProgress(false);
+      });
   };
   return (
     <StyledEngineProvider injectFirst>
       <div id="order_form" className={s.orderFormContainer}>
         <form onSubmit={handleSubmit(onSubmit)} className={s.orderForm}>
+          {savingOrderInprogress && (
+            <div className={s.orderFormLoader}>
+              <CircularProgress size={40} color="primary" />
+            </div>
+          )}
           <div className={s.orderFormHeaderLabel}>Напишите нам</div>
           <div className={s.formGroup}>
             <div className={s.gridItem1}>

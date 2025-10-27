@@ -8,7 +8,7 @@ export const POST = async (request: Request) => {
     const db = await getOrderDataSource();
     const repository = db.getRepository(PrintOrderEntity);
     const file = printOrderFormData.get('file') as unknown as File | null;
-    console.log(file);
+
     let file_path = 'there is no file uploaded';
     if (file) {
       const pathToFile = await uploadFile(file);
@@ -36,7 +36,6 @@ export const POST = async (request: Request) => {
     await repository.save(order);
     return Response.json({ message: 'Заказ сохранен' }, { status: 201 });
   } catch (error) {
-    console.log(error);
     return Response.json(
       { error: 'Ошибка при сохранении заказа' },
       { status: 500 },

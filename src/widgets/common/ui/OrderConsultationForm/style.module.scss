@@ -1,6 +1,12 @@
 .form {
   &Container {
     width: 100%;
+    position: relative;
+    &Loader {
+      position: absolute;
+      top: 45%;
+      left: 44%;
+    }
   }
   &Head {
     display: flex;

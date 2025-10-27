@@ -26,10 +26,11 @@
     box-shadow: 0 0 4px rgba(red, 0.5);
   }
 }
+$WIDTH: 800px;
 
 .orderForm {
-  max-width: 800px;
-  width: 800px;
+  max-width: $WIDTH;
+  width: $WIDTH;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -38,6 +39,12 @@
   border: 2px solid #e49e00;
   box-sizing: border-box;
   padding: 30px;
+  position: relative;
+  &Loader {
+    position: absolute;
+    top: 50% - 5;
+    left: math.div($WIDTH - 40, 2);
+  }
   &Container {
     width: 100%;
     color: white;

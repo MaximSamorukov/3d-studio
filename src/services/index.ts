@@ -1,6 +1,6 @@
 export const calculatePrintPrice = (data: FormData) => {
-  return fetch("/api/calculate", {
-    method: "POST",
+  return fetch('/api/calculate', {
+    method: 'POST',
     body: data,
   })
     .then((res) => {
@@ -10,10 +10,10 @@ export const calculatePrintPrice = (data: FormData) => {
 };
 
 export const login = (data: { login: string; password: string }) => {
-  "use client";
+  'use client';
   console.log(data);
-  return fetch("/api/login", {
-    method: "POST",
+  return fetch('/api/login', {
+    method: 'POST',
     body: JSON.stringify(data),
   })
     .then((res) => {
@@ -23,19 +23,19 @@ export const login = (data: { login: string; password: string }) => {
 };
 
 export const orderConsultation = (data: FormData) => {
-  return fetch("/api/consultation", {
-    method: "POST",
+  return fetch('/api/consultation', {
+    method: 'POST',
     body: data,
   })
     .then((res) => {
-      return res.json();
+      return true;
     })
-    .catch(() => ({}));
+    .catch(() => false);
 };
 
 export const makeOrder = (data: FormData) => {
-  return fetch("/api/makeOrder", {
-    method: "POST",
+  return fetch('/api/makeOrder', {
+    method: 'POST',
     body: data,
   })
     .then((res) => {

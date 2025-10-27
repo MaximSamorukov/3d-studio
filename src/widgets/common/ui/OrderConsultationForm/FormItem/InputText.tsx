@@ -1,24 +1,23 @@
-import React from "react";
-import { FormItemType } from "../types";
-import s from "./style.module.scss";
+import React from 'react';
+import { FormItemType } from '../types';
+import s from './style.module.scss';
+import { useFormContext } from 'react-hook-form';
 
 type FieldType = FormItemType & {
   defaultValue?: string | number;
 };
-function transformProps(props: FormItemType): FieldType {
-  const defaultValue =
-    typeof props?.defaultValue === "boolean"
-      ? "default text"
-      : props?.defaultValue;
-  const returnObject = Object.assign(props, { defaultValue });
-  return returnObject;
-}
+
 export const InputText = ({ field }: { field: FormItemType }) => {
-  const props = transformProps(field);
+  const methods = useFormContext();
+
   return (
     <div className={s.inputTextContainer}>
       <div className={s.inputTextItem}>
-        <input type="text" name={field.name} placeholder={field.placeholder} />
+        <input
+          type="text"
+          placeholder={field.placeholder}
+          {...methods.register(field.name, field.rules)}
+        />
       </div>
     </div>
   );
