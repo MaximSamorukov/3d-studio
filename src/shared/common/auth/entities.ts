@@ -35,6 +35,9 @@ export class UserEntity {
   @Column({ type: 'varchar', nullable: true })
   image!: string | null;
 
+  @Column({ type: 'varchar' })
+  password!: string | null;
+
   @Column({ type: 'varchar', nullable: true })
   role!: string | null;
 

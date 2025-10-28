@@ -1,12 +1,12 @@
 'use client';
 import Image from 'next/image';
 import cn from 'classnames';
-import s from './style.module.scss';
-import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { ModalComponent } from '@/shared/common/Modal';
 import { LoginForm } from '../LoginForm';
 import { signOut, useSession } from 'next-auth/react';
+
+import s from './style.module.scss';
 
 export const LoginButton = () => {
   const session = useSession();
@@ -21,7 +21,7 @@ export const LoginButton = () => {
   const handleCloseModal = useCallback(() => {
     setOpen(false);
   }, []);
-
+  console.log('session', session);
   return (
     <div className={s.itemContainer}>
       <button

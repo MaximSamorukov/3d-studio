@@ -16,9 +16,9 @@ export const LoginForm = () => {
     e?.preventDefault();
     await signIn('credentials', { redirectTo: '/crm', ...data });
   };
-  const onGoogleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const onGoogleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    signIn('google', { redirectTo: '/crm' });
+    await signIn('google', { redirectTo: '/crm' });
   };
 
   return (

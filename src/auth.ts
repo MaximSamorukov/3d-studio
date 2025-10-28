@@ -1,14 +1,14 @@
 //export const runtime = 'nodejs';
 import NextAuth, { User } from 'next-auth';
+import bcrypt from 'bcryptjs';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import NeonAdapter from '@auth/neon-adapter';
 import { Pool } from '@neondatabase/serverless';
 import { DataSource } from 'typeorm';
 import { TypeORMAdapter } from '@auth/typeorm-adapter';
-import { AppDataSource } from '@/shared/common/db/index';
-import { login as loginFn } from '@/services';
-import { ZodError } from 'zod';
+import { getDataSource } from '@/shared/common/db/index';
+import { checkUser, login as loginFn } from '@/services';
 import { NextResponse } from 'next/server';
 import * as entities from '@/shared/common/auth/entities';
 
@@ -45,38 +45,24 @@ export const {
           password: { label: 'Password', type: 'password' },
         },
         authorize: async (data) => {
-          const { login, password } = data;
-          console.log('authorize', data);
+          const { login, password } = data as {
+            login: string;
+            password: string;
+          };
           if (!login || !password) {
             return null;
           }
+
           const user = {
             login,
             password,
-            email: login as string,
-          } as User & { email: string };
-          const objectToReturn = {
-            name: 'Maxim Samorukov',
-            image:
-              'https://lh3.googleusercontent.com/a/ACg8ocK6_bkZbZ8apoHgYt2CNXpwYmE7SnOz85CPdjTKSxr4DKVCdh9I=s96-c',
-            id: '1',
-            email: 'maxim.samorukov@gmail.com',
           };
-          //console.log('auth -> authorize return object', objectToReturn);
-          //try {
-          //  const resp = await fetch('http://localhost:3000/api/users', {
-          //    method: 'POST',
-          //    body: JSON.stringify(user),
-          //    headers: {
-          //      'Content-Type': 'application/json',
-          //    },
-          //  });
-          //  console.log('resp', resp);
-          //} catch (e) {
-          //  console.log('error', e);
-          //  return null;
-          //}
-          return objectToReturn;
+          const result = await checkUser(user);
+          if (!result) {
+            return null;
+          } else {
+            return result;
+          }
         },
       }),
       GoogleProvider({

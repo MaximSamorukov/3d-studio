@@ -1,3 +1,6 @@
+import bcrypt from 'bcryptjs';
+import { User } from 'next-auth';
+
 export const calculatePrintPrice = (data: FormData) => {
   return fetch('/api/calculate', {
     method: 'POST',
@@ -11,7 +14,6 @@ export const calculatePrintPrice = (data: FormData) => {
 
 export const login = (data: { login: string; password: string }) => {
   'use client';
-  console.log(data);
   return fetch('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -42,4 +44,26 @@ export const makeOrder = (data: FormData) => {
       return res.json();
     })
     .catch(() => ({}));
+};
+
+export const checkUser = async (data: { login: string; password: string }) => {
+  const { login, password } = data;
+  const user = {
+    login,
+    password,
+  } as User;
+  const url = 'http://localhost:3000' + '/api/check-user';
+  try {
+    const result = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(user),
+    });
+    if (result.status === 200) {
+      return await result.json();
+    } else {
+      return false;
+    }
+  } catch (e) {
+    console.log('Error', e);
+  }
 };

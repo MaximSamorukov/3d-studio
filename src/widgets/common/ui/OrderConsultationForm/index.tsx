@@ -6,15 +6,16 @@ import { formFields } from './constants';
 import { ContactFormType, FormItemType } from './types';
 import { FormItem } from './FormItem';
 import { SubmitButton } from './SubmitButton';
-
-import s from './style.module.scss';
 import { formOrderConsultationState } from './loginStore';
 import { CircularProgress } from '@mui/material';
+
+import s from './style.module.scss';
 
 export const OrderConsultationForm = observer(() => {
   const [savingInProgress, setSavingInProgress] = useState(false);
   const [btnLabel, setBtnLabel] = useState('Зарегистрировать');
   const methods = useForm<ContactFormType>();
+  //console.log(methods.formState.errors);
   const onSubmit: SubmitHandler<ContactFormType> = async (data) => {
     setSavingInProgress(true);
     const result = await formOrderConsultationState.orderConsultationHandler(
@@ -44,6 +45,11 @@ export const OrderConsultationForm = observer(() => {
             {(formFields as FormItemType[]).map((field) => (
               <FormItem key={field.name} field={field} />
             ))}
+            <div className={s.formBodyErrors}>
+              {methods.formState.errors && (
+                <span>{methods.formState.errors.contact?.message}</span>
+              )}
+            </div>
           </div>
           <div className={s.formFooter}>
             <SubmitButton label={btnLabel} />

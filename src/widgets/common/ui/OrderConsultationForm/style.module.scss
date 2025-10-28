@@ -27,6 +27,16 @@
     align-items: flex-start;
     justify-content: flex-start;
     padding: 10px;
+    padding-bottom: 0;
+
+    &Errors {
+      height: 15px;
+      width: 80%;
+      align-self: center;
+      & > span {
+        font-size: 10px;
+      }
+    }
   }
   &Footer {
     height: fit-content;
