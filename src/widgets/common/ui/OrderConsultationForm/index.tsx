@@ -39,9 +39,11 @@ export const OrderConsultationForm = observer(() => {
       signIn('google', { redirectTo });
     } else {
       setSavingInProgress(true);
-      const result = await formOrderConsultationState.orderConsultationHandler(
-        data,
-      );
+      const result = await formOrderConsultationState.orderConsultationHandler({
+        name: session.data.user?.name || 'нет данных',
+        email: session.data.user?.email || 'нет данных',
+        ...data,
+      });
       if (result) {
         setBtnLabel('Зарегистрированно');
         methods.reset();

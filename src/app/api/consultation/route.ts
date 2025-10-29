@@ -7,8 +7,13 @@ export const POST = async (request: Request) => {
     const db = await getConsultationDataSource();
     const repository = db.getRepository(ConsultationEntity);
     const contact = consultFormData.get('contact')?.toString() ?? '';
+    const name = consultFormData.get('name')?.toString() ?? '';
+    const email = consultFormData.get('email')?.toString() ?? '';
+
     const data = repository.create({
       contact,
+      name,
+      email,
     });
     await repository.save(data);
     return Response.json(

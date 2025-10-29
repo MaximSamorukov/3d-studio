@@ -25,4 +25,6 @@ export type FormItemType = {
 
 export type ContactFormType = {
   contact: string;
+  name?: string;
+  email?: string;
 };

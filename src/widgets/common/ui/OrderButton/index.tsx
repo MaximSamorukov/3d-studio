@@ -19,7 +19,7 @@ export function OrderButton() {
     setOpenModal(true);
   }, []);
   const clearParams = () => {
-    router.replace(window.location.pathname); // убираем всё после '?'
+    router.replace(window.location.pathname);
   };
   const handleScroll = () => {
     if (path?.includes('3d_printing')) {
