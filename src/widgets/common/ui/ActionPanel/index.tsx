@@ -1,5 +1,4 @@
 'use client';
-import cn from 'classnames';
 import s from './style.module.scss';
 import { OrderConsultationButton } from '../OrderConsultationButton';
 import { OrderButton } from '../OrderButton';
