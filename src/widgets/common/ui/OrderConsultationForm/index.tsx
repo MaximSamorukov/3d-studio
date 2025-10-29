@@ -1,34 +1,67 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { formFields } from './constants';
+import { formFields, formFieldsWithoutRules } from './constants';
 import { ContactFormType, FormItemType } from './types';
 import { FormItem } from './FormItem';
 import { SubmitButton } from './SubmitButton';
 import { formOrderConsultationState } from './loginStore';
 import { CircularProgress } from '@mui/material';
+import { useSession, signIn } from 'next-auth/react';
 
 import s from './style.module.scss';
+import { usePathname } from 'next/navigation';
 
 export const OrderConsultationForm = observer(() => {
+  const session = useSession();
+  const path = usePathname();
+
   const [savingInProgress, setSavingInProgress] = useState(false);
-  const [btnLabel, setBtnLabel] = useState('Зарегистрировать');
+  const [btnLabel, setBtnLabel] = useState('Авторизоваться');
   const methods = useForm<ContactFormType>();
-  //console.log(methods.formState.errors);
-  const onSubmit: SubmitHandler<ContactFormType> = async (data) => {
-    setSavingInProgress(true);
-    const result = await formOrderConsultationState.orderConsultationHandler(
-      data,
-    );
-    if (result) {
-      setBtnLabel('Зарегистрированно');
-      methods.reset();
+
+  useEffect(() => {
+    if (session.data) {
+      setBtnLabel('Зарегистрировать');
+      if (session.data.user?.email) {
+        methods.setValue('contact', session.data.user.email);
+      }
     } else {
-      setBtnLabel('Ошибка регистрации');
+      setBtnLabel('Авторизоваться');
     }
-    setSavingInProgress(false);
+  }, [session.data]);
+
+  const onSubmit: SubmitHandler<ContactFormType> = async (data) => {
+    if (!session.data) {
+      const redirectTo = (path || '/3d_printing') + '?' + 'consultation=true';
+      signIn('google', { redirectTo });
+    } else {
+      setSavingInProgress(true);
+      const result = await formOrderConsultationState.orderConsultationHandler(
+        data,
+      );
+      if (result) {
+        setBtnLabel('Зарегистрированно');
+        methods.reset();
+      } else {
+        setBtnLabel('Ошибка регистрации');
+      }
+      setSavingInProgress(false);
+    }
   };
+  const label = session.data
+    ? 'Добавьте номер телефона или email'
+    : 'Авторизоваться и заказать консультацию';
+
+  const fields = useMemo(() => {
+    if (session.data) {
+      return formFields;
+    } else {
+      return formFieldsWithoutRules;
+    }
+  }, [session.data]);
   return (
     <div className={s.formContainer}>
       {savingInProgress && (
@@ -37,12 +70,14 @@ export const OrderConsultationForm = observer(() => {
         </div>
       )}
       <div className={s.formHead}>
-        <span>Добавьте номер телефона или email</span>
+        <span className={cn({ [s.formHeadNotAuth]: !session.data })}>
+          {label}
+        </span>
       </div>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <div className={s.formBody}>
-            {(formFields as FormItemType[]).map((field) => (
+            {(fields as FormItemType[]).map((field) => (
               <FormItem key={field.name} field={field} />
             ))}
             <div className={s.formBodyErrors}>

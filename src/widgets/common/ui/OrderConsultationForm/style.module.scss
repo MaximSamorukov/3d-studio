@@ -18,6 +18,9 @@
       color: #e49e00;
       font-size: 20px;
     }
+    &NotAuth {
+      font-size: 16px;
+    }
   }
   &Body {
     height: fit-content;
@@ -47,4 +50,8 @@
     justify-content: center;
     padding: 10px;
   }
+}
+
+span.formHeadNotAuth {
+  font-size: 18px;
 }

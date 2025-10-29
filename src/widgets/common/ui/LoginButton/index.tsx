@@ -1,14 +1,15 @@
 'use client';
 import Image from 'next/image';
 import cn from 'classnames';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ModalComponent } from '@/shared/common/Modal';
 import { LoginForm } from '../LoginForm';
 import { signOut, useSession } from 'next-auth/react';
-
+import { userState } from '@/shared/user/state';
 import s from './style.module.scss';
+import { observer } from 'mobx-react-lite';
 
-export const LoginButton = () => {
+export const LoginButton = observer(() => {
   const session = useSession();
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => {
@@ -21,7 +22,15 @@ export const LoginButton = () => {
   const handleCloseModal = useCallback(() => {
     setOpen(false);
   }, []);
-  console.log('session', session);
+
+  useEffect(() => {
+    if (session.data?.user?.id) {
+      userState.setUser(session.data?.user);
+    } else {
+      userState.removeUserFromState();
+    }
+  }, [session.data?.user?.id]);
+  console.log(userState.email);
   return (
     <div className={s.itemContainer}>
       <button
@@ -48,4 +57,4 @@ export const LoginButton = () => {
       </ModalComponent>
     </div>
   );
-};
+});

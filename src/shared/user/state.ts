@@ -1,11 +1,11 @@
-//"use client";
+'use client';
 import { makeAutoObservable } from 'mobx';
 
 type UserStateType = {
-  id: string | null;
-  name: string | null;
-  email: string | null;
-  image: string | null;
+  id?: string | null;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
 };
 class UserState {
   id: UserStateType['id'] = null;
@@ -18,6 +18,7 @@ class UserState {
   }
 
   setUser(data: UserStateType) {
+    console.log(data);
     this.id = data.id;
     this.name = data.name;
     this.email = data.email;

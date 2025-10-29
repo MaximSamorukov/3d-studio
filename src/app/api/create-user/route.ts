@@ -1,8 +1,7 @@
 export const runtime = 'nodejs';
 
-import * as entities from '@/shared/common/auth/entities';
-
-import { getDataSource } from '@/shared/common/db';
+import { MasterUserEntity } from '@/entities/masterUsers/index';
+import { getMasterUsersDataSource } from '@/shared/common/db/masterUsers';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
@@ -13,8 +12,8 @@ export async function POST(req: Request) {
     password: string;
   };
 
-  const db = await getDataSource();
-  const user = await db.getRepository(entities.UserEntity).findOne({
+  const db = await getMasterUsersDataSource();
+  const user = await db.getRepository(MasterUserEntity).findOne({
     where: {
       email: login,
     },
@@ -27,7 +26,7 @@ export async function POST(req: Request) {
   }
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const result = await db.getRepository(entities.UserEntity).save({
+  const result = await db.getRepository(MasterUserEntity).save({
     email: login,
     password: hashedPassword,
   });

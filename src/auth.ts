@@ -58,6 +58,7 @@ export const {
             password,
           };
           const result = await checkUser(user);
+
           if (!result) {
             return null;
           } else {

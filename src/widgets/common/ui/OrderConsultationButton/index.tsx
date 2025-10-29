@@ -1,10 +1,16 @@
-"use client";
-import cn from "classnames";
-import s from "./style.module.scss";
-import { useCallback, useState } from "react";
-import { OrderConsultationModal } from "../OrderConsultationModal";
+'use client';
+import cn from 'classnames';
+import { useCallback, useEffect, useState } from 'react';
+import { OrderConsultationModal } from '../OrderConsultationModal';
+import { useSearchParams, useRouter } from 'next/navigation';
 
-export function OrderConsultationButton() {
+import s from './style.module.scss';
+
+export const OrderConsultationButton = () => {
+  const params = useSearchParams();
+  const router = useRouter();
+  const isConsultationRequest = params?.get('consultation');
+
   const [openConsultModal, setOpenConsultModal] = useState(false);
 
   const handleCloseModal = useCallback(() => {
@@ -13,6 +19,15 @@ export function OrderConsultationButton() {
   const handleOpenModal = useCallback(() => {
     setOpenConsultModal(true);
   }, []);
+  const clearParams = () => {
+    router.replace(window.location.pathname);
+  };
+  useEffect(() => {
+    if (isConsultationRequest) {
+      clearParams();
+      handleOpenModal();
+    }
+  }, [isConsultationRequest]);
   return (
     <>
       <button
@@ -27,4 +42,4 @@ export function OrderConsultationButton() {
       />
     </>
   );
-}
+};

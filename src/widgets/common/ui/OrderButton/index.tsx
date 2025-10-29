@@ -1,23 +1,26 @@
 'use client';
 import cn from 'classnames';
 import s from './style.module.scss';
-import { useCallback, useState } from 'react';
-import { OrderConsultationModal } from '../OrderConsultationModal';
-import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { MakeOrderModal } from '../MakeOrderModal';
 import { OrderForm } from '@/pages/3dPrinting/OrderForm';
 
 export function OrderButton() {
   const [openModal, setOpenModal] = useState(false);
-
+  const params = useSearchParams();
+  const router = useRouter();
+  const printOrder = params?.get('print_order');
+  const path = usePathname();
   const handleCloseModal = useCallback(() => {
     setOpenModal(false);
   }, []);
   const handleOpenModal = useCallback(() => {
     setOpenModal(true);
   }, []);
-  const path = usePathname();
-
+  const clearParams = () => {
+    router.replace(window.location.pathname); // убираем всё после '?'
+  };
   const handleScroll = () => {
     if (path?.includes('3d_printing')) {
       const el = document.getElementById('order_form');
@@ -26,6 +29,12 @@ export function OrderButton() {
       handleOpenModal();
     }
   };
+  useEffect(() => {
+    if (printOrder) {
+      handleOpenModal();
+      clearParams();
+    }
+  }, [printOrder]);
   return (
     <>
       <button

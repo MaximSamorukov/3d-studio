@@ -34,9 +34,7 @@
     border-color: #e49e00;
     transform: scale(1.001);
     box-shadow: 0 0 8px #e49e00;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: pulseBorder 2s infinite;
   }
 
@@ -59,6 +57,19 @@
     &Container {
       width: 300px;
       height: 35px;
+    }
+  }
+  &Disabled {
+    border: 1px solid grey;
+    color: grey;
+    cursor: not-allowed;
+    &:hover {
+      color: grey;
+      border-color: grey;
+      transform: scale(1.001);
+      box-shadow: 0 0 8px grey;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulseBorder 2s infinite;
     }
   }
 }

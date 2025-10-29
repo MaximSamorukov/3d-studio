@@ -1,11 +1,11 @@
 'use client';
-import React, { FormEventHandler } from 'react';
+import React, { FormEventHandler, useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { formFields } from './constants';
 import { LoginFormType, FormItemType } from './types';
 import { FormItem } from './FormItem';
 import { SubmitButton } from './SubmitButton';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 import s from './style.module.scss';
 import { Errors } from './Errors';

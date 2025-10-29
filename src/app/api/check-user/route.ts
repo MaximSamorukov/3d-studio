@@ -1,8 +1,8 @@
 export const runtime = 'nodejs';
 
-import * as entities from '@/shared/common/auth/entities';
+import * as entities from '@/entities/masterUsers/index';
 
-import { getDataSource } from '@/shared/common/db';
+import { getMasterUsersDataSource } from '@/shared/common/db/masterUsers';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
@@ -13,8 +13,8 @@ export async function POST(req: Request) {
     password: string;
   };
 
-  const db = await getDataSource();
-  const user = await db.getRepository(entities.UserEntity).findOne({
+  const db = await getMasterUsersDataSource();
+  const user = await db.getRepository(entities.MasterUserEntity).findOne({
     where: {
       email: login,
     },

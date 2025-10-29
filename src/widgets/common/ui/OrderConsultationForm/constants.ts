@@ -1,4 +1,5 @@
 import { FormInputTypeEnum } from './types';
+import { omit } from 'lodash';
 
 export const formFields = [
   {
@@ -20,3 +21,5 @@ export const formFields = [
     },
   },
 ];
+
+export const formFieldsWithoutRules = formFields.map((i) => omit(i, ['rules']));

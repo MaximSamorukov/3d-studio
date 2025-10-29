@@ -6,9 +6,11 @@ import { plastics } from '@/widgets/common/ui/Plastics/constants';
 import { makeOrder } from '@/services';
 import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import s from './style.module.scss';
+import { signIn, useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 export type OrderFormFields = {
   file: string;
@@ -21,35 +23,52 @@ export type OrderFormFields = {
   comment: string;
 };
 export const OrderForm = () => {
+  const session = useSession();
+  const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
   const [savingOrderInprogress, setSavingOrderInProgress] = useState(false);
-  const { register, handleSubmit, formState, reset } =
+  const { register, handleSubmit, formState, reset, setValue } =
     useForm<OrderFormFields>();
-
+  const isAuthenticated = !!session.data?.user;
   const onSubmit: SubmitHandler<OrderFormFields> = (data, e) => {
     e?.preventDefault();
-    setSavingOrderInProgress(true);
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === 'file') {
-        const file = (value as unknown as FileList).item(0);
-        if (file) {
-          formData.append(key, file);
+    if (isAuthenticated) {
+      setSavingOrderInProgress(true);
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key === 'file') {
+          const file = (value as unknown as FileList).item(0);
+          if (file) {
+            formData.append(key, file);
+          }
+        } else {
+          formData.append(key, value);
         }
-      } else {
-        formData.append(key, value);
-      }
-    });
-    makeOrder(formData)
-      .then((result) => {
-        setSavingOrderInProgress(false);
-        reset();
-        setOpenModal(true);
-      })
-      .catch(() => {
-        setSavingOrderInProgress(false);
       });
+      makeOrder(formData)
+        .then((result) => {
+          setSavingOrderInProgress(false);
+          reset();
+          setOpenModal(true);
+        })
+        .catch(() => {
+          setSavingOrderInProgress(false);
+        });
+    } else {
+      signIn('google', { redirectTo: pathname + '?' + 'print_order=true' });
+    }
   };
+  useEffect(() => {
+    if (session.data?.user) {
+      const { email, name } = session.data.user;
+      email && setValue('email', email);
+      name && setValue('name', name);
+    }
+  }, [session.data?.user]);
+
+  const submitBtnLabel = isAuthenticated
+    ? 'Заказать 3D-печать'
+    : 'Авторизоваться';
   return (
     <StyledEngineProvider injectFirst>
       <div id="order_form" className={s.orderFormContainer}>
@@ -80,7 +99,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register('name', { required: true })}
+                {...register('name', { required: isAuthenticated })}
                 type="text"
                 placeholder="Имя"
                 className={cn(s.inputField, {
@@ -95,7 +114,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register('phone', { required: true })}
+                {...register('phone', { required: isAuthenticated })}
                 type="tel"
                 placeholder="Телефон"
                 className={cn(s.inputField, {
@@ -110,7 +129,7 @@ export const OrderForm = () => {
                 <span className={s.required}>*</span>
               </label>
               <input
-                {...register('email', { required: true })}
+                {...register('email', { required: isAuthenticated })}
                 type="email"
                 placeholder="Email"
                 className={cn(s.inputField, {
@@ -168,7 +187,7 @@ export const OrderForm = () => {
             </div>
 
             <button type="submit" className={s.submitBtn}>
-              <div className={s.makeOrderBtnLabel}>Заказать 3D-печать</div>
+              <div className={s.makeOrderBtnLabel}>{submitBtnLabel}</div>
             </button>
           </div>
         </form>
