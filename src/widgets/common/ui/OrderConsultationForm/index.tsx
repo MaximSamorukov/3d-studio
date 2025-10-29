@@ -7,12 +7,12 @@ import { formFields, formFieldsWithoutRules } from './constants';
 import { ContactFormType, FormItemType } from './types';
 import { FormItem } from './FormItem';
 import { SubmitButton } from './SubmitButton';
-import { formOrderConsultationState } from './loginStore';
 import { CircularProgress } from '@mui/material';
 import { useSession, signIn } from 'next-auth/react';
 
 import s from './style.module.scss';
 import { usePathname } from 'next/navigation';
+import { orderConsultationHandler } from './utils';
 
 export const OrderConsultationForm = observer(() => {
   const session = useSession();
@@ -39,7 +39,7 @@ export const OrderConsultationForm = observer(() => {
       signIn('google', { redirectTo });
     } else {
       setSavingInProgress(true);
-      const result = await formOrderConsultationState.orderConsultationHandler({
+      const result = await orderConsultationHandler({
         name: session.data.user?.name || 'нет данных',
         email: session.data.user?.email || 'нет данных',
         ...data,

@@ -8,6 +8,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { userState } from '@/shared/user/state';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
+import { getConsultationsOnEmail } from './utils';
 
 export const LoginButton = observer(() => {
   const session = useSession();
@@ -24,13 +25,22 @@ export const LoginButton = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (session.data?.user?.id) {
+    if (session.data?.user) {
       userState.setUser(session.data?.user);
+      if (session.data.user.email) {
+        getConsultationsOnEmail(session.data.user.email)
+          .then(({ consultations }) => {
+            userState.setConsultations(consultations);
+          })
+          .catch(() => {
+            userState.setConsultations([]);
+          });
+      }
     } else {
       userState.removeUserFromState();
     }
-  }, [session.data?.user?.id]);
-  console.log(userState.email);
+  }, [session.data?.user]);
+  console.log(userState);
   return (
     <div className={s.itemContainer}>
       <button
