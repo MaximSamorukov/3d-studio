@@ -48,11 +48,15 @@ export const CRMDrawerComponent = observer(() => {
           value={tabNumber}
           onChange={handleChangeTab}
         >
-          <Tab value="orders" label="Заказы" sx={{ color: 'white' }} />
+          <Tab
+            value="orders"
+            label="Заказы"
+            sx={{ color: '#ededed', fontWeight: 700, fontSize: 16 }}
+          />
           <Tab
             value="consultations"
             label="Консультации"
-            sx={{ color: 'white' }}
+            sx={{ color: '#ededed', fontWeight: 700, fontSize: 16 }}
           />
         </Tabs>
         <DrawerPanelContainer tabNumber={tabNumber} />

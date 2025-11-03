@@ -3,8 +3,7 @@
     all: unset;
     height: auto;
     width: auto;
-    border: 1px solid white;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,16 +14,16 @@
   }
   &Cross {
     color: white;
-    width: 30px;
-    height: auto;
+    width: 15px;
+    height: 15px;
     position: relative;
     &::after {
       content: '';
       position: absolute;
       width: 1px;
       height: 15px;
-      top: -8px;
-      left: 10px;
+      top: 0px;
+      left: 7px;
       background-color: white;
       transform: rotate(45deg);
     }
@@ -33,14 +32,10 @@
       position: absolute;
       width: 1px;
       height: 15px;
-      top: -8px;
-      left: 10px;
+      top: 0px;
+      left: 7px;
       background-color: white;
       transform: rotate(-45deg);
     }
-  }
-  &Label {
-    color: white;
-    font-size: 13px;
   }
 }

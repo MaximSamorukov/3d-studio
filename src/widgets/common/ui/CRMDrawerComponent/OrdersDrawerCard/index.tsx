@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './style.module.scss';
 import { OrderFormFields } from '@/pages/3dPrinting/OrderForm';
 import Link from 'next/link';
-import { toJS } from 'mobx';
+import Image from 'next/image';
+import s from './style.module.scss';
 
 type OrderDrawerCardProps = {
   order: Omit<OrderFormFields, 'file' | 'plasticType'> & {
@@ -13,6 +13,12 @@ type OrderDrawerCardProps = {
 export function OrderDrawerCard({ order }: OrderDrawerCardProps) {
   return (
     <div className={s.cardContainer}>
+      <div className={s.cardHeader}>
+        <span>Заказ: {order.id}</span>
+        <button className={s.cardHeaderRemoveBtn}>
+          <Image src="/trash.svg" width={32} height={32} alt="trash" />
+        </button>
+      </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Контакт:</div>
         <div className={s.cardItemValue}>{order.email}</div>
@@ -35,7 +41,14 @@ export function OrderDrawerCard({ order }: OrderDrawerCardProps) {
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Цвет изделия:</div>
-        <div className={s.cardItemValue}>{order.color || 'нет данных'}</div>
+        <div
+          className={s.cardItemValue}
+          style={
+            order.color ? { backgroundColor: order.color, color: 'black' } : {}
+          }
+        >
+          {order.color || 'нет данных'}
+        </div>
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Постобработка:</div>

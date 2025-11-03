@@ -9,7 +9,6 @@ export function DrawerCloseButton({
   return (
     <button className={s.btnContainer} onClick={handleCloseDrawer}>
       <div className={s.btnCross} />
-      <div className={s.btnLabel}>Закрыть</div>
     </button>
   );
 }
