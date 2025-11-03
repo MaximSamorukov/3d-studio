@@ -21,10 +21,14 @@ export type FormItemType = {
   defaultValue: number | string | boolean | undefined;
   values: undefined | string | number | Option[];
   rules?: UseControllerProps['rules'];
+  created_at?: string;
+  id: number;
 };
 
 export type ContactFormType = {
   contact: string;
   name?: string;
   email?: string;
+  created_at?: string;
+  id: number;
 };

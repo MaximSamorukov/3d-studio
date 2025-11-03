@@ -5,6 +5,7 @@ export async function getConsultationsOnEmail(email: string) {
       method: 'POST',
       body: JSON.stringify({ email }),
     });
+
     return (await result).json();
   } catch (e) {
     console.log('error getting consultations', e);

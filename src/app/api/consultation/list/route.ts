@@ -13,6 +13,7 @@ export const POST = async (request: Request) => {
         email,
       },
     });
+
     return Response.json({ consultations: data }, { status: 200 });
   } catch (e) {
     return Response.json(

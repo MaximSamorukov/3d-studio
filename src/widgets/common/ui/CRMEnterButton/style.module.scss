@@ -1,19 +1,17 @@
-.contactWidgetContainer {
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 .itemContainer {
   width: fit-content;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  height: 30px;
-  gap: 5px;
+  height: 32px;
+}
+.unset {
+  all: unset;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .itemIcon {
@@ -31,6 +29,10 @@
   }
 }
 
-.footer {
-  color: rgba(white, 0.5);
+.drawer {
+  &Container {
+    background-color: black;
+    width: 300px;
+    height: 100vh;
+  }
 }

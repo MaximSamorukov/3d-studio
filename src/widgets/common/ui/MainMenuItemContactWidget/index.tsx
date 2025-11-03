@@ -1,8 +1,9 @@
-import Image from "next/image";
-import cn from "classnames";
-import s from "./style.module.scss";
-import Link from "next/link";
-import { LoginButton } from "../LoginButton";
+import Image from 'next/image';
+import cn from 'classnames';
+import s from './style.module.scss';
+import Link from 'next/link';
+import { LoginButton } from '../LoginButton';
+import { CRMEnterButton } from '../CRMEnterButton';
 
 export default function ContactWidget({
   footer = false,
@@ -39,6 +40,7 @@ export default function ContactWidget({
       {!footer ? (
         <div className={s.itemContainer}>
           <LoginButton />
+          <CRMEnterButton />
         </div>
       ) : (
         <></>

@@ -21,6 +21,8 @@ export type OrderFormFields = {
   color: string;
   withPostprocessing: string;
   comment: string;
+  id?: number;
+  created_at?: string;
 };
 export const OrderForm = () => {
   const session = useSession();
@@ -30,7 +32,10 @@ export const OrderForm = () => {
   const { register, handleSubmit, formState, reset, setValue } =
     useForm<OrderFormFields>();
   const isAuthenticated = !!session.data?.user;
-  const onSubmit: SubmitHandler<OrderFormFields> = (data, e) => {
+  const onSubmit: SubmitHandler<Omit<OrderFormFields, 'id' | 'created_at'>> = (
+    data,
+    e,
+  ) => {
     e?.preventDefault();
     if (isAuthenticated) {
       setSavingOrderInProgress(true);

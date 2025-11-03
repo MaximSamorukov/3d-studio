@@ -3,12 +3,17 @@ import { OrderFormFields } from '@/pages/3dPrinting/OrderForm';
 import { ContactFormType } from '@/widgets/common/ui/OrderConsultationForm/types';
 import { makeAutoObservable } from 'mobx';
 
+export type OrderType = Omit<OrderFormFields, 'file' | 'plasticType'> & {
+  file_path?: string;
+  plastic_type?: string;
+};
+
 type UserStateType = {
   id?: string | null;
   name?: string | null;
   email?: string | null;
   image?: string | null;
-  orders?: OrderFormFields[];
+  orders?: OrderType[];
   consultations?: ContactFormType[];
   role?: 'admin' | 'customer';
 };
@@ -47,7 +52,7 @@ class UserState {
     this.consultations = data;
   }
 
-  setOrders(data: OrderFormFields[]) {
+  setOrders(data: Omit<OrderType, 'file' | 'plasticType'>[]) {
     this.orders = data;
   }
 
