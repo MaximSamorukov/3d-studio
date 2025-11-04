@@ -3,7 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const middleware = async (req: NextRequest) => {
   const ses = await auth();
-
+  if (req.nextUrl.pathname.startsWith('/api/auth')) {
+    return NextResponse.next();
+  }
+  if (!ses?.user && req.nextUrl.pathname.startsWith('/api')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   if (!ses?.user) {
     return NextResponse.redirect(new URL('/unauthorized', req.url));
   }
@@ -12,5 +17,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-  matcher: ['/crm/:path*'],
+  matcher: ['/crm', '/crm/:path*', '/api/:path*'],
 };

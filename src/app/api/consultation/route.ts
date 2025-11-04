@@ -1,5 +1,7 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { getConsultationDataSource } from '@/shared/common/db/consultations';
+import { error } from 'console';
+import { NextResponse } from 'next/server';
 
 export const POST = async (request: Request) => {
   try {
@@ -25,5 +27,30 @@ export const POST = async (request: Request) => {
       { error: 'Ошибка при сохранении запроса на консультацию' },
       { status: 500 },
     );
+  }
+};
+
+export const DELETE = async (request: Request) => {
+  const data = await request.json();
+  const { id } = (data || {}) as {
+    id: number;
+  };
+  if (!id) {
+    return NextResponse.json({ error: 'Отсутсвует id' }, { status: 500 });
+  }
+  const db = await getConsultationDataSource();
+  const repository = db.getRepository(ConsultationEntity);
+  try {
+    const consultationToRemove = await repository.findOneBy({ id });
+    if (!consultationToRemove) {
+      return NextResponse.json(
+        { error: 'Отсутсвует сущность с предоставленным id' },
+        { status: 500 },
+      );
+    }
+    await repository.remove(consultationToRemove);
+    return new NextResponse(null, { status: 204 });
+  } catch (_) {
+    return NextResponse.json({ error: 'Ошибка удаления' }, { status: 500 });
   }
 };

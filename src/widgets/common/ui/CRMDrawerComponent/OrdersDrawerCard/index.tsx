@@ -3,6 +3,8 @@ import { OrderFormFields } from '@/pages/3dPrinting/OrderForm';
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './style.module.scss';
+import { userState } from '@/shared/user/state';
+import { observer } from 'mobx-react-lite';
 
 type OrderDrawerCardProps = {
   order: Omit<OrderFormFields, 'file' | 'plasticType'> & {
@@ -10,12 +12,18 @@ type OrderDrawerCardProps = {
     plastic_type?: string;
   };
 };
-export function OrderDrawerCard({ order }: OrderDrawerCardProps) {
+export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
+  const handleRemoveOrder = async (id: number) => {
+    await userState.removeOrderById(id);
+  };
   return (
     <div className={s.cardContainer}>
       <div className={s.cardHeader}>
         <span>Заказ: {order.id}</span>
-        <button className={s.cardHeaderRemoveBtn}>
+        <button
+          onClick={() => handleRemoveOrder(order.id!)}
+          className={s.cardHeaderRemoveBtn}
+        >
           <Image src="/trash.svg" width={32} height={32} alt="trash" />
         </button>
       </div>
@@ -91,4 +99,4 @@ export function OrderDrawerCard({ order }: OrderDrawerCardProps) {
       </div>
     </div>
   );
-}
+});

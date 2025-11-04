@@ -13,6 +13,8 @@ import { useSession, signIn } from 'next-auth/react';
 import s from './style.module.scss';
 import { usePathname } from 'next/navigation';
 import { orderConsultationHandler } from './utils';
+import { getConsultationsOnEmail } from '../LoginButton/utils';
+import { userState } from '@/shared/user/state';
 
 export const OrderConsultationForm = observer(() => {
   const session = useSession();
@@ -47,6 +49,13 @@ export const OrderConsultationForm = observer(() => {
       if (result) {
         setBtnLabel('Зарегистрированно');
         methods.reset();
+        getConsultationsOnEmail(session.data.user!.email!)
+          .then(({ consultations }) => {
+            userState.setConsultations(consultations);
+          })
+          .catch(() => {
+            userState.setConsultations([]);
+          });
       } else {
         setBtnLabel('Ошибка регистрации');
       }

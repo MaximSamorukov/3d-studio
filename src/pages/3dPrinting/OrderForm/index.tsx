@@ -8,9 +8,13 @@ import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
-import s from './style.module.scss';
 import { signIn, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+import { getOrdersOnEmail } from '@/widgets/common/ui/LoginButton/utils';
+import { userState } from '@/shared/user/state';
+import { observer } from 'mobx-react-lite';
+
+import s from './style.module.scss';
 
 export type OrderFormFields = {
   file: string;
@@ -24,7 +28,7 @@ export type OrderFormFields = {
   id?: number;
   created_at?: string;
 };
-export const OrderForm = () => {
+export const OrderForm = observer(() => {
   const session = useSession();
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
@@ -32,6 +36,8 @@ export const OrderForm = () => {
   const { register, handleSubmit, formState, reset, setValue } =
     useForm<OrderFormFields>();
   const isAuthenticated = !!session.data?.user;
+  const userHasEmail = !!session.data?.user?.email;
+
   const onSubmit: SubmitHandler<Omit<OrderFormFields, 'id' | 'created_at'>> = (
     data,
     e,
@@ -54,6 +60,15 @@ export const OrderForm = () => {
         .then((result) => {
           setSavingOrderInProgress(false);
           reset();
+          if (userHasEmail) {
+            getOrdersOnEmail(session.data!.user!.email!)
+              .then(({ orders }) => {
+                userState.setOrders(orders);
+              })
+              .catch(() => {
+                userState.setOrders([]);
+              });
+          }
           setOpenModal(true);
         })
         .catch(() => {
@@ -200,4 +215,4 @@ export const OrderForm = () => {
       </div>
     </StyledEngineProvider>
   );
-};
+});

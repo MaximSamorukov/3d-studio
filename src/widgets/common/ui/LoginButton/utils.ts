@@ -1,4 +1,3 @@
-'use client';
 export async function getConsultationsOnEmail(email: string) {
   try {
     const result = fetch('/api/consultation/list', {

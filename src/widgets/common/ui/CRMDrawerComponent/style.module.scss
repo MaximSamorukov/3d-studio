@@ -1,7 +1,15 @@
+@use 'sass:math';
+$WIDTH: 300px;
+
 .drawer {
   &Container {
     background-color: black;
-    width: 300px;
+    width: $WIDTH;
     height: auto;
+    &Loader {
+      position: fixed;
+      top: 50%;
+      right: math.div($WIDTH, 2);
+    }
   }
 }

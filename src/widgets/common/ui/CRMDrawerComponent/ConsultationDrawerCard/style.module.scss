@@ -1,6 +1,7 @@
+$WIDTH: 280px;
 .card {
   &Container {
-    width: 280px;
+    width: $WIDTH;
     border: 1px solid white;
     box-sizing: border-box;
     display: flex;
@@ -8,6 +9,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     box-sizing: border-box;
+    position: relative;
     span {
       color: white;
     }

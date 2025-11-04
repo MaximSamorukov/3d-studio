@@ -67,3 +67,25 @@ export const checkUser = async (data: { login: string; password: string }) => {
     console.log('Error', e);
   }
 };
+
+export const removeConsultation = (id: number) => {
+  return fetch('/api/consultation', {
+    method: 'DELETE',
+    body: JSON.stringify({ id }),
+  })
+    .then((res) => {
+      return true;
+    })
+    .catch(() => false);
+};
+
+export const removeOrder = (id: number) => {
+  return fetch('/api/orders', {
+    method: 'DELETE',
+    body: JSON.stringify({ id }),
+  })
+    .then((res) => {
+      return true;
+    })
+    .catch(() => false);
+};

@@ -1,20 +1,18 @@
 'use client';
 import Drawer from '@mui/material/Drawer';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { userState } from '@/shared/user/state';
 import { observer } from 'mobx-react-lite';
 import s from './style.module.scss';
-import { Tab, Tabs } from '@mui/material';
+import { CircularProgress, Tab, Tabs } from '@mui/material';
 import { DrawerPanelContainer } from './DrawerPanelContainer';
 import { DrawerCloseButton } from './CloseButton';
 import { crmDrawerState } from './CRMDrawerComponentState';
 
 export const CRMDrawerComponent = observer(() => {
   const session = useSession();
-  const [tabNumber, setTabNumber] = useState<'orders' | 'consultations'>(
-    'orders',
-  );
+  const [tabType, setTabType] = useState<'orders' | 'consultations'>('orders');
 
   const handleCloseModal = () => {
     crmDrawerState.handleClose();
@@ -23,7 +21,7 @@ export const CRMDrawerComponent = observer(() => {
     event: React.SyntheticEvent,
     newValue: 'orders' | 'consultations',
   ) => {
-    setTabNumber(newValue);
+    setTabType(newValue);
   };
   if (!session.data?.user) {
     return <></>;
@@ -45,7 +43,7 @@ export const CRMDrawerComponent = observer(() => {
         <Tabs
           indicatorColor="primary"
           textColor="primary"
-          value={tabNumber}
+          value={tabType}
           onChange={handleChangeTab}
         >
           <Tab
@@ -59,7 +57,14 @@ export const CRMDrawerComponent = observer(() => {
             sx={{ color: '#ededed', fontWeight: 700, fontSize: 16 }}
           />
         </Tabs>
-        <DrawerPanelContainer tabNumber={tabNumber} />
+        <DrawerPanelContainer tabType={tabType} />
+        {userState.loading ? (
+          <div className={s.drawerContainerLoader}>
+            <CircularProgress size={40} color="secondary" />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </Drawer>
   );
