@@ -71,6 +71,31 @@ export const {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       }),
     ],
+    callbacks: {
+      async session({ session, token }) {
+        const { email } = session.user;
+        if (session.user.email) {
+          try {
+            const result = await fetch(
+              'http://localhost:3000/api/check-authenticated-user',
+              {
+                method: 'POST',
+                body: JSON.stringify({ email }),
+              },
+            );
+            const awaitedResult = await result.json();
+            if (awaitedResult.admin) {
+              session.user.role = 'admin';
+            } else {
+              session.user.role = 'customer';
+            }
+          } catch (e) {
+            console.log('Error, checking if user is admin or not');
+          }
+        }
+        return session;
+      },
+    },
     //pages: {
     //  error: '/auth_error',
     //  signIn: '/auth_error',

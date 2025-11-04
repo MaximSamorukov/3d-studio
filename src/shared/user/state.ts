@@ -19,7 +19,7 @@ type UserStateType = {
   image?: string | null;
   orders?: OrderType[];
   consultations?: ContactFormType[];
-  role?: 'admin' | 'customer';
+  role?: 'admin' | 'customer' | null;
 };
 class UserState {
   id: UserStateType['id'] = null;
@@ -47,7 +47,7 @@ class UserState {
     this.name = null;
     this.email = null;
     this.image = null;
-    this.role = 'customer';
+    this.role = null;
     this.orders = [];
     this.consultations = [];
   }

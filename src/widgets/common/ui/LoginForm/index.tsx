@@ -5,7 +5,7 @@ import { formFields } from './constants';
 import { LoginFormType, FormItemType } from './types';
 import { FormItem } from './FormItem';
 import { SubmitButton } from './SubmitButton';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 import s from './style.module.scss';
 import { Errors } from './Errors';
@@ -18,7 +18,7 @@ export const LoginForm = () => {
   };
   const onGoogleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    await signIn('google', { redirectTo: '/crm' });
+    await signIn('google', { redirectTo: '/' });
   };
 
   return (

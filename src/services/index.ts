@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import { User } from 'next-auth';
 
 export const calculatePrintPrice = (data: FormData) => {

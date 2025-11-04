@@ -5,14 +5,23 @@ import { useSession } from 'next-auth/react';
 import { observer } from 'mobx-react-lite';
 import { CRMDrawerComponent } from '../CRMDrawerComponent';
 import { crmDrawerState } from '../CRMDrawerComponent/CRMDrawerComponentState';
+import { useRouter } from 'next/navigation';
 
 import s from './style.module.scss';
 
 export const CRMEnterButton = observer(() => {
   const session = useSession();
+  const router = useRouter();
+  const isAdmin = session.data?.user.role === 'admin';
+  const isCustomer = session.data?.user.role === 'customer';
+
   const handleOpenModal = () => {
-    if (session.data?.user) {
+    if (session.data?.user && isCustomer) {
       crmDrawerState.handleOpen();
+      return;
+    }
+    if (session.data?.user && isAdmin) {
+      router.push('/crm');
       return;
     }
   };
@@ -32,7 +41,7 @@ export const CRMEnterButton = observer(() => {
         onClick={handleOpenModal}
         className={cn(s.unset, s.itemLabel, s.pointer)}
       >
-        <span>Мои заказы</span>
+        {isAdmin ? <span>Вход в CRM</span> : <span>Мои заказы</span>}
       </button>
       <CRMDrawerComponent />
     </div>
