@@ -69,12 +69,8 @@ export const {
         const { email } = session.user;
         if (session.user.email) {
           try {
-            const domain =
-              process.env.NODE_ENV === 'development'
-                ? 'http://localhost:3000'
-                : 'https://3d-studio-nine.vercel.app';
             const result = await fetch(
-              domain + '/api/check-authenticated-user',
+              process.env.SERVER_URL + '/api/check-authenticated-user',
               {
                 method: 'POST',
                 body: JSON.stringify({ email }),

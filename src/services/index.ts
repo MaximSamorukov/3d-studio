@@ -53,11 +53,7 @@ export const checkUser = async (data: { login: string; password: string }) => {
     login,
     password,
   } as User;
-  const domain =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://3d-studio-nine.vercel.app';
-  const url = domain + '/api/check-user';
+  const url = process.env.SERVER_URL + '/api/check-user';
   try {
     const result = await fetch(url, {
       method: 'POST',
