@@ -1,10 +1,14 @@
 import React from 'react';
-// export const runtime = 'nodejs';
+import s from './layout.module.scss';
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <div className={s.container}>
+      <div className={s.crmContainer}>{children}</div>
+    </div>
+  );
 }

@@ -10,7 +10,11 @@ import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { getConsultationsOnEmail, getOrdersOnEmail } from './utils';
 
-export const LoginButton = observer(() => {
+type LoginButtonProps = {
+  withIcon?: boolean;
+};
+
+export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
   const session = useSession();
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => {
@@ -49,13 +53,20 @@ export const LoginButton = observer(() => {
   }, [session.data?.user]);
 
   return (
-    <div className={s.itemContainer}>
-      <button
-        onClick={handleOpenModal}
-        className={cn(s.unset, s.itemIcon, s.pointer)}
-      >
-        <Image src="/login_icon.svg" width={24} height={24} alt="login_icon" />
-      </button>
+    <div className={cn(s.itemContainer, { [s.itemContainerShort]: !withIcon })}>
+      {withIcon && (
+        <button
+          onClick={handleOpenModal}
+          className={cn(s.unset, s.itemIcon, s.pointer)}
+        >
+          <Image
+            src="/login_icon.svg"
+            width={24}
+            height={24}
+            alt="login_icon"
+          />
+        </button>
+      )}
       <button
         onClick={handleOpenModal}
         className={cn(s.unset, s.itemLabel, s.pointer)}

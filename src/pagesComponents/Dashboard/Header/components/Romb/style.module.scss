@@ -1,0 +1,9 @@
+$SIDE: 6px;
+
+.romb {
+  width: $SIDE;
+  height: $SIDE;
+  background-color: currentColor;
+  transform: scaleY(1.6) scaleX(0.8) rotate(45deg); /* делает выше */
+  display: inline-block;
+}

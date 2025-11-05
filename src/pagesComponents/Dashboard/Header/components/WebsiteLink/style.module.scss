@@ -1,15 +1,10 @@
 .itemContainer {
   width: fit-content;
-  min-width: 90px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
   height: 30px;
-
-  &Short {
-    min-width: fit-content;
-  }
 }
 .unset {
   all: unset;
@@ -19,17 +14,6 @@
   cursor: pointer;
 }
 
-.itemIcon {
-  width: 25%;
-  margin-right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .itemLabel {
   font-size: 16px;
-  span {
-    white-space: nowrap;
-  }
 }
