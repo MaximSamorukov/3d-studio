@@ -4,7 +4,6 @@ import s from './style.module.scss';
 import { WebsiteLink } from './components/WebsiteLink';
 import { EmailComponent } from './components/EmailComponent';
 import { Romb } from './components/Romb';
-import { Label } from './components/Label';
 
 export function Header() {
   return (
