@@ -48,11 +48,16 @@ export const makeOrder = (data: FormData) => {
 
 export const checkUser = async (data: { login: string; password: string }) => {
   const { login, password } = data;
+  console.log(process.env.NODE_ENV);
   const user = {
     login,
     password,
   } as User;
-  const url = 'http://localhost:3000' + '/api/check-user';
+  const domain =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://3d-studio-nine.vercel.app';
+  const url = domain + '/api/check-user';
   try {
     const result = await fetch(url, {
       method: 'POST',
