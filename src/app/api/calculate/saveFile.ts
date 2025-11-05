@@ -1,13 +1,14 @@
-import path from "path";
-import fs from "fs";
-import { writeFile } from "fs/promises";
+import path from 'path';
+import fs from 'fs';
+import { writeFile } from 'fs/promises';
+// export const runtime = 'nodejs';
 
 export const saveFile = async (file: Blob) => {
-  if (!file || typeof file.stream !== "function") {
-    throw new Error("Некорректный файл");
+  if (!file || typeof file.stream !== 'function') {
+    throw new Error('Некорректный файл');
   }
   const filename = (file as File).name;
-  const dirPath = path.join(process.cwd(), "public", "uploads", "models");
+  const dirPath = path.join(process.cwd(), 'public', 'uploads', 'models');
   try {
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath, { recursive: true });
@@ -18,6 +19,6 @@ export const saveFile = async (file: Blob) => {
 
     await writeFile(filePath, buffer);
   } catch {
-    throw new Error("Ошибка записи файла");
+    throw new Error('Ошибка записи файла');
   }
 };

@@ -1,15 +1,8 @@
-//export const runtime = 'nodejs';
 import NextAuth, { User } from 'next-auth';
-import bcrypt from 'bcryptjs';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import NeonAdapter from '@auth/neon-adapter';
-import { Pool } from '@neondatabase/serverless';
-import { DataSource } from 'typeorm';
 import { TypeORMAdapter } from '@auth/typeorm-adapter';
-import { getDataSource } from '@/shared/common/db/index';
-import { checkUser, login as loginFn } from '@/services';
-import { NextResponse } from 'next/server';
+import { checkUser } from '@/services';
 import * as entities from '@/shared/common/auth/entities';
 
 export const {
@@ -102,3 +95,5 @@ export const {
     //},
   };
 });
+
+// export const runtime = 'nodejs';

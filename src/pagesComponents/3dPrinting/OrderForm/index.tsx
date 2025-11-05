@@ -81,9 +81,14 @@ export const OrderForm = observer(() => {
   useEffect(() => {
     if (session.data?.user) {
       const { email, name } = session.data.user;
-      email && setValue('email', email);
-      name && setValue('name', name);
+      if (email) {
+        setValue('email', email);
+      }
+      if (name) {
+        setValue('name', name);
+      }
     }
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [session.data?.user]);
 
   const submitBtnLabel = isAuthenticated

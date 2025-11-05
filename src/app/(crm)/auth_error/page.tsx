@@ -1,5 +1,6 @@
-import Link from "next/link";
-import s from "./unauthorized.module.scss";
+import Link from 'next/link';
+import s from './unauthorized.module.scss';
+// export const runtime = 'nodejs';
 
 export default function AuthErrorPage() {
   return (

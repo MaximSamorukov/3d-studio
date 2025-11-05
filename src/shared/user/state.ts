@@ -1,4 +1,4 @@
-import { OrderFormFields } from '@/pages/3dPrinting/OrderForm';
+import { OrderFormFields } from '@/pagesComponents/3dPrinting/OrderForm';
 import { removeConsultation, removeOrder } from '@/services';
 import {
   getConsultationsOnEmail,

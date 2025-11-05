@@ -33,6 +33,7 @@ export const OrderConsultationForm = observer(() => {
     } else {
       setBtnLabel('Авторизоваться');
     }
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [session.data]);
 
   const onSubmit: SubmitHandler<ContactFormType> = async (data) => {

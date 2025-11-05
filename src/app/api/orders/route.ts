@@ -1,6 +1,7 @@
 import { PrintOrderEntity } from '@/entities/order';
 import { getOrderDataSource } from '@/shared/common/db/orders';
 import { NextResponse } from 'next/server';
+// export const runtime = 'nodejs';
 
 export const DELETE = async (request: Request) => {
   const data = await request.json();

@@ -1,4 +1,4 @@
-export const runtime = 'nodejs';
+// export const runtime = 'nodejs';
 
 import { MasterUserEntity } from '@/entities/masterUsers/index';
 import { getMasterUsersDataSource } from '@/shared/common/db/masterUsers';

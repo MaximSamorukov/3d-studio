@@ -1,5 +1,5 @@
 import React from 'react';
-import { OrderFormFields } from '@/pages/3dPrinting/OrderForm';
+import { OrderFormFields } from '@/pagesComponents/3dPrinting/OrderForm';
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './style.module.scss';

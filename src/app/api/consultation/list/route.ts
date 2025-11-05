@@ -1,5 +1,6 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { getConsultationDataSource } from '@/shared/common/db/consultations';
+// export const runtime = 'nodejs';
 
 export const POST = async (request: Request) => {
   try {

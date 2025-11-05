@@ -1,20 +1,21 @@
-import { prices } from "./constants";
-import { saveFile } from "./saveFile";
+import { prices } from './constants';
+import { saveFile } from './saveFile';
+// export const runtime = 'nodejs';
 
 export const POST = async (request: Request) => {
   const req = await request.formData();
 
   const calculation = {
     weight: 254,
-    plasticType: req.get("plasticType"),
+    plasticType: req.get('plasticType'),
     volume: 25,
     printTime: 135,
     price:
-      prices[req.get("plasticType") as keyof typeof prices] || "нет данных",
+      prices[req.get('plasticType') as keyof typeof prices] || 'нет данных',
   };
-  const rawFile = req.get("fileUpload");
+  const rawFile = req.get('fileUpload');
   const isFileLike =
-    rawFile && typeof (rawFile as Blob).arrayBuffer === "function";
+    rawFile && typeof (rawFile as Blob).arrayBuffer === 'function';
   const file = isFileLike ? rawFile : null;
 
   if (file) {

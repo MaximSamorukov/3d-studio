@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -17,3 +17,4 @@ export class User {
   @Column()
   password!: string;
 }
+// export const runtime = 'nodejs';

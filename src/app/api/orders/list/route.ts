@@ -1,5 +1,6 @@
 import { PrintOrderEntity } from '@/entities/order/index';
 import { getOrderDataSource } from '@/shared/common/db/orders';
+// export const runtime = 'nodejs';
 
 export const POST = async (request: Request) => {
   try {

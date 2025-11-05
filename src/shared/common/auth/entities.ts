@@ -134,3 +134,5 @@ export class VerificationTokenEntity {
   @Column({ transformer: transformer.date })
   expires!: string;
 }
+
+// export const runtime = 'nodejs';

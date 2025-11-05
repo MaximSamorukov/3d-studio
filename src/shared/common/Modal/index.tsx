@@ -57,6 +57,7 @@ export const ModalComponent: React.FC<ModalComponentProps> = ({
     } else {
       handleCloseModal();
     }
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [open]);
 
   return (

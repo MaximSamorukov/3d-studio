@@ -20,3 +20,4 @@ export class MasterUserEntity {
   @Column({ type: 'varchar', nullable: false })
   password!: string;
 }
+// export const runtime = 'nodejs';

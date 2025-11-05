@@ -1,4 +1,3 @@
-export const runtime = 'nodejs';
 import 'server-only';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
@@ -26,3 +25,5 @@ export const getMasterUsersDataSource = async () => {
   }
   return AppMasterUsersSource;
 };
+
+// export const runtime = 'nodejs';

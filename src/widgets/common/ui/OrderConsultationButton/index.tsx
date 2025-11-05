@@ -27,6 +27,7 @@ export const OrderConsultationButton = () => {
       clearParams();
       handleOpenModal();
     }
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [isConsultationRequest]);
   return (
     <>

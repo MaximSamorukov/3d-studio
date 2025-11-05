@@ -1,8 +1,9 @@
-import { auth } from '@/auth';
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const middleware = async (req: NextRequest) => {
-  const ses = await auth();
+  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+
   if (
     req.nextUrl.pathname.startsWith('/api/auth') ||
     req.nextUrl.pathname.startsWith('/api/check-authenticated-user') ||
@@ -10,10 +11,10 @@ export const middleware = async (req: NextRequest) => {
   ) {
     return NextResponse.next();
   }
-  if (!ses?.user && req.nextUrl.pathname.startsWith('/api')) {
+  if (!token && req.nextUrl.pathname.startsWith('/api')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  if (!ses?.user) {
+  if (!token) {
     return NextResponse.redirect(new URL('/unauthorized', req.url));
   }
 
