@@ -11,28 +11,38 @@ const lib: Record<'in_work' | 'submited' | 'rejected', string> = {
   rejected: 'Отменен',
 };
 const data = ['in_work', 'submited', 'rejected'] as const;
+const EMPTY = '';
 export const StatusFilter = observer(() => {
   const handleSelectOrderStatus = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    crmFilterState.orderStatus = e.target.value as
+    crmFilterState.orderStatus = (e.target.value || null) as
       | 'in_work'
       | 'submited'
       | 'rejected'
       | null;
   };
+  const handleClickResetBtn = () => {
+    crmFilterState.orderStatus = null;
+  };
+  const value = crmFilterState.orderStatus ?? EMPTY;
   return (
     <div className={s.container}>
       <div className={s.containerLabel}>Статус</div>
       <div className={s.input}>
-        <select onChange={handleSelectOrderStatus}>
-          {data.map((i) => {
+        <select onChange={handleSelectOrderStatus} value={value}>
+          {[null, ...(data || [])].map((i) => {
+            const label = i ?? '---';
+            const key = i ?? EMPTY;
             return (
-              <option key={i} value={i}>
-                {lib[i]}
+              <option key={key} value={key}>
+                {key ? lib[key] : label}
               </option>
             );
           })}
         </select>
-        <CrossButton />
+        <CrossButton
+          disabled={!crmFilterState.orderStatus}
+          onClick={handleClickResetBtn}
+        />
       </div>
     </div>
   );

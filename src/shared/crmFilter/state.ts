@@ -5,7 +5,7 @@ type CrmFilterStateType = {
   email?: string | null;
   phone?: string | null;
   plasticType?: string | null;
-  orderType?: 'both' | 'print_order' | 'consultation' | null;
+  orderType?: 'print_order' | 'consultation' | null;
   orderStatus?: 'in_work' | 'submited' | 'rejected' | null;
   paymentStatus?: 'paid' | 'not_paid' | null;
 };

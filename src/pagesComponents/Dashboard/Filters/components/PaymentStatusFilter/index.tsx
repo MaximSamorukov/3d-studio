@@ -11,26 +11,36 @@ const lib: Record<'paid' | 'not_paid', string> = {
   not_paid: 'Не оплачено',
 };
 const data = ['paid', 'not_paid'] as const;
+const EMPTY = '';
 export const PaymentStatusFilter = observer(({}: PaymentFilterProps) => {
   const handleSelectPaymentStatus = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     crmFilterState.paymentStatus = e.target.value as 'paid' | 'not_paid' | null;
   };
+  const handleClickResetBtn = () => {
+    crmFilterState.paymentStatus = null;
+  };
+  const value = crmFilterState.email ?? EMPTY;
   return (
     <div className={s.container}>
       <div className={s.containerLabel}>Статус оплаты</div>
       <div className={s.input}>
-        <select onChange={handleSelectPaymentStatus}>
-          {data.map((i) => {
+        <select onChange={handleSelectPaymentStatus} value={value}>
+          {[null, ...(data || [])].map((i) => {
+            const label = i ?? '---';
+            const key = i ?? EMPTY;
             return (
-              <option key={i} value={i}>
-                {lib[i]}
+              <option key={key} value={key}>
+                {key ? lib[key] : label}
               </option>
             );
           })}
         </select>
-        <CrossButton />
+        <CrossButton
+          disabled={!crmFilterState.paymentStatus}
+          onClick={handleClickResetBtn}
+        />
       </div>
     </div>
   );
