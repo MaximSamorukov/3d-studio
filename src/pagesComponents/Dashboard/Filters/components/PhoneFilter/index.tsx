@@ -3,6 +3,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
+import { CrossButton } from '@/shared/common/CrossButton';
 
 type PhoneFilterProps = {
   data?: string[];
@@ -20,6 +21,7 @@ export const PhoneFilter = observer(({ data }: PhoneFilterProps) => {
             return <option key={i}>{i}</option>;
           })}
         </select>
+        <CrossButton />
       </div>
     </div>
   );

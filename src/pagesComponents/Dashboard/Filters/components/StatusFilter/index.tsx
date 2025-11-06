@@ -3,6 +3,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
+import { CrossButton } from '@/shared/common/CrossButton';
 
 const lib: Record<'in_work' | 'submited' | 'rejected', string> = {
   in_work: 'В работе',
@@ -31,6 +32,7 @@ export const StatusFilter = observer(() => {
             );
           })}
         </select>
+        <CrossButton />
       </div>
     </div>
   );

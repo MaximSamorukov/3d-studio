@@ -10,6 +10,7 @@ import { TypeFilter } from './components/TypeFilter';
 import { getOrderDataSource } from '@/shared/common/db/orders';
 import { PrintOrderEntity } from '@/entities/order';
 import { SubmitButton } from './components/SubmitButton';
+import { ResetFiltersButton } from './components/ResetFiltersButton';
 
 type FilterTypes = {
   createdAt: Date[];
@@ -42,6 +43,7 @@ export async function Filters() {
         <StatusFilter />
         <PaymentStatusFilter />
         <SubmitButton />
+        <ResetFiltersButton />
       </div>
     </div>
   );

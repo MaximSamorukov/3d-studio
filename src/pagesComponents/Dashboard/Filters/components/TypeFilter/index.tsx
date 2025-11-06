@@ -3,6 +3,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
+import { CrossButton } from '@/shared/common/CrossButton';
 
 const lib: Record<'both' | 'print_order' | 'consultation', string> = {
   both: 'Все типы',
@@ -30,6 +31,7 @@ export const TypeFilter = observer(() => {
             );
           })}
         </select>
+        <CrossButton />
       </div>
     </div>
   );

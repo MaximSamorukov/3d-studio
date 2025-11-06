@@ -3,6 +3,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
+import { CrossButton } from '@/shared/common/CrossButton';
 
 type PaymentFilterProps = {};
 const lib: Record<'paid' | 'not_paid', string> = {
@@ -29,6 +30,7 @@ export const PaymentStatusFilter = observer(({}: PaymentFilterProps) => {
             );
           })}
         </select>
+        <CrossButton />
       </div>
     </div>
   );
