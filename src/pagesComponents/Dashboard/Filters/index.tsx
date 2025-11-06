@@ -9,6 +9,7 @@ import { PaymentStatusFilter } from './components/PaymentStatusFilter';
 import { TypeFilter } from './components/TypeFilter';
 import { getOrderDataSource } from '@/shared/common/db/orders';
 import { PrintOrderEntity } from '@/entities/order';
+import { SubmitButton } from './components/SubmitButton';
 
 type FilterTypes = {
   createdAt: Date[];
@@ -39,7 +40,8 @@ export async function Filters() {
         <MaterialFilter data={result?.plasticType} />
         <TypeFilter />
         <StatusFilter />
-        <PaymentStatusFilter data={[]} />
+        <PaymentStatusFilter />
+        <SubmitButton />
       </div>
     </div>
   );

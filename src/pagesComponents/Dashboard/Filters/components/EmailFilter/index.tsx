@@ -1,17 +1,21 @@
 'use client';
 import React from 'react';
 import s from './style.module.scss';
+import { observer } from 'mobx-react-lite';
+import { crmFilterState } from '@/shared/crmFilter/state';
 
 type EmailFilterProps = {
   data?: string[];
 };
-export function EmailFilter({ data }: EmailFilterProps) {
-  console.log('email filter', data);
+export const EmailFilter = observer(({ data }: EmailFilterProps) => {
+  const handleSelectEmail = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    crmFilterState.email = e.target.value;
+  };
   return (
     <div className={s.container}>
       <div className={s.containerLabel}>Email</div>
       <div className={s.input}>
-        <select>
+        <select onChange={handleSelectEmail}>
           {data?.map((i) => {
             return <option key={i}>{i}</option>;
           })}
@@ -19,4 +23,4 @@ export function EmailFilter({ data }: EmailFilterProps) {
       </div>
     </div>
   );
-}
+});

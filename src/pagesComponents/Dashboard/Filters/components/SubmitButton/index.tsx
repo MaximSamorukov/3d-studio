@@ -2,12 +2,12 @@
 import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
-import { crmFilterState } from '@/shared/crmFilter/state';
 
-export const Table = observer(() => {
+type SubmitButtonProps = {};
+export const SubmitButton = observer(({}: SubmitButtonProps) => {
   return (
     <div className={s.container}>
-      {JSON.stringify(crmFilterState.serialized, null, 2)}
+      <button className={s.btn}>Применить</button>
     </div>
   );
 });
