@@ -1,7 +1,7 @@
-import React from "react";
-import s from "./style.module.scss";
-import { PlasticType } from "./types";
-import { labels } from "@/app/config/plastic/constants";
+import React from 'react';
+import s from './style.module.scss';
+import { PlasticType } from './types';
+import { labels } from '@/app/config/plastic/constants';
 
 export const PlasicItem: React.FC<{ item: PlasticType }> = ({
   item: { name, extendedName, application, descriptions, properties },
