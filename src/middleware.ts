@@ -7,7 +7,25 @@ export const middleware = async (req: NextRequest) => {
     secret: process.env.AUTH_SECRET,
     secureCookie: process.env.NODE_ENV === 'production',
   });
-
+  if (req.nextUrl.pathname.startsWith('/crm')) {
+    if (token?.email) {
+      const { email } = token;
+      const result = await fetch(
+        process.env.SERVER_URL + '/api/check-authenticated-user',
+        {
+          method: 'POST',
+          body: JSON.stringify({ email }),
+        },
+      );
+      const awaitedResult = await result.json();
+      if (awaitedResult.admin) {
+        return NextResponse.next();
+      }
+      return NextResponse.redirect(new URL('/unauthorized', req.url));
+    } else {
+      return NextResponse.redirect(new URL('/unauthorized', req.url));
+    }
+  }
   if (
     req.nextUrl.pathname.startsWith('/api/auth') ||
     req.nextUrl.pathname.startsWith('/api/check-authenticated-user') ||

@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  //Index,
 } from 'typeorm';
 
 @Entity({ name: 'print_orders' })
@@ -16,9 +17,11 @@ export class PrintOrderEntity {
   @Column({ type: 'varchar', length: 255 })
   name!: string;
 
+  //@Index()
   @Column({ type: 'varchar', length: 50 })
   phone!: string;
 
+  //@Index()
   @Column({ type: 'varchar', length: 255 })
   email!: string;
 
@@ -34,7 +37,7 @@ export class PrintOrderEntity {
   @Column({ type: 'text', nullable: true })
   comment!: string | null;
 
+  //@Index()
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at!: Date;
 }
-// export const runtime = 'nodejs';
