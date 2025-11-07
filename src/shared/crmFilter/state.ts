@@ -174,6 +174,9 @@ autorun(() => {
     type: crmFilterState.orderType!,
     page: crmFilterState.page!,
     perPage: crmFilterState.perPage!,
+    email: crmFilterState.email!,
+    phone: crmFilterState.phone!,
+    plasticType: crmFilterState.plasticType!,
   })
     .then(({ orders }) => {
       if (crmFilterState.orderType === 'consultation') {

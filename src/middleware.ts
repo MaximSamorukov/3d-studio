@@ -1,7 +1,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const adminPaths = new Set(['/crm', '/api/submited_orders']);
+export const adminPaths = new Set(['/crm', '/api/crm/submited_orders']);
 export const middleware = async (req: NextRequest) => {
   const token = await getToken({
     req,
@@ -28,7 +28,7 @@ export const middleware = async (req: NextRequest) => {
     }
   }
 
-  if (token && req.nextUrl.pathname.startsWith('/api/submited_orders')) {
+  if (token && req.nextUrl.pathname.startsWith('/api/crm')) {
     if (token?.email) {
       const { email } = token;
       const result = await fetch(

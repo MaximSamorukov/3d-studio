@@ -16,7 +16,7 @@ export const TableBody = observer(() => {
   if (orderType === 'print_order') {
     return (
       <div className={s.container}>
-        {orders.map((i) => (
+        {(orders || []).map((i) => (
           <div className={s.containerRow}>
             {orderTypeColumns.filter(hideNotvisible).map((value) => (
               <div className={s.cell}>{get(i, value.key, '-')}</div>
@@ -29,7 +29,7 @@ export const TableBody = observer(() => {
   if (orderType === 'consultation') {
     return (
       <div className={s.container}>
-        {consultations.map((i) => (
+        {(consultations || []).map((i) => (
           <div className={s.containerRow}>
             {consultationTypeColumns.filter(hideNotvisible).map((value) => (
               <div className={s.cell}>{get(i, value.key, '-')}</div>
