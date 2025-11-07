@@ -22,4 +22,3 @@ export class ConsultationEntity {
   @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   created_at!: Date;
 }
-// export const runtime = 'nodejs';

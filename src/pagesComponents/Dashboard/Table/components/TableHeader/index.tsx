@@ -1,0 +1,45 @@
+'use client';
+import React from 'react';
+import s from './style.module.scss';
+import { observer } from 'mobx-react-lite';
+import { crmFilterState } from '@/shared/crmFilter/state';
+import { consultationTypeColumns, orderTypeColumns } from './constants';
+import cn from 'classnames';
+import { hideNotvisible } from './utils';
+
+export const TableHeader = observer(() => {
+  const { orderType } = crmFilterState;
+
+  if (orderType === 'print_order') {
+    return (
+      <div className={s.container}>
+        {orderTypeColumns.filter(hideNotvisible).map((i, index) => (
+          <div
+            key={i.key}
+            className={cn(s.column, {
+              [s.columnWithBorder]: index < orderTypeColumns.length - 1,
+            })}
+          >
+            {i.label}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (orderType === 'consultation') {
+    return (
+      <div className={s.container}>
+        {consultationTypeColumns.filter(hideNotvisible).map((i, index) => (
+          <div
+            key={i.key}
+            className={cn(s.column, {
+              [s.columnWithBorder]: index < consultationTypeColumns.length - 1,
+            })}
+          >
+            {i.label}
+          </div>
+        ))}
+      </div>
+    );
+  }
+});

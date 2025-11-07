@@ -1,6 +1,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const adminPaths = new Set(['/crm', '/api/submited_orders']);
 export const middleware = async (req: NextRequest) => {
   const token = await getToken({
     req,
@@ -24,6 +25,26 @@ export const middleware = async (req: NextRequest) => {
       return NextResponse.redirect(new URL('/unauthorized', req.url));
     } else {
       return NextResponse.redirect(new URL('/unauthorized', req.url));
+    }
+  }
+
+  if (token && req.nextUrl.pathname.startsWith('/api/submited_orders')) {
+    if (token?.email) {
+      const { email } = token;
+      const result = await fetch(
+        process.env.SERVER_URL + '/api/check-authenticated-user',
+        {
+          method: 'POST',
+          body: JSON.stringify({ email }),
+        },
+      );
+      const awaitedResult = await result.json();
+      if (awaitedResult.admin) {
+        return NextResponse.next();
+      }
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    } else {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
   }
   if (

@@ -1,13 +1,15 @@
-'use client';
 import React from 'react';
 import s from './style.module.scss';
-import { observer } from 'mobx-react-lite';
-import { crmFilterState } from '@/shared/crmFilter/state';
+import { TableHeader } from './components/TableHeader';
+import { TableBody } from './components/TableBody';
+import { TablePaging } from './components/TablePaging';
 
-export const Table = observer(() => {
+export const Table = () => {
   return (
     <div className={s.container}>
-      {JSON.stringify(crmFilterState.serialized, null, 2)}
+      <TableHeader />
+      <TableBody />
+      <TablePaging />
     </div>
   );
-});
+};

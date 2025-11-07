@@ -9,25 +9,24 @@ const lib: Record<'print_order' | 'consultation', string> = {
   print_order: 'Печать',
   consultation: 'Консультация',
 };
-const EMPTY = '';
+
 const data = ['print_order', 'consultation'] as const;
 export const TypeFilter = observer(() => {
   const handleSelectOrderType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    crmFilterState.orderType =
-      (e.target.value as 'print_order' | 'consultation') || null;
+    crmFilterState.orderType = e.target.value as 'print_order' | 'consultation';
   };
   const handleClickResetBtn = () => {
-    crmFilterState.orderType = null;
+    crmFilterState.orderType = 'print_order';
   };
-  const value = crmFilterState.orderType ?? EMPTY;
+  const value = crmFilterState.orderType;
   return (
     <div className={s.container}>
       <div className={s.containerLabel}>Тип заказа</div>
       <div className={s.input}>
         <select onChange={handleSelectOrderType} value={value}>
-          {[null, ...(data || [])].map((i) => {
-            const label = i ?? '---';
-            const key = i ?? EMPTY;
+          {data.map((i) => {
+            const label = i;
+            const key = i;
             return (
               <option key={key} value={key}>
                 {key ? lib[key] : label}
@@ -36,7 +35,7 @@ export const TypeFilter = observer(() => {
           })}
         </select>
         <CrossButton
-          disabled={!crmFilterState.orderType}
+          disabled={crmFilterState.orderType === 'print_order'}
           onClick={handleClickResetBtn}
         />
       </div>

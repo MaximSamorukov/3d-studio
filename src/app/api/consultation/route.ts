@@ -1,8 +1,6 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { getConsultationDataSource } from '@/shared/common/db/consultations';
-import { error } from 'console';
 import { NextResponse } from 'next/server';
-// export const runtime = 'nodejs';
 
 export const POST = async (request: Request) => {
   try {
