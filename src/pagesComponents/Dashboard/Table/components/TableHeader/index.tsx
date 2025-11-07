@@ -13,11 +13,11 @@ export const TableHeader = observer(() => {
   if (orderType === 'print_order') {
     return (
       <div className={s.container}>
-        {orderTypeColumns.filter(hideNotvisible).map((i, index) => (
+        {orderTypeColumns.filter(hideNotvisible).map((i, index, a) => (
           <div
             key={i.key}
             className={cn(s.column, {
-              [s.columnWithBorder]: index < orderTypeColumns.length - 1,
+              [s.columnWithBorder]: index < a.length - 1,
             })}
           >
             {i.label}
@@ -29,11 +29,11 @@ export const TableHeader = observer(() => {
   if (orderType === 'consultation') {
     return (
       <div className={s.container}>
-        {consultationTypeColumns.filter(hideNotvisible).map((i, index) => (
+        {consultationTypeColumns.filter(hideNotvisible).map((i, index, a) => (
           <div
             key={i.key}
             className={cn(s.column, {
-              [s.columnWithBorder]: index < consultationTypeColumns.length - 1,
+              [s.columnWithBorder]: index < a.length - 1,
             })}
           >
             {i.label}

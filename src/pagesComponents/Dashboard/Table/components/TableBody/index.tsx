@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import s from './style.module.scss';
+import { get } from 'lodash';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
 import {
@@ -18,7 +19,7 @@ export const TableBody = observer(() => {
         {orders.map((i) => (
           <div className={s.containerRow}>
             {orderTypeColumns.filter(hideNotvisible).map((value) => (
-              <div className={s.cell}>{i[value.key] || '-'}</div>
+              <div className={s.cell}>{get(i, value.key, '-')}</div>
             ))}
           </div>
         ))}
@@ -31,7 +32,7 @@ export const TableBody = observer(() => {
         {consultations.map((i) => (
           <div className={s.containerRow}>
             {consultationTypeColumns.filter(hideNotvisible).map((value) => (
-              <div className={s.cell}>{i[value.key] || '-'}</div>
+              <div className={s.cell}>{get(i, value.key, '-')}</div>
             ))}
           </div>
         ))}
