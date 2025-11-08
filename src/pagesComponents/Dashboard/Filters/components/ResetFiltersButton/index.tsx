@@ -4,8 +4,7 @@ import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
 
-type ResetFiltersButtonProps = {};
-export const ResetFiltersButton = observer(({}: ResetFiltersButtonProps) => {
+export const ResetFiltersButton = observer(() => {
   const handleResetFilters = () => {
     crmFilterState.resetAllFilters();
   };

@@ -42,7 +42,7 @@ export const POST = async (request: Request) => {
       const offset = (page - 1) * perPage;
       const limit = perPage;
       const result = await consultRepository.query(
-        `SELECT * FROM consultations OFFSET ${offset} LIMIT ${limit}`,
+        `SELECT * FROM consultations LIMIT ${limit} OFFSET ${offset}`,
       );
       return Response.json({ orders: result }, { status: 200 });
     } catch (e) {

@@ -17,9 +17,11 @@ export const TableBody = observer(() => {
     return (
       <div className={s.container}>
         {(orders || []).map((i) => (
-          <div className={s.containerRow}>
+          <div key={i.id} className={s.containerRow}>
             {orderTypeColumns.filter(hideNotvisible).map((value) => (
-              <div className={s.cell}>{get(i, value.key, '-')}</div>
+              <div key={value.key} className={s.cell}>
+                {get(i, value.key, '-')}
+              </div>
             ))}
           </div>
         ))}
@@ -30,9 +32,11 @@ export const TableBody = observer(() => {
     return (
       <div className={s.container}>
         {(consultations || []).map((i) => (
-          <div className={s.containerRow}>
+          <div key={i.id} className={s.containerRow}>
             {consultationTypeColumns.filter(hideNotvisible).map((value) => (
-              <div className={s.cell}>{get(i, value.key, '-')}</div>
+              <div key={value.key} className={s.cell}>
+                {get(i, value.key, '-')}
+              </div>
             ))}
           </div>
         ))}

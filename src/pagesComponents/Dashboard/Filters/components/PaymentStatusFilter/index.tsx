@@ -5,14 +5,13 @@ import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
 import { CrossButton } from '@/shared/common/CrossButton';
 
-type PaymentFilterProps = {};
 const lib: Record<'paid' | 'not_paid', string> = {
   paid: 'Оплачено',
   not_paid: 'Не оплачено',
 };
 const data = ['paid', 'not_paid'] as const;
 const EMPTY = '';
-export const PaymentStatusFilter = observer(({}: PaymentFilterProps) => {
+export const PaymentStatusFilter = observer(() => {
   const handleSelectPaymentStatus = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
