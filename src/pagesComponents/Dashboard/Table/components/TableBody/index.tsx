@@ -9,9 +9,10 @@ import {
   orderTypeColumns,
 } from '../TableHeader/constants';
 import { hideNotvisible } from '../TableHeader/utils';
+import { CircularProgress } from '@mui/material';
 
 export const TableBody = observer(() => {
-  const { orderType, consultations, orders } = crmFilterState;
+  const { orderType, consultations, orders, pending } = crmFilterState;
 
   if (orderType === 'print_order') {
     return (
@@ -25,6 +26,13 @@ export const TableBody = observer(() => {
             ))}
           </div>
         ))}
+        {pending ? (
+          <div className={s.containerLoader}>
+            <CircularProgress size={40} color="secondary" />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
@@ -40,6 +48,13 @@ export const TableBody = observer(() => {
             ))}
           </div>
         ))}
+        {pending ? (
+          <div className={s.containerLoader}>
+            <CircularProgress size={40} color="secondary" />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     );
   }

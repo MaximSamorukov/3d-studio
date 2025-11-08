@@ -4,6 +4,7 @@ import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
 
 type CrmFilterStateType = {
+  pending: boolean;
   createdAt?: string | null;
   email?: string | null;
   phone?: string | null;
@@ -29,7 +30,7 @@ class CrmFilterState {
   private page_: CrmFilterStateType['page'] = 1;
   private orders_: CrmFilterStateType['orders'] = [];
   private consultations_: CrmFilterStateType['consultations'] = [];
-
+  private pending_: CrmFilterStateType['pending'] = false;
   constructor() {
     makeAutoObservable(this);
   }
@@ -126,6 +127,14 @@ class CrmFilterState {
     return this.consultations_;
   }
 
+  get pending() {
+    return this.pending_;
+  }
+
+  set pending(value: CrmFilterStateType['pending']) {
+    this.pending_ = value;
+  }
+
   set orders(value: CrmFilterStateType['orders']) {
     this.orders_ = value;
   }
@@ -163,7 +172,10 @@ class CrmFilterState {
   set paymentStatus(value: CrmFilterStateType['paymentStatus']) {
     this.paymentStatus_ = value;
   }
-  get serialized(): Omit<CrmFilterStateType, 'orders' | 'consultations'> {
+  get serialized(): Omit<
+    CrmFilterStateType,
+    'orders' | 'consultations' | 'pending'
+  > {
     return {
       createdAt: this.createdAt_,
       email: this.email_,
@@ -181,6 +193,7 @@ class CrmFilterState {
 export const crmFilterState = new CrmFilterState();
 
 autorun(() => {
+  crmFilterState.pending = true;
   getSubmitedOrders({
     type: crmFilterState.orderType!,
     page: crmFilterState.page!,
@@ -191,6 +204,8 @@ autorun(() => {
     created_at: crmFilterState.createdAt!,
   })
     .then(({ orders }) => {
+      crmFilterState.pending = false;
+
       if (crmFilterState.orderType === 'consultation') {
         crmFilterState.consultations = orders;
       }
@@ -199,6 +214,7 @@ autorun(() => {
       }
     })
     .catch(() => {
+      crmFilterState.pending = false;
       crmFilterState.consultations = [];
       crmFilterState.orders = [];
     });
