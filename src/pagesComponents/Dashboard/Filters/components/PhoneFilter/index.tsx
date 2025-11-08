@@ -1,42 +1,67 @@
 'use client';
 import React from 'react';
-import s from './style.module.scss';
+import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
 import { CrossButton } from '@/shared/common/CrossButton';
+import s from './style.module.scss';
 
 type PhoneFilterProps = {
-  data?: string[];
+  orderData?: string[];
+  consData?: string[];
+  disabled?: boolean;
 };
 const EMPTY = '';
-export const PhoneFilter = observer(({ data }: PhoneFilterProps) => {
-  const handleSelectPhone = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    crmFilterState.phone = e.target.value || null;
-  };
-  const handleClickResetBtn = () => {
-    crmFilterState.phone = null;
-  };
-  const value = crmFilterState.phone ?? EMPTY;
-  return (
-    <div className={s.container}>
-      <div className={s.containerLabel}>Телефон</div>
-      <div className={s.input}>
-        <select onChange={handleSelectPhone} value={value}>
-          {[null, ...(data || [])].map((i) => {
-            const label = i ?? '---';
-            const key = i ?? EMPTY;
-            return (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            );
+export const PhoneFilter = observer(
+  ({ orderData, consData, disabled = false }: PhoneFilterProps) => {
+    const data =
+      crmFilterState.orderType === 'print_order' ? orderData : consData;
+    const keyPrefix =
+      crmFilterState.orderType === 'print_order' ? 'po_' : 'co_';
+    const handleSelectPhone = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      if (!disabled) {
+        crmFilterState.phone = e.target.value || null;
+      }
+    };
+    const handleClickResetBtn = () => {
+      if (!disabled) {
+        crmFilterState.phone = null;
+      }
+    };
+    const value = crmFilterState.phone ?? EMPTY;
+    const label =
+      crmFilterState.orderType === 'consultation' ? 'Контакт' : 'Телефон';
+    return (
+      <div className={s.container}>
+        <div
+          className={cn(s.containerLabel, {
+            [s.containerLabelDisabled]: disabled,
           })}
-        </select>
-        <CrossButton
-          disabled={!crmFilterState.phone}
-          onClick={handleClickResetBtn}
-        />
+        >
+          {label}
+        </div>
+        <div className={cn(s.input, { [s.inputDisabled]: disabled })}>
+          <select
+            disabled={disabled}
+            onChange={handleSelectPhone}
+            value={value}
+          >
+            {[null, ...(data || []).filter(Boolean)].map((i) => {
+              const label = i ?? '---';
+              const key = i ?? EMPTY;
+              return (
+                <option key={keyPrefix + key} value={key}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+          <CrossButton
+            disabled={!crmFilterState.phone || disabled}
+            onClick={handleClickResetBtn}
+          />
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);

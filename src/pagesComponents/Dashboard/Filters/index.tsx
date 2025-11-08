@@ -8,15 +8,22 @@ import { StatusFilter } from './components/StatusFilter';
 import { PaymentStatusFilter } from './components/PaymentStatusFilter';
 import { TypeFilter } from './components/TypeFilter';
 import { getOrderDataSource } from '@/shared/common/db/orders';
+import { getConsultationDataSource } from '@/shared/common/db/consultations';
 import { PrintOrderEntity } from '@/entities/order';
+import { ConsultationEntity } from '@/entities/consultation';
 import { SubmitButton } from './components/SubmitButton';
 import { ResetFiltersButton } from './components/ResetFiltersButton';
 
-type FilterTypes = {
+type OrderFilterTypes = {
   createdAt: Date[];
   email: string[];
   phone: string[];
   plasticType: string[];
+};
+type ConsultationFilterTypes = {
+  createdAt: Date[];
+  email: string[];
+  contact: string[];
 };
 export async function Filters() {
   const db = await getOrderDataSource();
@@ -29,15 +36,28 @@ export async function Filters() {
       'array_agg(DISTINCT o.phone) AS "phone"',
       'array_agg(DISTINCT o.plastic_type) AS "plasticType"',
     ])
-    .getRawOne<FilterTypes>();
+    .getRawOne<OrderFilterTypes>();
+  const dbCons = await getConsultationDataSource();
+  const consRepository = dbCons.getRepository(ConsultationEntity);
+  const consData = await consRepository
+    .createQueryBuilder('cons')
+    .select([
+      'array_agg(DISTINCT cons.created_at::date) AS "createdAt"',
+      'array_agg(DISTINCT cons.email) AS "email"',
+      'array_agg(DISTINCT cons.contact) AS "contact"',
+    ])
+    .getRawOne<ConsultationFilterTypes>();
 
   return (
     <div className={s.container}>
       <div className={s.border}>
         <div className={s.borderLabel}>Фильтры</div>
-        <DateFilter data={result?.createdAt} />
-        <EmailFilter data={result?.email} />
-        <PhoneFilter data={result?.phone} />
+        <DateFilter
+          orderData={result?.createdAt}
+          consData={consData?.createdAt}
+        />
+        <EmailFilter orderData={result?.email} consData={consData?.email} />
+        <PhoneFilter orderData={result?.phone} consData={consData?.contact} />
         <MaterialFilter data={result?.plasticType} />
         <TypeFilter />
         <StatusFilter />

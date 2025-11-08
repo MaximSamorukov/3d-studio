@@ -46,6 +46,17 @@ class CrmFilterState {
     this.page_ = 1;
   }
 
+  resetFiltersOnOrderTypeChange() {
+    this.createdAt_ = null;
+    this.email_ = null;
+    this.phone_ = null;
+    this.plasticType_ = null;
+    this.orderStatus_ = null;
+    this.paymentStatus_ = null;
+    this.perPage_ = 25;
+    this.page_ = 1;
+  }
+
   resetFilter(type: keyof CrmFilterStateType) {
     switch (type) {
       case 'createdAt':
@@ -177,6 +188,7 @@ autorun(() => {
     email: crmFilterState.email!,
     phone: crmFilterState.phone!,
     plasticType: crmFilterState.plasticType!,
+    created_at: crmFilterState.createdAt!,
   })
     .then(({ orders }) => {
       if (crmFilterState.orderType === 'consultation') {

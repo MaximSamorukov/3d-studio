@@ -2,11 +2,11 @@ import { PrintOrderEntity } from '@/entities/order/index';
 import { getOrderDataSource } from '@/shared/common/db/orders';
 import { ConsultationEntity } from '@/entities/consultation';
 import { getConsultationDataSource } from '@/shared/common/db/consultations';
-import { getObject } from './utils';
+import { getObject, getWhereString } from './utils';
 
 export const POST = async (request: Request) => {
   const data = await request.json();
-  const { page, perPage, type, email, phone, plastic_type } = data;
+  const { page, perPage, type, email, phone, plastic_type, created_at } = data;
 
   if (type === 'print_order') {
     try {
@@ -18,11 +18,13 @@ export const POST = async (request: Request) => {
         getObject({ email }),
         getObject({ phone }),
         getObject({ plastic_type }),
+        getObject({ created_at }),
       ]
         .filter((i) => !!i.value)
-        .map((i) => `${i.key}='${i.value}'`)
+        .map(getWhereString)
         .join(' and ')
         .trim();
+
       const where = whereStr.length ? `WHERE ${whereStr}` : '';
       const queryString = `SELECT * FROM print_orders ${where} LIMIT ${limit} OFFSET ${offset}`;
       const result = await orderRepository.query(queryString);
@@ -41,9 +43,18 @@ export const POST = async (request: Request) => {
         dbConsultation.getRepository(ConsultationEntity);
       const offset = (page - 1) * perPage;
       const limit = perPage;
-      const result = await consultRepository.query(
-        `SELECT * FROM consultations LIMIT ${limit} OFFSET ${offset}`,
-      );
+      const whereStr = [
+        getObject({ email }),
+        getObject({ contact: phone }),
+        getObject({ created_at }),
+      ]
+        .filter((i) => !!i.value)
+        .map(getWhereString)
+        .join(' and ')
+        .trim();
+      const where = whereStr.length ? `WHERE ${whereStr}` : '';
+      const queryString = `SELECT * FROM consultations ${where} LIMIT ${limit} OFFSET ${offset}`;
+      const result = await consultRepository.query(queryString);
       return Response.json({ orders: result }, { status: 200 });
     } catch (e) {
       return Response.json(

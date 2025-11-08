@@ -1,43 +1,66 @@
 'use client';
 import React from 'react';
-import s from './style.module.scss';
+import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { crmFilterState } from '@/shared/crmFilter/state';
 import { CrossButton } from '@/shared/common/CrossButton';
+import s from './style.module.scss';
 
 type MaterialFilterProps = {
   data?: string[];
+  disabled?: boolean;
 };
 const EMPTY = '';
 
-export const MaterialFilter = observer(({ data }: MaterialFilterProps) => {
-  const handleSelectMaterial = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    crmFilterState.plasticType = e.target.value || null;
-  };
-  const handleClickResetBtn = () => {
-    crmFilterState.plasticType = null;
-  };
-  const value = crmFilterState.plasticType ?? EMPTY;
-  return (
-    <div className={s.container}>
-      <div className={s.containerLabel}>Материал</div>
-      <div className={s.input}>
-        <select onChange={handleSelectMaterial} value={value}>
-          {[null, ...(data || [])].map((i) => {
-            const label = i ?? '---';
-            const key = i ?? EMPTY;
-            return (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            );
+export const MaterialFilter = observer(
+  ({ data, disabled = false }: MaterialFilterProps) => {
+    const fieldDisabled = crmFilterState.orderType === 'consultation';
+    const handleSelectMaterial = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      if (!disabled || !fieldDisabled) {
+        crmFilterState.plasticType = e.target.value || null;
+      }
+    };
+    const handleClickResetBtn = () => {
+      if (!disabled || !fieldDisabled) {
+        crmFilterState.plasticType = null;
+      }
+    };
+    const value = crmFilterState.plasticType ?? EMPTY;
+    return (
+      <div className={s.container}>
+        <div
+          className={cn(s.containerLabel, {
+            [s.containerLabelDisabled]: disabled || fieldDisabled,
           })}
-        </select>
-        <CrossButton
-          disabled={!crmFilterState.plasticType}
-          onClick={handleClickResetBtn}
-        />
+        >
+          Материал
+        </div>
+        <div
+          className={cn(s.input, {
+            [s.inputDisabled]: disabled || fieldDisabled,
+          })}
+        >
+          <select
+            disabled={disabled || fieldDisabled}
+            onChange={handleSelectMaterial}
+            value={value}
+          >
+            {[null, ...(data || [])].map((i) => {
+              const label = i ?? '---';
+              const key = i ?? EMPTY;
+              return (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+          <CrossButton
+            disabled={!crmFilterState.plasticType || disabled || fieldDisabled}
+            onClick={handleClickResetBtn}
+          />
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);

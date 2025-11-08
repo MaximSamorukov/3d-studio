@@ -6,6 +6,7 @@ export async function getSubmitedOrders({
   email,
   phone,
   plasticType,
+  created_at,
 }: {
   page: number;
   perPage: number;
@@ -13,6 +14,7 @@ export async function getSubmitedOrders({
   email: string | null;
   phone: string | null;
   plasticType: string | null;
+  created_at: string | null;
 }) {
   try {
     const result = fetch('/api/crm/submited_orders', {
@@ -24,6 +26,7 @@ export async function getSubmitedOrders({
         email,
         phone,
         plastic_type: plasticType,
+        created_at,
       }),
     });
 
