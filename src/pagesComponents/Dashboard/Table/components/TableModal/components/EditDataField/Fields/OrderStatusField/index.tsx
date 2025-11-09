@@ -4,11 +4,14 @@ import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { ORDER_STATUSES, Statuces, STATUSES_DICT } from './constants';
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
-import s from './style.module.scss';
 import Image from 'next/image';
+import { updateSubmitedOrderById } from './utils';
+import s from './style.module.scss';
 
-export const OrderStatusField = observer((props) => {
+export const OrderStatusField = observer(() => {
   const status = crmPreviewModalState.orderStatus as Statuces;
+  const id = crmPreviewModalState.id;
+  const type = crmPreviewModalState.orderType;
   const [currentStatus, setCurrentStatus] = useState<Statuces>(status);
   const isSaveEnabled = currentStatus !== status;
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -17,6 +20,22 @@ export const OrderStatusField = observer((props) => {
   };
   const handleRestore = () => {
     setCurrentStatus(status);
+  };
+  const handleSaveOrderStatus = async () => {
+    if (id && type && currentStatus) {
+      try {
+        await updateSubmitedOrderById({
+          id,
+          type,
+          fields: {
+            order_status: currentStatus,
+          },
+        });
+        crmPreviewModalState.orderStatus = currentStatus;
+      } catch (_) {
+        console.error('Ошибка сохранения изменений');
+      }
+    }
   };
   return (
     <div className={s.container}>
@@ -32,6 +51,7 @@ export const OrderStatusField = observer((props) => {
         ))}
       </select>
       <button
+        onClick={handleSaveOrderStatus}
         disabled={!isSaveEnabled}
         className={cn(s.btn, s.btnSave, !isSaveEnabled && s.btnSaveDisabled)}
       >

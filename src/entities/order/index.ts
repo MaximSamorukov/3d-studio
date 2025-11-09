@@ -37,4 +37,10 @@ export class PrintOrderEntity {
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at!: Date;
+
+  @Column({ type: 'varchar', length: 50, nullable: false })
+  order_status!: string;
+
+  @Column({ type: 'varchar', length: 50, nullable: false })
+  payment_status!: string;
 }
