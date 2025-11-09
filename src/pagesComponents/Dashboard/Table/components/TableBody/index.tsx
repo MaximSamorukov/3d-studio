@@ -10,25 +10,42 @@ import {
 } from '../TableHeader/constants';
 import { hideNotvisible } from '../TableHeader/utils';
 import { CircularProgress } from '@mui/material';
+import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { PrintOrderEntity } from '@/entities/order';
+import { ConsultationEntity } from '@/entities/consultation';
 
 export const TableBody = observer(() => {
   const { orderType, consultations, orders, pending } = crmFilterState;
 
+  const handleOpenPreviewModal =
+    (
+      type: 'print_order' | 'consultation',
+      data: PrintOrderEntity | ConsultationEntity,
+    ) =>
+    () => {
+      crmPreviewModalState.modalOpen = true;
+      crmPreviewModalState.id = data.id;
+      crmPreviewModalState.orderType = type;
+    };
   if (orderType === 'print_order') {
     return (
       <div className={s.container}>
         {(orders || []).map((i) => (
-          <div key={i.id} className={s.containerRow}>
+          <button
+            onClick={handleOpenPreviewModal('print_order', i)}
+            key={i.id}
+            className={s.containerRow}
+          >
             {orderTypeColumns.filter(hideNotvisible).map((value) => (
               <div key={value.key} className={s.cell}>
                 {get(i, value.key, '-')}
               </div>
             ))}
-          </div>
+          </button>
         ))}
         {pending ? (
           <div className={s.containerLoader}>
-            <CircularProgress size={40} color="secondary" />
+            <CircularProgress size={40} color="success" />
           </div>
         ) : (
           <></>
@@ -40,13 +57,17 @@ export const TableBody = observer(() => {
     return (
       <div className={s.container}>
         {(consultations || []).map((i) => (
-          <div key={i.id} className={s.containerRow}>
+          <button
+            onClick={handleOpenPreviewModal('consultation', i)}
+            key={i.id}
+            className={s.containerRow}
+          >
             {consultationTypeColumns.filter(hideNotvisible).map((value) => (
               <div key={value.key} className={s.cell}>
                 {get(i, value.key, '-')}
               </div>
             ))}
-          </div>
+          </button>
         ))}
         {pending ? (
           <div className={s.containerLoader}>
