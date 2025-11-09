@@ -21,3 +21,8 @@ declare module 'next-auth/jwt' {
     role?: 'admin' | 'customer';
   }
 }
+
+declare module 'next-svgr' {
+  import type { NextConfig } from 'next';
+  export default function withSvgr(config: NextConfig): NextConfig;
+}

@@ -10,8 +10,8 @@ export const ForwardButton = observer(() => {
   const perPage = crmFilterState.perPage || 0;
   const isOrderType = crmFilterState.orderType === 'print_order';
   const count = isOrderType
-    ? crmFilterState.orders.length
-    : crmFilterState.consultations.length;
+    ? crmFilterState.orders?.length
+    : crmFilterState.consultations?.length;
 
   const isDisabled = perPage > count;
   const handleForward = () => {

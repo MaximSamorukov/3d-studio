@@ -1,5 +1,6 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
+import { Statuces } from '@/pagesComponents/Dashboard/Table/components/TableModal/components/EditDataField/Fields/OrderStatusField/constants';
 import { getSubmitedOrderById } from '@/pagesComponents/Dashboard/Table/components/TableModal/utils';
 import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
@@ -13,7 +14,7 @@ type CrmPreviewModalStateType = {
   phone?: string | null;
   plasticType?: string | null;
   orderType?: 'print_order' | 'consultation' | null;
-  orderStatus?: 'in_work' | 'submited' | 'rejected' | null;
+  orderStatus?: Statuces | null;
   paymentStatus?: 'paid' | 'not_paid' | null;
 };
 
@@ -164,29 +165,28 @@ autorun(() => {
     })
       .then(({ data }) => {
         crmPreviewModalState.pending = false;
-        console.log(data);
         if (crmPreviewModalState.orderType === 'print_order') {
           const {
             created_at,
             email,
             phone,
             plastic_type,
-            orderStatus,
-            paymentStatus,
+            order_status,
+            payment_status,
           } = data;
           crmPreviewModalState.createdAt = created_at;
           crmPreviewModalState.email = email;
           crmPreviewModalState.phone = phone;
           crmPreviewModalState.plasticType = plastic_type;
-          crmPreviewModalState.orderStatus = orderStatus;
-          crmPreviewModalState.paymentStatus = paymentStatus;
+          crmPreviewModalState.orderStatus = order_status;
+          crmPreviewModalState.paymentStatus = payment_status;
         }
         if (crmPreviewModalState.orderType === 'consultation') {
-          const { created_at, email, contact, orderStatus } = data;
+          const { created_at, email, contact, order_status } = data;
           crmPreviewModalState.createdAt = created_at;
           crmPreviewModalState.email = email;
           crmPreviewModalState.phone = contact;
-          crmPreviewModalState.orderStatus = orderStatus;
+          crmPreviewModalState.orderStatus = order_status;
         }
       })
       .catch(() => {

@@ -1,4 +1,6 @@
 import type { NextConfig } from 'next';
+// @ts-ignore
+import withSvgr from 'next-svgr';
 
 const nextConfig: NextConfig = {
   async redirects() {
@@ -16,7 +18,6 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack(config) {
-    // Добавляем игнорирование предупреждений
     config.ignoreWarnings = [
       ...(config.ignoreWarnings || []),
       { module: /typeorm/ },
@@ -25,9 +26,8 @@ const nextConfig: NextConfig = {
         message: /the request of a dependency is an expression/,
       },
     ];
-
     return config;
   },
 };
 
-export default nextConfig;
+export default withSvgr(nextConfig);

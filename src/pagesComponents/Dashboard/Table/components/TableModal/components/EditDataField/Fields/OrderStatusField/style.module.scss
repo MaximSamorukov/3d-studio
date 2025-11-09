@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+
+  &Select {
+    background-color: #0a0a0a;
+    border: 1px solid rgba(white, 0.2);
+    height: 24px;
+    padding-left: 3px;
+  }
+}
+
+.btn {
+  all: unset;
+  width: 30px;
+  border: 1px solid rgba(white, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &Save {
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &Disabled {
+      cursor: not-allowed;
+    }
+  }
+  &Restore {
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &Disabled {
+      cursor: not-allowed;
+    }
+  }
+}

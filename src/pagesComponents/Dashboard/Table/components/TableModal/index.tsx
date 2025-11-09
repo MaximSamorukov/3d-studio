@@ -5,6 +5,7 @@ import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
 import { ShowDataField } from './components/ShowDataField';
 import s from './style.module.scss';
+import { EditDataField } from './components/EditDataField';
 
 export const TableModal = observer(() => {
   const open = crmPreviewModalState.modalOpen;
@@ -12,7 +13,12 @@ export const TableModal = observer(() => {
     crmPreviewModalState.modalOpen = false;
   };
   return (
-    <ModalComponent open={open} withControl={false} onClose={handleClose}>
+    <ModalComponent
+      open={open}
+      withControl={false}
+      onClose={handleClose}
+      style={{ width: 800 }}
+    >
       {crmPreviewModalState.orderType === 'print_order' ? (
         <div className={s.container}>
           <ShowDataField
@@ -31,7 +37,7 @@ export const TableModal = observer(() => {
             type="print_order"
           />
           <ShowDataField
-            label="Контакт"
+            label="Телефон"
             value={crmPreviewModalState.phone!}
             type="print_order"
           />
@@ -45,10 +51,10 @@ export const TableModal = observer(() => {
             value={crmPreviewModalState.paymentStatus!}
             type="print_order"
           />
-          <ShowDataField
+          <EditDataField
             label="Статус заказа"
-            value={crmPreviewModalState.orderStatus!}
             type="print_order"
+            fieldType="orderStatus"
           />
         </div>
       ) : (
@@ -73,10 +79,10 @@ export const TableModal = observer(() => {
             value={crmPreviewModalState.phone!}
             type="consultation"
           />
-          <ShowDataField
+          <EditDataField
             label="Статус заказа"
-            value={crmPreviewModalState.orderStatus!}
             type="consultation"
+            fieldType="orderStatus"
           />
         </div>
       )}

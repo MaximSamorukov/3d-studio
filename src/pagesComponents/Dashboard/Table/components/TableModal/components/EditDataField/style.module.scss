@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  &Label {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+  }
+  &Field {
+    width: fit-content;
+    height: 30px;
+    font-size: 14px;
+  }
+}

@@ -22,7 +22,7 @@ export const PerPageSelector = observer(() => {
       >
         {PER_PAGE_VALUES.map((i) => (
           <option className={s.option} key={i}>
-            <span className={s.label}>{i}</span>
+            {i}
           </option>
         ))}
       </select>
