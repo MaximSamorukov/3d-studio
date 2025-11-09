@@ -124,34 +124,34 @@ class CrmPreviewModalState {
     this.filePath_ = value || null;
   }
   set id(value: CrmPreviewModalStateType['id']) {
-    this.id_ = value;
+    this.id_ = value || null;
   }
   set modalOpen(value: CrmPreviewModalStateType['modalOpen']) {
     this.modalOpen_ = value;
   }
   set pending(value: CrmPreviewModalStateType['pending']) {
-    this.pending_ = value;
+    this.pending_ = value || false;
   }
   set createdAt(value: CrmPreviewModalStateType['createdAt']) {
-    this.createdAt_ = value;
+    this.createdAt_ = value || null;
   }
   set email(value: CrmPreviewModalStateType['email']) {
-    this.email_ = value;
+    this.email_ = value || null;
   }
   set phone(value: CrmPreviewModalStateType['phone']) {
-    this.phone_ = value;
+    this.phone_ = value || null;
   }
   set plasticType(value: CrmPreviewModalStateType['plasticType']) {
-    this.plasticType_ = value;
+    this.plasticType_ = value || null;
   }
   set orderType(value: CrmPreviewModalStateType['orderType']) {
-    this.orderType_ = value;
+    this.orderType_ = value || null;
   }
   set orderStatus(value: CrmPreviewModalStateType['orderStatus']) {
-    this.orderStatus_ = value;
+    this.orderStatus_ = value || null;
   }
   set paymentStatus(value: CrmPreviewModalStateType['paymentStatus']) {
-    this.paymentStatus_ = value;
+    this.paymentStatus_ = value || null;
   }
   get serialized(): Omit<CrmPreviewModalStateType, 'pending' | 'modalOpen'> {
     return {

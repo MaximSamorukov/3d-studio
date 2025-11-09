@@ -132,15 +132,15 @@ class CrmFilterState {
   }
 
   set pending(value: CrmFilterStateType['pending']) {
-    this.pending_ = value;
+    this.pending_ = value || false;
   }
 
   set orders(value: CrmFilterStateType['orders']) {
-    this.orders_ = value;
+    this.orders_ = value || [];
   }
 
   set consultations(value: CrmFilterStateType['consultations']) {
-    this.consultations_ = value;
+    this.consultations_ = value || [];
   }
 
   set perPage(value: CrmFilterStateType['perPage']) {
@@ -152,25 +152,25 @@ class CrmFilterState {
   }
 
   set createdAt(value: CrmFilterStateType['createdAt']) {
-    this.createdAt_ = value;
+    this.createdAt_ = value || null;
   }
   set email(value: CrmFilterStateType['email']) {
-    this.email_ = value;
+    this.email_ = value || null;
   }
   set phone(value: CrmFilterStateType['phone']) {
-    this.phone_ = value;
+    this.phone_ = value || null;
   }
   set plasticType(value: CrmFilterStateType['plasticType']) {
-    this.plasticType_ = value;
+    this.plasticType_ = value || null;
   }
   set orderType(value: CrmFilterStateType['orderType']) {
     this.orderType_ = value;
   }
   set orderStatus(value: CrmFilterStateType['orderStatus']) {
-    this.orderStatus_ = value;
+    this.orderStatus_ = value || null;
   }
   set paymentStatus(value: CrmFilterStateType['paymentStatus']) {
-    this.paymentStatus_ = value;
+    this.paymentStatus_ = value || null;
   }
   get serialized(): Omit<
     CrmFilterStateType,
