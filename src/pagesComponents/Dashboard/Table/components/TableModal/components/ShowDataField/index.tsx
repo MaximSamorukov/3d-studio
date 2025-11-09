@@ -27,7 +27,7 @@ export const ShowDataField: React.FC<ShowDataFieldProps> = observer(
               animation="pulse"
             />
           ) : (
-            <>{value}</>
+            <div className={s.containerFieldValue}>{value}</div>
           )}
         </div>
       </div>

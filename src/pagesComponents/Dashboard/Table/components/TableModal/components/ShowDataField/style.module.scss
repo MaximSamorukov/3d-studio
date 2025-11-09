@@ -16,5 +16,12 @@
     width: fit-content;
     height: 30px;
     font-size: 14px;
+
+    &Value {
+      width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 }

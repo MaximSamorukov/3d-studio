@@ -17,7 +17,7 @@ export const TableModal = observer(() => {
       open={open}
       withControl={false}
       onClose={handleClose}
-      style={{ width: 800 }}
+      style={{ width: 800, height: 'fitContent' }}
     >
       {crmPreviewModalState.orderType === 'print_order' ? (
         <div className={s.container}>
@@ -29,6 +29,11 @@ export const TableModal = observer(() => {
           <ShowDataField
             label="Дата создания"
             value={crmPreviewModalState.createdAt!}
+            type="print_order"
+          />
+          <ShowDataField
+            label="Файл"
+            value={crmPreviewModalState.filePath!}
             type="print_order"
           />
           <ShowDataField

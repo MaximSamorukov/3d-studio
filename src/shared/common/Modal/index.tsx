@@ -10,8 +10,8 @@ type ModalComponentProps = {
   children: React.ReactNode;
   withControl?: boolean;
   style?: {
-    height?: number;
-    width?: number;
+    height?: number | string;
+    width?: number | string;
     border?: string;
   };
 };

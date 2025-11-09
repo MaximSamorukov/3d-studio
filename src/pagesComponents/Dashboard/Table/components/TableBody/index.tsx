@@ -71,7 +71,7 @@ export const TableBody = observer(() => {
         ))}
         {pending ? (
           <div className={s.containerLoader}>
-            <CircularProgress size={40} color="secondary" />
+            <CircularProgress size={40} color="success" />
           </div>
         ) : (
           <></>
