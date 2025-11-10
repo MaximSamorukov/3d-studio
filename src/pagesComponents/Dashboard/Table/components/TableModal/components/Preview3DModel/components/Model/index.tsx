@@ -17,6 +17,7 @@ export const Model: React.FC<ModulePropsType> = ({
 }) => {
   const geometry = useLoader(STLLoader, url); //'/models/Celtic_Dragon.stl');
   const meshRef = React.useRef<THREE.Mesh>(null);
+  // @ts-ignore
   const { camera, controls } = useThree() as any;
   React.useEffect(() => {
     const volume = computeVolume(geometry);
