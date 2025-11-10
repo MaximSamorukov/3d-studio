@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+}
+
+.item {
+  width: fit-content;
+  height: 15px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 10px;
+  span {
+    display: block;
+  }
+  &WithPow {
+    box-sizing: border-box;
+    width: fit-content;
+    padding-bottom: 2px;
+    height: 15px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    span {
+      display: block;
+    }
+  }
+}

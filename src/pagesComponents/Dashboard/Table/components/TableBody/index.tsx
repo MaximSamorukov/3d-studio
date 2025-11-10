@@ -13,6 +13,7 @@ import { CircularProgress } from '@mui/material';
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
 import { PrintOrderEntity } from '@/entities/order';
 import { ConsultationEntity } from '@/entities/consultation';
+import { getFileName } from '../TableModal/utils';
 
 export const TableBody = observer(() => {
   const { orderType, consultations, orders, pending } = crmFilterState;
@@ -36,11 +37,20 @@ export const TableBody = observer(() => {
             key={i.id}
             className={s.containerRow}
           >
-            {orderTypeColumns.filter(hideNotvisible).map((value) => (
-              <div key={value.key} className={s.cell}>
-                {get(i, value.key, '-')}
-              </div>
-            ))}
+            {orderTypeColumns.filter(hideNotvisible).map((value) => {
+              if (value.key === 'file_path') {
+                return (
+                  <div key={value.key} className={s.cell}>
+                    {getFileName(get(i, value.key, '') || '')}
+                  </div>
+                );
+              }
+              return (
+                <div key={value.key} className={s.cell}>
+                  {get(i, value.key, '-')}
+                </div>
+              );
+            })}
           </button>
         ))}
         {pending ? (

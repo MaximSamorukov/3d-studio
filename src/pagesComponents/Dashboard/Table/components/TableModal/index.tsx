@@ -7,6 +7,8 @@ import { ShowDataField } from './components/ShowDataField';
 import { EditDataField } from './components/EditDataField';
 import { DeleteBtn } from './components/DeleteBtn';
 import s from './style.module.scss';
+import { Preview3DModel } from './components/Preview3DModel';
+import { getFileName } from './utils';
 
 export const TableModal = observer(() => {
   const open = crmPreviewModalState.modalOpen;
@@ -23,47 +25,52 @@ export const TableModal = observer(() => {
       style={{ width: 800, height: 'fitContent' }}
     >
       {crmPreviewModalState.orderType === 'print_order' ? (
-        <div className={s.container}>
-          <ShowDataField
-            label="Тип заказа"
-            value={crmPreviewModalState.orderType}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Дата создания"
-            value={crmPreviewModalState.createdAt!}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Файл"
-            value={crmPreviewModalState.filePath!}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Email"
-            value={crmPreviewModalState.email!}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Телефон"
-            value={crmPreviewModalState.phone!}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Тип пластика"
-            value={crmPreviewModalState.plasticType!}
-            type="print_order"
-          />
-          <ShowDataField
-            label="Статус оплаты"
-            value={crmPreviewModalState.paymentStatus!}
-            type="print_order"
-          />
-          <EditDataField
-            label="Статус заказа"
-            type="print_order"
-            fieldType="orderStatus"
-          />
+        <div className={s.metaContainer}>
+          <div className={s.container}>
+            <ShowDataField
+              label="Тип заказа"
+              value={crmPreviewModalState.orderType}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Дата создания"
+              value={crmPreviewModalState.createdAt!}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Файл"
+              value={getFileName(crmPreviewModalState.filePath || '')}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Email"
+              value={crmPreviewModalState.email!}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Телефон"
+              value={crmPreviewModalState.phone!}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Тип пластика"
+              value={crmPreviewModalState.plasticType!}
+              type="print_order"
+            />
+            <ShowDataField
+              label="Статус оплаты"
+              value={crmPreviewModalState.paymentStatus!}
+              type="print_order"
+            />
+            <EditDataField
+              label="Статус заказа"
+              type="print_order"
+              fieldType="orderStatus"
+            />
+          </div>
+          <div className={s.container}>
+            <Preview3DModel url={crmPreviewModalState.filePath!} />
+          </div>
         </div>
       ) : (
         <div className={s.container}>

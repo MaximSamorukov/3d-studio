@@ -1,4 +1,7 @@
 'use client';
+
+import { EXTENSIONS } from '@/shared/constants';
+
 export async function getSubmitedOrderById({
   id,
   type,
@@ -21,3 +24,21 @@ export async function getSubmitedOrderById({
     return [];
   }
 }
+
+export const getFileName = (url: string) => {
+  try {
+    const data = new URL(url);
+    const { pathname } = data;
+    const fileName = pathname.split('/').slice(-1)[0];
+    if (!fileName) throw Error();
+    const fileNameArray = fileName.split('.');
+    const extension = fileNameArray.slice(-1)[0];
+    if (EXTENSIONS.includes(extension.toLowerCase())) {
+      return `***.${extension}`;
+    } else {
+      throw Error();
+    }
+  } catch (_) {
+    return 'не поддерживаемый формат файла';
+  }
+};
