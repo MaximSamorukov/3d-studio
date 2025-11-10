@@ -10,6 +10,9 @@ type ModulePropsType = {
   setDimensions: (arg: { x: number; y: number; z: number }) => void;
   setVolume: (arg: { volume: string }) => void;
 };
+type ThreeContext = {
+  camera: THREE.PerspectiveCamera;
+};
 export const Model: React.FC<ModulePropsType> = ({
   url,
   setDimensions,
@@ -17,8 +20,7 @@ export const Model: React.FC<ModulePropsType> = ({
 }) => {
   const geometry = useLoader(STLLoader, url); //'/models/Celtic_Dragon.stl');
   const meshRef = React.useRef<THREE.Mesh>(null);
-  // @ts-ignore
-  const { camera, controls } = useThree() as any;
+  const { camera } = useThree() as unknown as ThreeContext;
   React.useEffect(() => {
     const volume = computeVolume(geometry);
     setVolume({ volume: volume.toFixed(2) });
@@ -45,13 +47,8 @@ export const Model: React.FC<ModulePropsType> = ({
       camera.position.set(cameraZ, cameraZ, cameraZ); // изометрический угол
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
-
-      if (controls) {
-        controls.target.set(0, 0, 0);
-        controls.update();
-      }
     }
-  }, [geometry, camera, controls]);
+  }, [geometry, camera]);
   return (
     <mesh ref={meshRef} geometry={geometry}>
       <meshStandardMaterial color="#ff6b00" metalness={0.2} roughness={0.5} />
