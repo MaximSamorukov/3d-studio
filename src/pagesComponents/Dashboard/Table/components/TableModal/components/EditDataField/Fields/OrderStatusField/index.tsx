@@ -42,7 +42,7 @@ export const OrderStatusField = observer(() => {
       <select
         className={s.containerSelect}
         onChange={onChange}
-        value={currentStatus}
+        value={currentStatus || ''}
       >
         {ORDER_STATUSES.map((i) => (
           <option value={i} key={i}>

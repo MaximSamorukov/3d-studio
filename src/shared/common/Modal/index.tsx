@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import s from './style.module.scss';
+import { CircularProgress } from '@mui/material';
 
 type ModalComponentProps = {
   open: boolean;
   onClose?: () => void;
   children: React.ReactNode;
   withControl?: boolean;
+  loading?: boolean;
   style?: {
     height?: number | string;
     width?: number | string;
@@ -38,15 +40,15 @@ export const ModalComponent: React.FC<ModalComponentProps> = ({
   children,
   withControl = true,
   style = {},
+  loading = false,
 }) => {
-  const widhtAndHeight = {
+  const widthAndHeight = {
     width: styles.width,
     height: styles.height,
     border: styles.border,
     ...style,
   };
   const [isOpened, setOpened] = useState(false);
-
   const handleCloseModal = () => {
     onClose();
     setOpened(false);
@@ -68,12 +70,19 @@ export const ModalComponent: React.FC<ModalComponentProps> = ({
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={{ ...styles, ...widhtAndHeight }}>
+      <Box sx={{ ...styles, ...widthAndHeight }}>
         {children}
         {withControl ? (
           <button className={s.button} onClick={onClose}>
             Отлично
           </button>
+        ) : (
+          <></>
+        )}
+        {loading ? (
+          <div className={s.loader}>
+            <CircularProgress size={40} color="success" />
+          </div>
         ) : (
           <></>
         )}

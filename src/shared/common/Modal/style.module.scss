@@ -14,3 +14,8 @@
   cursor: pointer;
   align-self: center;
 }
+
+.loader {
+  position: absolute;
+  right: calc(50% - 20px);
+}

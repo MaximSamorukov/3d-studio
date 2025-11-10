@@ -6,7 +6,16 @@ import { getObject, getWhereString } from './utils';
 
 export const POST = async (request: Request) => {
   const data = await request.json();
-  const { page, perPage, type, email, phone, plastic_type, created_at } = data;
+  const {
+    page,
+    perPage,
+    type,
+    email,
+    phone,
+    plastic_type,
+    created_at,
+    order_status,
+  } = data;
 
   if (type === 'print_order') {
     try {
@@ -19,6 +28,7 @@ export const POST = async (request: Request) => {
         getObject({ phone }),
         getObject({ plastic_type }),
         getObject({ created_at }),
+        getObject({ order_status }),
       ]
         .filter((i) => !!i.value)
         .map(getWhereString)
@@ -47,6 +57,7 @@ export const POST = async (request: Request) => {
         getObject({ email }),
         getObject({ contact: phone }),
         getObject({ created_at }),
+        getObject({ order_status }),
       ]
         .filter((i) => !!i.value)
         .map(getWhereString)

@@ -44,9 +44,8 @@ export const orderTypeColumns = [
     label: 'комментарий',
     visible: false,
   },
-
   {
-    key: 'work_status',
+    key: 'order_status',
     label: 'статус',
     visible: true,
   },
@@ -82,6 +81,11 @@ export const consultationTypeColumns = [
   {
     key: 'email',
     label: 'эл. почта',
+    visible: true,
+  },
+  {
+    key: 'order_status',
+    label: 'статус',
     visible: true,
   },
   {

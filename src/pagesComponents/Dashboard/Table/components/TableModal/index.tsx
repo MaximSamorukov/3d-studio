@@ -4,17 +4,20 @@ import { ModalComponent } from '@/shared/common/Modal';
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
 import { ShowDataField } from './components/ShowDataField';
-import s from './style.module.scss';
 import { EditDataField } from './components/EditDataField';
+import { DeleteBtn } from './components/DeleteBtn';
+import s from './style.module.scss';
 
 export const TableModal = observer(() => {
   const open = crmPreviewModalState.modalOpen;
+  const loading = crmPreviewModalState.pending;
   const handleClose = () => {
     crmPreviewModalState.modalOpen = false;
   };
   return (
     <ModalComponent
       open={open}
+      loading={loading}
       withControl={false}
       onClose={handleClose}
       style={{ width: 800, height: 'fitContent' }}
@@ -91,6 +94,9 @@ export const TableModal = observer(() => {
           />
         </div>
       )}
+      <div className={s.footer}>
+        <DeleteBtn />
+      </div>
     </ModalComponent>
   );
 });

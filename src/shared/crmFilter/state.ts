@@ -202,6 +202,7 @@ autorun(() => {
     phone: crmFilterState.phone!,
     plasticType: crmFilterState.plasticType!,
     created_at: crmFilterState.createdAt!,
+    order_status: crmFilterState.orderStatus!,
   })
     .then(({ orders }) => {
       crmFilterState.pending = false;
