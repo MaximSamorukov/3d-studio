@@ -10,7 +10,7 @@ import s from './style.module.scss';
 
 export const TableModal = observer(() => {
   const open = crmPreviewModalState.modalOpen;
-  const loading = crmPreviewModalState.pending;
+  const loading = crmPreviewModalState.deletePending;
   const handleClose = () => {
     crmPreviewModalState.modalOpen = false;
   };

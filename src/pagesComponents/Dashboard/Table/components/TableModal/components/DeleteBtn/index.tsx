@@ -21,10 +21,10 @@ export const DeleteBtn = observer(() => {
   };
   const handleDeleteEntity = async () => {
     if (id && type) {
-      crmPreviewModalState.pending = true;
+      crmPreviewModalState.deletePending = true;
       await deleteSubmitedOrderById({ id, type });
       setWantsToDelete((v) => !v);
-      crmPreviewModalState.pending = false;
+      crmPreviewModalState.deletePending = false;
       crmPreviewModalState.modalOpen = false;
     }
   };

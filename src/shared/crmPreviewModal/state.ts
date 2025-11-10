@@ -8,6 +8,7 @@ import { autorun, makeAutoObservable } from 'mobx';
 type CrmPreviewModalStateType = {
   id: number | null;
   pending: boolean;
+  deletePending: boolean;
   modalOpen: boolean;
   createdAt?: string | null;
   email?: string | null;
@@ -29,6 +30,7 @@ class CrmPreviewModalState {
   private orderStatus_: CrmPreviewModalStateType['orderStatus'] = null;
   private paymentStatus_: CrmPreviewModalStateType['paymentStatus'] = null;
   private pending_: CrmPreviewModalStateType['pending'] = false;
+  private deletePending_: CrmPreviewModalStateType['deletePending'] = false;
   private modalOpen_: CrmPreviewModalStateType['modalOpen'] = false;
   private filePath_: CrmPreviewModalStateType['filePath'] = null;
 
@@ -110,6 +112,9 @@ class CrmPreviewModalState {
   get pending() {
     return this.pending_;
   }
+  get deletePending() {
+    return this.deletePending_;
+  }
 
   get modalOpen() {
     return this.modalOpen_;
@@ -132,6 +137,9 @@ class CrmPreviewModalState {
   set pending(value: CrmPreviewModalStateType['pending']) {
     this.pending_ = value || false;
   }
+  set deletePending(value: CrmPreviewModalStateType['deletePending']) {
+    this.deletePending_ = value || false;
+  }
   set createdAt(value: CrmPreviewModalStateType['createdAt']) {
     this.createdAt_ = value || null;
   }
@@ -153,7 +161,10 @@ class CrmPreviewModalState {
   set paymentStatus(value: CrmPreviewModalStateType['paymentStatus']) {
     this.paymentStatus_ = value || null;
   }
-  get serialized(): Omit<CrmPreviewModalStateType, 'pending' | 'modalOpen'> {
+  get serialized(): Omit<
+    CrmPreviewModalStateType,
+    'pending' | 'modalOpen' | 'deletePending'
+  > {
     return {
       id: this.id_,
       createdAt: this.createdAt_,
