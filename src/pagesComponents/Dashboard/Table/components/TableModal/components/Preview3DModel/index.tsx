@@ -1,5 +1,5 @@
 'use client';
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import s from './style.module.scss';
@@ -13,11 +13,10 @@ type DimensionsType = {
   x: number;
   y: number;
   z: number;
-  volume: number;
 } | null;
 
 type VolumeType = {
-  volume: number;
+  volume: string;
 } | null;
 export const Preview3DModel = observer(({ url }: { url: string }) => {
   const [dimentions, setDimentions] = useState<DimensionsType>(null);
@@ -29,7 +28,9 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
   const handleSetVolume = (data: VolumeType) => {
     setVolume(data);
   };
-  console.log(dimentions, volume);
+
+  console.log('Объем модели:', volume, 'куб.единиц');
+  console.log('Размеры модели:', dimentions);
   return (
     <div className={s.container}>
       <div className={s.containerView}>
@@ -55,7 +56,12 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
         </ErrorBoundary>
       </div>
       <div className={s.containerControls}>
-        <Controls />
+        <Controls
+          x={dimentions?.x}
+          y={dimentions?.y}
+          z={dimentions?.z}
+          volume={volume?.volume}
+        />
       </div>
     </div>
   );

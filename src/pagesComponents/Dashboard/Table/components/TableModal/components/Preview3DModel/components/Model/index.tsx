@@ -4,12 +4,11 @@ import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { computeVolume } from './utils';
-import { observer } from 'mobx-react-lite';
 
 type ModulePropsType = {
   url: string;
-  setDimensions: (arg: any) => void;
-  setVolume: (arg: any) => void;
+  setDimensions: (arg: { x: number; y: number; z: number }) => void;
+  setVolume: (arg: { volume: string }) => void;
 };
 export const Model: React.FC<ModulePropsType> = ({
   url,
@@ -21,8 +20,7 @@ export const Model: React.FC<ModulePropsType> = ({
   const { camera, controls } = useThree() as any;
   React.useEffect(() => {
     const volume = computeVolume(geometry);
-    setVolume(volume.toFixed(2));
-    //console.log('Объем модели:', volume.toFixed(2), 'куб.единиц');
+    setVolume({ volume: volume.toFixed(2) });
   }, [geometry]);
 
   useEffect(() => {
@@ -31,7 +29,6 @@ export const Model: React.FC<ModulePropsType> = ({
       const box = new THREE.Box3().setFromObject(meshRef.current);
       const center = new THREE.Vector3();
       const size = new THREE.Vector3();
-      //console.log('Размеры модели:', size);
       setDimensions(size);
       box.getCenter(center);
       box.getSize(size);
