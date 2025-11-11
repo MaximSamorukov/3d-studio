@@ -18,7 +18,7 @@ export const Model: React.FC<ModulePropsType> = ({
   setDimensions,
   setVolume,
 }) => {
-  const geometry = useLoader(STLLoader, url); //'/models/Celtic_Dragon.stl');
+  const geometry = useLoader(STLLoader, url);
   const meshRef = React.useRef<THREE.Mesh>(null);
   const { camera } = useThree() as unknown as ThreeContext;
   React.useEffect(() => {
@@ -28,7 +28,6 @@ export const Model: React.FC<ModulePropsType> = ({
 
   useEffect(() => {
     if (meshRef.current) {
-      // Вычисляем границы модели
       const box = new THREE.Box3().setFromObject(meshRef.current);
       const center = new THREE.Vector3();
       const size = new THREE.Vector3();
@@ -36,10 +35,8 @@ export const Model: React.FC<ModulePropsType> = ({
       box.getCenter(center);
       box.getSize(size);
 
-      // Центрируем модель
       meshRef.current.position.sub(center);
 
-      // Подстраиваем камеру — чтобы вся модель влезала
       const maxDim = Math.max(size.x, size.y, size.z);
       const fov = camera.fov * (Math.PI / 180);
       const cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));

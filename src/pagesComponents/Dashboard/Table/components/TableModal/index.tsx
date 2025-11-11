@@ -8,7 +8,6 @@ import { EditDataField } from './components/EditDataField';
 import { DeleteBtn } from './components/DeleteBtn';
 import s from './style.module.scss';
 import { Preview3DModel } from './components/Preview3DModel';
-import { getFileName } from './utils';
 
 export const TableModal = observer(() => {
   const open = crmPreviewModalState.modalOpen;
@@ -40,8 +39,9 @@ export const TableModal = observer(() => {
             />
             <ShowDataField
               label="Файл"
-              value={getFileName(crmPreviewModalState.filePath || '')}
+              value={crmPreviewModalState.filePath || ''}
               type="print_order"
+              fieldType="file_with_download"
             />
             <ShowDataField
               label="Email"

@@ -22,6 +22,33 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+
+      &WithValidFile {
+        width: 80px;
+      }
     }
+  }
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.download {
+  all: unset;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &Disabled {
+    cursor: not-allowed;
   }
 }
