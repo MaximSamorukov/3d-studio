@@ -15,6 +15,7 @@ export const TableModal = observer(() => {
   const loading = crmPreviewModalState.deletePending;
   const handleClose = () => {
     crmPreviewModalState.modalOpen = false;
+    crmPreviewModalState.resetAllFields();
   };
   return (
     <ModalComponent

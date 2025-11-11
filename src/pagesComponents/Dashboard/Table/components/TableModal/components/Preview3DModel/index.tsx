@@ -8,6 +8,7 @@ import { Html } from '@react-three/drei';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Controls } from './components/Controls';
 import { observer } from 'mobx-react-lite';
+import { CircularProgress } from '@mui/material';
 
 type DimensionsType = {
   x: number;
@@ -29,8 +30,19 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
     setVolume(data);
   };
 
-  console.log('Объем модели:', volume, 'куб.единиц');
-  console.log('Размеры модели:', dimentions);
+  if (!url) {
+    return (
+      <div className={s.container}>
+        <div className={s.containerView} />
+        <div className={s.containerViewLoader}>
+          <CircularProgress size={40} color="secondary" />
+        </div>
+        <div className={s.containerControls}>
+          <Controls x={0} y={0} z={0} volume={'0'} />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={s.container}>
       <div className={s.containerView}>
@@ -38,13 +50,7 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
           <Canvas camera={{ position: [0, 0, 80], fov: 50 }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} />
-            <Suspense
-              fallback={
-                <Html>
-                  <div className={s.suspenseFallback}>Загрузка...</div>
-                </Html>
-              }
-            >
+            <Suspense fallback={null}>
               <Model
                 url={url}
                 setVolume={handleSetVolume}
