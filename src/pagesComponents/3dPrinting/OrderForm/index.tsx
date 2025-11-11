@@ -12,31 +12,37 @@ import { signIn, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { getOrdersOnEmail } from '@/widgets/common/ui/LoginButton/utils';
 import { userState } from '@/shared/user/state';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { observer } from 'mobx-react-lite';
-
+import { schema } from './constants';
 import s from './style.module.scss';
 
 export type OrderFormFields = {
-  file: string;
-  name: string;
+  file: FileList;
+  name?: string;
   phone: string;
   email: string;
-  plasticType: string;
-  color: string;
-  withPostprocessing: string;
-  comment: string;
+  plasticType?: string;
+  color?: string;
+  withPostprocessing?: string;
+  comment?: string;
   id?: number;
   created_at?: string;
 };
+
 export const OrderForm = observer(() => {
   const session = useSession();
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
   const [savingOrderInprogress, setSavingOrderInProgress] = useState(false);
-  const { register, handleSubmit, formState, reset, setValue } =
-    useForm<OrderFormFields>();
+  const { register, handleSubmit, formState, reset, setValue } = useForm<
+    Omit<OrderFormFields, 'id' | 'created_at'>
+  >({
+    resolver: zodResolver(schema),
+  });
   const isAuthenticated = !!session.data?.user;
   const userHasEmail = !!session.data?.user?.email;
+  console.log(formState.errors);
 
   const onSubmit: SubmitHandler<Omit<OrderFormFields, 'id' | 'created_at'>> = (
     data,
@@ -48,12 +54,12 @@ export const OrderForm = observer(() => {
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
         if (key === 'file') {
-          const file = (value as unknown as FileList).item(0);
+          const file = (value as unknown as FileList).item(0) as File;
           if (file) {
             formData.append(key, file);
           }
         } else {
-          formData.append(key, value);
+          formData.append(key, value as string);
         }
       });
       makeOrder(formData)
@@ -117,12 +123,16 @@ export const OrderForm = observer(() => {
                   [s.inputFieldWithError]: formState.errors.file,
                 })}
               />
+              {formState.errors.file ? (
+                <span className={s.errorMessage}>
+                  {formState.errors.file.message}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className={s.gridItem3}>
-              <label className={s.label}>
-                Имя
-                <span className={s.required}>*</span>
-              </label>
+              <label className={s.label}>Имя</label>
               <input
                 {...register('name', { required: isAuthenticated })}
                 type="text"
@@ -131,6 +141,13 @@ export const OrderForm = observer(() => {
                   [s.inputFieldWithError]: formState.errors.name,
                 })}
               />
+              {formState.errors.name ? (
+                <span className={s.errorMessage}>
+                  {formState.errors.name.message}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className={s.gridItem5}>
@@ -146,6 +163,13 @@ export const OrderForm = observer(() => {
                   [s.inputFieldWithError]: formState.errors.phone,
                 })}
               />
+              {formState.errors.phone ? (
+                <span className={s.errorMessage}>
+                  {formState.errors.phone.message}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className={s.gridItem7}>
@@ -161,6 +185,13 @@ export const OrderForm = observer(() => {
                   [s.inputFieldWithError]: formState.errors.email,
                 })}
               />
+              {formState.errors.email ? (
+                <span className={s.errorMessage}>
+                  {formState.errors.email.message}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className={s.gridItem2}>
