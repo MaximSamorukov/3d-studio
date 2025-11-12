@@ -36,7 +36,7 @@ export const POST = async (request: Request) => {
         .trim();
 
       const where = whereStr.length ? `WHERE ${whereStr}` : '';
-      const queryString = `SELECT * FROM print_orders ${where} LIMIT ${limit} OFFSET ${offset}`;
+      const queryString = `SELECT * FROM print_orders ${where} order by created_at desc LIMIT ${limit} OFFSET ${offset}`;
       const result = await orderRepository.query(queryString);
       return Response.json({ orders: result }, { status: 200 });
     } catch (e) {
@@ -64,7 +64,7 @@ export const POST = async (request: Request) => {
         .join(' and ')
         .trim();
       const where = whereStr.length ? `WHERE ${whereStr}` : '';
-      const queryString = `SELECT * FROM consultations ${where} LIMIT ${limit} OFFSET ${offset}`;
+      const queryString = `SELECT * FROM consultations ${where} order by created_at desc LIMIT ${limit} OFFSET ${offset}`;
       const result = await consultRepository.query(queryString);
       return Response.json({ orders: result }, { status: 200 });
     } catch (e) {

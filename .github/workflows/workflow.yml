@@ -1,0 +1,11 @@
+name: Workflow
+on: [push]
+
+jobs:
+  first-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: npm ci
+        run: npm ci
+      - name: run tests
+        run: npm run test
