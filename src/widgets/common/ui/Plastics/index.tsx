@@ -1,11 +1,16 @@
-import { plastics } from "./constants";
-import s from "./style.module.scss";
+import { getMaterialsDataSource } from '@/shared/common/db/materials';
+import { MaterialsEntity } from '@/entities/materials';
+import s from './style.module.scss';
 
-export default function Plastics() {
+export default async function Plastics() {
+  const dbMaterials = await getMaterialsDataSource();
+  const repository = dbMaterials.getRepository(MaterialsEntity);
+  const result = await repository.find();
+  const plastics = result.map((i) => i.name);
   return (
     <div className={s.container}>
-      {plastics.map((i, index) => (
-        <div key={index} className={s.item}>
+      {plastics.map((i) => (
+        <div key={i} className={s.item}>
           {i}
         </div>
       ))}

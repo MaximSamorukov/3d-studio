@@ -9,6 +9,9 @@ import { userState } from '@/shared/user/state';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { getConsultationsOnEmail, getOrdersOnEmail } from './utils';
+import { getMaterials, getServices } from '@/services';
+import { materialsState } from '@/shared/state/materials/state';
+import { serviceState } from '@/shared/state/services/state';
 
 type LoginButtonProps = {
   withIcon?: boolean;
@@ -27,7 +30,20 @@ export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
   const handleCloseModal = useCallback(() => {
     setOpen(false);
   }, []);
-
+  useEffect(() => {
+    getMaterials()
+      .then(({ materials }) => {
+        materialsState.setMaterials(materials);
+      })
+      .catch(console.log);
+  }, [session.data?.user]);
+  useEffect(() => {
+    getServices()
+      .then(({ services }) => {
+        serviceState.setServices(services);
+      })
+      .catch(console.log);
+  }, [session.data?.user]);
   useEffect(() => {
     if (session.data?.user) {
       userState.setUser(session.data?.user);

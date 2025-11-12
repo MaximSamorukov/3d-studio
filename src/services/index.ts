@@ -1,5 +1,6 @@
+import { MaterialType } from '@/shared/state/materials/state';
+import { ServiceType } from '@/shared/state/services/state';
 import { User } from 'next-auth';
-// export const runtime = 'nodejs';
 
 export const calculatePrintPrice = (data: FormData) => {
   return fetch('/api/calculate', {
@@ -48,7 +49,6 @@ export const makeOrder = (data: FormData) => {
 
 export const checkUser = async (data: { login: string; password: string }) => {
   const { login, password } = data;
-  console.log(process.env.NODE_ENV);
   const user = {
     login,
     password,
@@ -89,4 +89,20 @@ export const removeOrder = (id: number) => {
       return true;
     })
     .catch(() => false);
+};
+
+export const getMaterials = (): Promise<{ materials: MaterialType[] }> => {
+  return fetch('/api/crm/materials')
+    .then((res) => {
+      return res.json();
+    })
+    .catch(() => []);
+};
+
+export const getServices = (): Promise<{ services: ServiceType[] }> => {
+  return fetch('/api/crm/services')
+    .then((res) => {
+      return res.json();
+    })
+    .catch(() => []);
 };

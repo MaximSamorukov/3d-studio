@@ -24,6 +24,7 @@ export const PriceCalculationForm = observer(() => {
   const onSubmit: SubmitHandler<CalculationForm> = async (data) => {
     await formCalculationState.requestCalculation(data);
   };
+
   useEffect(() => {
     if (formCalculationState.isError) {
       alert('Ошибка расчета');

@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs';
 import { writeFile } from 'fs/promises';
-// export const runtime = 'nodejs';
 
 export const saveFile = async (file: Blob) => {
   if (!file || typeof file.stream !== 'function') {

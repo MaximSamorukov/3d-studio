@@ -25,5 +25,3 @@ export const getMasterUsersDataSource = async () => {
   }
   return AppMasterUsersSource;
 };
-
-// export const runtime = 'nodejs';
