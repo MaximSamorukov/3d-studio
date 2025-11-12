@@ -16,5 +16,5 @@ export const getFinalPrice = (
   if (withPostProcessing) {
     prePrice += POST_PROCESSING_PRICE;
   }
-  return Math.round(prePrice / 100) * 100;
+  return Math.abs(Math.round(prePrice / 100) * 100);
 };
