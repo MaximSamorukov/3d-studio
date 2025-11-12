@@ -2,7 +2,6 @@
 
 import cn from 'classnames';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { plastics } from '@/widgets/common/ui/Plastics/constants';
 import { makeOrder } from '@/services';
 import { OrderSuccesModal } from '@/widgets/common/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -15,6 +14,7 @@ import { userState } from '@/shared/user/state';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { observer } from 'mobx-react-lite';
 import { schema } from './constants';
+import { materialsState } from '@/shared/state/materials/state';
 import s from './style.module.scss';
 
 export type OrderFormFields = {
@@ -42,6 +42,7 @@ export const OrderForm = observer(() => {
   });
   const isAuthenticated = !!session.data?.user;
   const userHasEmail = !!session.data?.user?.email;
+  const plastics = materialsState.materialNames;
 
   const onSubmit: SubmitHandler<Omit<OrderFormFields, 'id' | 'created_at'>> = (
     data,
@@ -202,7 +203,6 @@ export const OrderForm = observer(() => {
                 {plastics.map((i) => (
                   <option key={i}>{i}</option>
                 ))}
-                <option defaultChecked>Требуется консультация</option>
               </select>
             </div>
 
