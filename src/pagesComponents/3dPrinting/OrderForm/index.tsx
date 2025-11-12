@@ -18,7 +18,7 @@ import { schema } from './constants';
 import s from './style.module.scss';
 
 export type OrderFormFields = {
-  file: FileList;
+  file?: File;
   name?: string;
   phone: string;
   email: string;
@@ -53,14 +53,7 @@ export const OrderForm = observer(() => {
       setSavingOrderInProgress(true);
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
-        if (key === 'file') {
-          const file = (value as unknown as FileList).item(0) as File;
-          if (file) {
-            formData.append(key, file);
-          }
-        } else {
-          formData.append(key, value as string);
-        }
+        formData.append(key, value as string);
       });
       makeOrder(formData)
         .then((result) => {
@@ -118,7 +111,12 @@ export const OrderForm = observer(() => {
                 max={20}
                 type="file"
                 multiple={false}
-                {...register('file')}
+                onChange={(e) => {
+                  const file = e.target.files?.[0] as File;
+                  if (file) {
+                    setValue('file', file);
+                  }
+                }}
                 className={cn(s.inputField, {
                   [s.inputFieldWithError]: formState.errors.file,
                 })}

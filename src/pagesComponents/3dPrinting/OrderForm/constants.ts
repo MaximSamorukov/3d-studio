@@ -58,22 +58,13 @@ export const schema = z.object({
     message: 'Неверный формат email',
   }),
   file: z
-    .instanceof(FileList)
-    .refine((list) => list.length <= 1, 'Нужно выбрать ровно один файл')
-    .refine((files) => {
-      if (files.length) {
-        return ALLOWED_MIME_TYPES.includes(files?.[0]?.type);
-      } else {
-        return true;
-      }
-    }, 'Необходимы файлы с расширениями *.stl, *.amf, *.3mf')
-    .refine((files) => {
-      if (files.length) {
-        return files[0].size < 10 * 1024 ** 2;
-      } else {
-        return true;
-      }
-    }, 'Файл должен быть меньше 10 Мб'),
+    .file()
+    .mime(
+      ALLOWED_MIME_TYPES,
+      'Необходимы файлы с расширениями *.stl, *.amf, *.3mf',
+    )
+    .max(10 * 1024 ** 2, 'Файл должен быть меньше 10 Мб')
+    .optional(),
   plasticType: z.string().optional(),
   color: z.string().optional(),
   withPostprocessing: z.string().optional(),
