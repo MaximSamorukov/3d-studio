@@ -1,7 +1,15 @@
+@use 'sass:math';
+$WIDTH: 700px;
 .form {
   &Container {
-    width: 700px;
+    width: $WIDTH;
     border: 2px solid rgba(#e49e00, 0.5);
+    position: relative;
+    &Loader {
+      position: absolute;
+      top: calc(50% - 40px);
+      right: math.div($WIDTH, 2);
+    }
   }
   &Head {
     display: flex;

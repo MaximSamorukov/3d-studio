@@ -71,7 +71,7 @@ export const technicalData = [
     key: 'time',
   },
   {
-    label: 'Стоимость',
+    label: 'Примерная ст-ть',
     units: 'руб',
     key: 'price',
   },

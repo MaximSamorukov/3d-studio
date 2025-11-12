@@ -1,28 +1,35 @@
-"use client";
-import React from "react";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { observer } from "mobx-react-lite";
-import { formFields } from "./constants";
-import { CalculationForm, FormItemType } from "./types";
-import { FormItem } from "./FormItem";
-import { SubmitButton } from "./SubmitButton";
+'use client';
+import React, { useEffect } from 'react';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
+import { formFields } from './constants';
+import { CalculationForm, FormItemType } from './types';
+import { FormItem } from './FormItem';
+import { SubmitButton } from './SubmitButton';
+import { formCalculationState } from './formCalculationStore';
+import { CircularProgress } from '@mui/material';
 
-import s from "./style.module.scss";
-import { formCalculationState } from "./formCalculationStore";
+import s from './style.module.scss';
 
 export const PriceCalculationForm = observer(() => {
   const methods = useForm<CalculationForm>({
     defaultValues: {
-      inputContacts: "",
+      inputContacts: '',
       withModeling: false,
       withPostProcessing: false,
-      plasticType: "PLA",
+      plasticType: 'PLA',
       fileUpload: undefined,
     },
   });
   const onSubmit: SubmitHandler<CalculationForm> = async (data) => {
-    formCalculationState.requestCalculation(data);
+    await formCalculationState.requestCalculation(data);
   };
+  useEffect(() => {
+    if (formCalculationState.isError) {
+      alert('Ошибка расчета');
+      formCalculationState.resetIsError();
+    }
+  }, [formCalculationState.isError]);
   return (
     <div className={s.formContainer}>
       <div className={s.formHead}>
@@ -40,6 +47,13 @@ export const PriceCalculationForm = observer(() => {
           </div>
         </form>
       </FormProvider>
+      {formCalculationState.pending ? (
+        <div className={s.formContainerLoader}>
+          <CircularProgress size={40} color="success" />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 });

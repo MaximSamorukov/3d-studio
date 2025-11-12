@@ -8,45 +8,18 @@ import s from './style.module.scss';
 export const InputFile = ({ field: { name } }: { field: FormItemType }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [active, setActive] = useState(false);
-  const { control } = useFormContext();
+  const { control, setError } = useFormContext();
   const {
     field: { value, onChange },
+    fieldState: { error },
   } = useController({
     name,
     control,
-  });
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setActive(true);
-  }, []);
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      setActive(false);
-      const file = e.dataTransfer.files[0];
-      if (!file) return;
-      const { name, type, size } = file;
-      const sizeInMb = size / 1024 ** 2;
-
-      const isValidSize = sizeInMb < 10;
-      const isValidExtension = name.endsWith('.obj') || name.endsWith('.stl');
-      const isValidMimeType =
-        type === 'application/x-tgif' || type === 'model/stl';
-
-      if (isValidSize && isValidExtension && isValidMimeType) {
-        onChange(file);
-      } else {
-        alert('Файла не соответствует требованиям');
-      }
+    rules: {
+      required: 'Необходимо прикрепить файл',
     },
-    [onChange],
-  );
-  const handleClick = () => {
-    inputRef.current?.click();
-  };
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  });
+  const validateAndProcessFile = (file: File) => {
     const { name, type, size } = file;
     const normFileName = name.toLowerCase();
     const sizeInMb = size / 1024 ** 2;
@@ -65,8 +38,31 @@ export const InputFile = ({ field: { name } }: { field: FormItemType }) => {
     if (isValidSize && isValidExtension && isValidMimeType) {
       onChange(file);
     } else {
+      setError(name, { message: 'Файла не соответствует требованиям' });
       alert('Файла не соответствует требованиям');
     }
+  };
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setActive(true);
+  }, []);
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setActive(false);
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      validateAndProcessFile(file);
+    },
+    [onChange],
+  );
+  const handleClick = () => {
+    inputRef.current?.click();
+  };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    validateAndProcessFile(file);
   };
   return (
     <div className={s.fileFieldContainer}>
@@ -109,6 +105,12 @@ export const InputFile = ({ field: { name } }: { field: FormItemType }) => {
             Ператащите сюда файл (не более 10 Мб) для загрузки.
             <br />
             Форматы: *.STL, *.3MF, *AMF
+            <br />
+            {error?.message ? (
+              <span className={s.fileFieldRed}>{error.message}</span>
+            ) : (
+              <></>
+            )}
           </span>
         )}
       </div>

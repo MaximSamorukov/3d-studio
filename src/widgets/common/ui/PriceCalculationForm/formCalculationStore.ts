@@ -1,14 +1,15 @@
-import { makeAutoObservable } from "mobx";
-import { CalculationForm } from "./types";
-import { calculatePrintPrice } from "@/services";
+import { makeAutoObservable } from 'mobx';
+import { CalculationForm } from './types';
+import { calculatePrintPrice } from '@/services';
 
 class FormCalculationState {
-  weight = "нет данных";
-  plasticType = "нет данных";
-  volume = "нет данных";
-  printTime = "нет данных";
-  price = "нет данных";
-
+  weight = 'нет данных';
+  plasticType = 'нет данных';
+  volume = 'нет данных';
+  printTime = 'нет данных';
+  price = 'нет данных';
+  pending = false;
+  isError = false;
   constructor() {
     makeAutoObservable(this);
   }
@@ -16,35 +17,46 @@ class FormCalculationState {
   setValue<
     K extends keyof Pick<
       FormCalculationState,
-      "weight" | "plasticType" | "volume" | "printTime" | "price"
-    >
+      'weight' | 'plasticType' | 'volume' | 'printTime' | 'price'
+    >,
   >(key: K, value: string) {
     this[key] = value;
   }
 
   requestCalculation(info: CalculationForm) {
+    this.pending = true;
+    this.isError = false;
     const formData = new FormData();
-    formData.append("inputContacts", info.inputContacts);
-    formData.append("withModeling", info.withModeling.toString());
-    formData.append("withPostProcessing", info.withPostProcessing.toString());
-    formData.append("plasticType", info.plasticType);
-    formData.append("fileUpload", info.fileUpload);
-    calculatePrintPrice(formData).then((result) => {
-      const {
-        weight = "нет данных",
-        plasticType = "нет данных",
-        volume = "нет данных",
-        printTime = "нет данных",
-        price = "нет данных",
-      } = result;
-      this.setValue("weight", weight);
-      this.setValue("plasticType", plasticType);
-      this.setValue("volume", volume);
-      this.setValue("printTime", printTime);
-      this.setValue("price", price);
-    });
+    formData.append('inputContacts', info.inputContacts);
+    formData.append('withModeling', info.withModeling.toString());
+    formData.append('withPostProcessing', info.withPostProcessing.toString());
+    formData.append('plasticType', info.plasticType);
+    formData.append('fileUpload', info.fileUpload);
+    calculatePrintPrice(formData)
+      .then((result) => {
+        const {
+          weight = 'нет данных',
+          plasticType = 'нет данных',
+          volume = 'нет данных',
+          printTime = 'нет данных',
+          price = 'нет данных',
+        } = result;
+        this.setValue('weight', weight);
+        this.setValue('plasticType', plasticType);
+        this.setValue('volume', volume);
+        this.setValue('printTime', printTime);
+        this.setValue('price', price);
+        this.pending = false;
+      })
+      .catch((e) => {
+        console.error(e);
+        this.pending = false;
+        this.isError = true;
+      });
   }
-
+  resetIsError() {
+    this.isError = false;
+  }
   getCalculationData() {
     return {
       weight: this.weight,

@@ -42,7 +42,6 @@ export const OrderForm = observer(() => {
   });
   const isAuthenticated = !!session.data?.user;
   const userHasEmail = !!session.data?.user?.email;
-  console.log(formState.errors);
 
   const onSubmit: SubmitHandler<Omit<OrderFormFields, 'id' | 'created_at'>> = (
     data,
