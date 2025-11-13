@@ -1,0 +1,22 @@
+.itemContainer {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 30px;
+  &Active {
+    font-weight: bolder;
+  }
+}
+.unset {
+  all: unset;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.itemLabel {
+  font-size: 16px;
+}
