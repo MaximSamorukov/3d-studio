@@ -2,36 +2,68 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { ORDER_STATUSES, Statuces, STATUSES_DICT } from './constants';
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
 import Image from 'next/image';
-import { updateSubmitedOrderById } from './utils';
+import { getUrl, updateSubmitedOrderById } from './utils';
 import s from './style.module.scss';
+import { calculatePrintPrice } from '@/services';
 
 export const OrderPriceField = observer(() => {
-  const status = crmPreviewModalState.orderStatus as Statuces;
   const id = crmPreviewModalState.id;
+  const price = crmPreviewModalState.price || 0;
   const type = crmPreviewModalState.orderType;
-  const [currentStatus, setCurrentStatus] = useState<Statuces>(status);
-  const isSaveEnabled = currentStatus !== status;
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedStatus = e.target.value as Statuces;
-    setCurrentStatus(selectedStatus);
+  const [currentPriceValue, setCurrentPriceValue] = useState<number | null>(
+    price,
+  );
+  const currentStateHasBeenChanged = price !== currentPriceValue;
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setCurrentPriceValue(Number(value));
+    }
   };
-  const handleRestore = () => {
-    setCurrentStatus(status);
+  const handleCalculateOrderPrice = async () => {
+    if (crmPreviewModalState.filePath) {
+      const formData = new FormData();
+      formData.append(
+        'withModeling',
+        crmPreviewModalState.with_modelling ? 'true' : 'false',
+      );
+      formData.append(
+        'withPostProcessing',
+        crmPreviewModalState.with_postprocessing ? 'true' : 'false',
+      );
+      formData.append(
+        'plasticType',
+        crmPreviewModalState.plasticType as string,
+      );
+      const blob = await getUrl(crmPreviewModalState.filePath as string);
+      if (blob) {
+        formData.append('fileUpload', blob as Blob);
+        calculatePrintPrice(formData)
+          .then((i) => {
+            setCurrentPriceValue(i.price);
+          })
+          .catch(() => {
+            setCurrentPriceValue(0);
+          });
+      }
+    }
   };
-  const handleSaveOrderStatus = async () => {
-    if (id && type && currentStatus) {
+  const handleSavePrice = async () => {
+    if (id && type && currentPriceValue) {
       try {
         await updateSubmitedOrderById({
           id,
           type,
           fields: {
-            order_status: currentStatus,
+            price: currentPriceValue,
+            with_modelling: crmPreviewModalState.with_modelling || false,
+            with_postprocessing:
+              crmPreviewModalState.with_postprocessing || false,
           },
         });
-        crmPreviewModalState.orderStatus = currentStatus;
+        crmPreviewModalState.price = currentPriceValue;
       } catch (_) {
         console.error('Ошибка сохранения изменений');
       }
@@ -39,44 +71,53 @@ export const OrderPriceField = observer(() => {
   };
   return (
     <div className={s.container}>
-      <select
-        className={s.containerSelect}
+      <input
+        className={s.containerInput}
         onChange={onChange}
-        value={currentStatus || ''}
-      >
-        {ORDER_STATUSES.map((i) => (
-          <option value={i} key={i}>
-            {STATUSES_DICT[i]}
-          </option>
-        ))}
-      </select>
+        type="text"
+        value={currentPriceValue || ''}
+      />
       <button
-        onClick={handleSaveOrderStatus}
-        disabled={!isSaveEnabled}
-        className={cn(s.btn, s.btnSave, !isSaveEnabled && s.btnSaveDisabled)}
+        disabled={!currentStateHasBeenChanged}
+        onClick={handleCalculateOrderPrice}
+        className={cn(s.btn, s.btnCalculate)}
       >
-        <Image
-          src={'/calculate_price_crm.svg'}
-          width={20}
-          height={20}
-          alt="calculate_price_crm"
-        />
+        {currentStateHasBeenChanged ? (
+          <Image
+            src={'/calculate_price_crm_green.svg'}
+            width={20}
+            height={20}
+            alt="calculate_price_crm"
+          />
+        ) : (
+          <Image
+            src={'/calculate_price_crm_white.svg'}
+            width={20}
+            height={20}
+            alt="calculate_price_crm"
+          />
+        )}
       </button>
       <button
-        onClick={handleRestore}
-        disabled={!isSaveEnabled}
-        className={cn(
-          s.btn,
-          s.btnRestore,
-          !isSaveEnabled && s.btnRestoreDisabled,
-        )}
+        disabled={!currentStateHasBeenChanged}
+        onClick={handleSavePrice}
+        className={cn(s.btn, s.btnApprove)}
       >
-        <Image
-          src={'/approve_price_crm.svg'}
-          width={20}
-          height={20}
-          alt="approve_price_crm"
-        />
+        {currentStateHasBeenChanged ? (
+          <Image
+            src={'/approve_price_crm_green.svg'}
+            width={20}
+            height={20}
+            alt="approve_price_crm"
+          />
+        ) : (
+          <Image
+            src={'/approve_price_crm_white.svg'}
+            width={20}
+            height={20}
+            alt="approve_price_crm"
+          />
+        )}
       </button>
     </div>
   );

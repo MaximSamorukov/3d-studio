@@ -32,6 +32,9 @@ export class PrintOrderEntity {
   @Column({ type: 'boolean', default: false })
   with_postprocessing!: boolean;
 
+  @Column({ type: 'boolean', default: false })
+  with_modelling!: boolean;
+
   @Column({ type: 'text', nullable: true })
   comment!: string | null;
 
@@ -43,4 +46,7 @@ export class PrintOrderEntity {
 
   @Column({ type: 'varchar', length: 50, nullable: false })
   payment_status!: string;
+
+  @Column({ type: 'float', nullable: true })
+  price!: number | null;
 }

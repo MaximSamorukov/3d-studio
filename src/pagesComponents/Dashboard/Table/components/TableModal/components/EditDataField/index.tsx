@@ -2,10 +2,11 @@
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import s from './style.module.scss';
 import { Skeleton } from '@mui/material';
 import { OrderStatusField } from './Fields/OrderStatusField';
 import { OrderPriceField } from './Fields/OrderPriceField';
+import { OrderAdditionalsField } from './Fields/OrderAdditionalsField';
+import s from './style.module.scss';
 
 type EditDataFieldProps = {
   label: string;
@@ -42,6 +43,8 @@ export const EditDataField: React.FC<EditDataFieldProps> = observer(
                   return <OrderStatusField />;
                 case 'orderPrice':
                   return <OrderPriceField />;
+                case 'additionals':
+                  return <OrderAdditionalsField />;
                 default:
                   return 'нет данных';
               }

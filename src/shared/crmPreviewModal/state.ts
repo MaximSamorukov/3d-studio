@@ -18,6 +18,9 @@ type CrmPreviewModalStateType = {
   orderStatus?: Statuces | null;
   paymentStatus?: 'paid' | 'not_paid' | null;
   filePath?: string | null;
+  price?: number | null;
+  with_modelling?: boolean;
+  with_postprocessing?: boolean;
 };
 
 class CrmPreviewModalState {
@@ -33,7 +36,10 @@ class CrmPreviewModalState {
   private deletePending_: CrmPreviewModalStateType['deletePending'] = false;
   private modalOpen_: CrmPreviewModalStateType['modalOpen'] = false;
   private filePath_: CrmPreviewModalStateType['filePath'] = null;
-
+  private price_: CrmPreviewModalStateType['price'] = null;
+  private with_modelling_: CrmPreviewModalStateType['with_modelling'] = false;
+  private with_postprocessing_: CrmPreviewModalState['with_postprocessing'] =
+    false;
   constructor() {
     makeAutoObservable(this);
   }
@@ -48,6 +54,9 @@ class CrmPreviewModalState {
     this.paymentStatus_ = null;
     this.id_ = null;
     this.filePath_ = null;
+    this.price_ = null;
+    this.with_modelling_ = false;
+    this.with_postprocessing_ = false;
   }
 
   resetField(type: keyof CrmPreviewModalStateType) {
@@ -78,6 +87,15 @@ class CrmPreviewModalState {
         break;
       case 'filePath':
         this.filePath_ = null;
+        break;
+      case 'price':
+        this.price_ = null;
+        break;
+      case 'with_modelling':
+        this.with_modelling_ = false;
+        break;
+      case 'with_postprocessing':
+        this.with_postprocessing_ = false;
         break;
     }
   }
@@ -124,6 +142,27 @@ class CrmPreviewModalState {
   }
   get filePath() {
     return this.filePath_;
+  }
+  get price() {
+    return this.price_;
+  }
+  get with_modelling() {
+    return this.with_modelling_;
+  }
+  get with_postprocessing() {
+    return this.with_postprocessing_;
+  }
+  set with_postprocessing(
+    value: CrmPreviewModalStateType['with_postprocessing'],
+  ) {
+    this.with_postprocessing_ = value || false;
+  }
+  set with_modelling(value: CrmPreviewModalStateType['with_modelling']) {
+    this.with_modelling_ = value || false;
+  }
+
+  set price(value: CrmPreviewModalStateType['price']) {
+    this.price_ = value || null;
   }
   set filePath(value: CrmPreviewModalStateType['filePath']) {
     this.filePath_ = value || null;
@@ -175,6 +214,9 @@ class CrmPreviewModalState {
       orderStatus: this.orderStatus_,
       paymentStatus: this.paymentStatus_,
       filePath: this.filePath_,
+      price: this.price_,
+      with_modelling: this.with_modelling_,
+      with_postprocessing: this.with_postprocessing_,
     };
   }
 }
@@ -199,6 +241,9 @@ autorun(() => {
             order_status,
             payment_status,
             file_path,
+            price,
+            with_modelling,
+            with_postprocessing,
           } = data;
           crmPreviewModalState.createdAt = created_at;
           crmPreviewModalState.email = email;
@@ -207,6 +252,9 @@ autorun(() => {
           crmPreviewModalState.orderStatus = order_status;
           crmPreviewModalState.paymentStatus = payment_status;
           crmPreviewModalState.filePath = file_path;
+          crmPreviewModalState.price = price;
+          crmPreviewModalState.with_modelling = with_modelling;
+          crmPreviewModalState.with_postprocessing = with_postprocessing;
         }
         if (crmPreviewModalState.orderType === 'consultation') {
           const { created_at, email, contact, order_status } = data;
