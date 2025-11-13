@@ -25,7 +25,7 @@ class MaterialsState {
     this.loading = false;
   }
   get materialNames(): string[] {
-    return this.materials.map((i) => i.name);
+    return (this.materials || []).map((i) => i.name);
   }
 }
 
