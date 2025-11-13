@@ -15,3 +15,10 @@ export const MODEL_DENSITY = 0.5; // заполнение модели 50 %
 export const PRINT_PRICE = 500;
 export const POST_PROCESSING_PRICE = 1000;
 export const MODELLING_PRICE = 1000;
+export const MM_PER_SM_POW_3 = 10 ** 3;
+
+export enum SERVICES {
+  PRINTING = 'printing',
+  MODELLING = 'modelling',
+  POSTPROCESSING = 'postprocessing',
+}
