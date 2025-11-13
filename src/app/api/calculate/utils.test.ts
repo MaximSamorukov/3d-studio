@@ -1,11 +1,19 @@
 import { expect, test } from 'vitest';
-import { getFinalPrice } from './utils';
+import { getFinalPriceAsync } from './utils';
 
-test('test getFinalPrice function', () => {
-  expect(typeof getFinalPrice(100, true, true)).toBe('number');
-  expect(typeof getFinalPrice(100, false, false)).toBe('number');
-  expect(typeof getFinalPrice(1, true, true)).toBe('number');
-  expect(typeof getFinalPrice(0, true, true)).toBe('number');
-  expect(typeof getFinalPrice(-100, true, true)).toBe('number');
-  expect(() => getFinalPrice(100, false, false)).not.toThrow();
+test('test getFinalPrice function', async () => {
+  await expect(getFinalPriceAsync(100, true, true)).resolves.toBeTypeOf(
+    'number',
+  );
+  await expect(getFinalPriceAsync(100, false, false)).resolves.toBeTypeOf(
+    'number',
+  );
+  await expect(getFinalPriceAsync(1, true, true)).resolves.toBeTypeOf('number');
+  await expect(getFinalPriceAsync(0, true, true)).resolves.toBeTypeOf('number');
+  await expect(getFinalPriceAsync(-100, true, true)).resolves.toBeTypeOf(
+    'number',
+  );
+  await expect(() =>
+    getFinalPriceAsync(100, false, false),
+  ).resolves.not.toThrow();
 });
