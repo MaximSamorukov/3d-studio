@@ -10,6 +10,9 @@ class FormCalculationState {
   price = 'нет данных';
   pending = false;
   isError = false;
+  previewModalIsOpen = false;
+  modelUrl: string | null = null;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -56,6 +59,25 @@ class FormCalculationState {
   }
   resetIsError() {
     this.isError = false;
+  }
+
+  closePreviewModal() {
+    this.previewModalIsOpen = false;
+  }
+
+  revokeModelUlr() {
+    if (this.modelUrl) {
+      URL.revokeObjectURL(this.modelUrl);
+    }
+    this.modelUrl = null;
+  }
+
+  openPreviewModal() {
+    this.previewModalIsOpen = true;
+  }
+
+  setModelUrl(url: string) {
+    this.modelUrl = url;
   }
   getCalculationData() {
     return {
