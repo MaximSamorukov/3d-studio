@@ -68,6 +68,11 @@ export const TableModal = observer(() => {
               type="print_order"
               fieldType="orderStatus"
             />
+            <EditDataField
+              label="Стоимость заказа"
+              type="print_order"
+              fieldType="orderPrice"
+            />
           </div>
           <div className={s.container}>
             <Preview3DModel url={crmPreviewModalState.filePath!} />

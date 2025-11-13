@@ -5,6 +5,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { Skeleton } from '@mui/material';
 import { OrderStatusField } from './Fields/OrderStatusField';
+import { OrderPriceField } from './Fields/OrderPriceField';
 
 type EditDataFieldProps = {
   label: string;
@@ -39,6 +40,8 @@ export const EditDataField: React.FC<EditDataFieldProps> = observer(
               switch (fieldType) {
                 case 'orderStatus':
                   return <OrderStatusField />;
+                case 'orderPrice':
+                  return <OrderPriceField />;
                 default:
                   return 'нет данных';
               }
