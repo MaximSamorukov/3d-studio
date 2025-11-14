@@ -1,3 +1,4 @@
+import 'server-only';
 import { getServicesDataSource } from '@/shared/common/db/services';
 import {
   MODELLING_PRICE,

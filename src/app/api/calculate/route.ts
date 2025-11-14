@@ -1,3 +1,4 @@
+import 'server-only';
 import { getSTLVolume } from '@/shared/utils/computeVolume';
 import {
   APPROXIMATE_PRINT_SPEED,

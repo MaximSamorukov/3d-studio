@@ -1,3 +1,4 @@
+import 'server-only';
 import { ConsultationEntity } from '@/entities/consultation';
 import { getConsultationDataSource } from '@/shared/common/db/consultations';
 import { NextResponse } from 'next/server';

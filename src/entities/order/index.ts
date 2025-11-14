@@ -1,9 +1,9 @@
+import 'server-only';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  //Index,
 } from 'typeorm';
 
 @Entity({ name: 'print_orders' })

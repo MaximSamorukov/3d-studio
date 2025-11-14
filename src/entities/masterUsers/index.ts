@@ -1,3 +1,4 @@
+import 'server-only';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ name: 'master_users' })

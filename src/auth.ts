@@ -1,3 +1,4 @@
+import 'server-only';
 import NextAuth, { User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
