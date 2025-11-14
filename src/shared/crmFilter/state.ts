@@ -32,6 +32,7 @@ class CrmFilterState {
   private orders_: CrmFilterStateType['orders'] = [];
   private consultations_: CrmFilterStateType['consultations'] = [];
   private pending_: CrmFilterStateType['pending'] = false;
+
   constructor() {
     makeAutoObservable(this);
   }

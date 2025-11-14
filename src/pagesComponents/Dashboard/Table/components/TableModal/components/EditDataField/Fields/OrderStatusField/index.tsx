@@ -31,7 +31,7 @@ export const OrderStatusField = observer(() => {
             order_status: currentStatus,
           },
         });
-        crmPreviewModalState.orderStatus = currentStatus;
+        await crmPreviewModalState.refresh();
       } catch (_) {
         console.error('Ошибка сохранения изменений');
       }

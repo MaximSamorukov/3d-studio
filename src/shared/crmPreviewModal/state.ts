@@ -40,6 +40,15 @@ class CrmPreviewModalState {
   private with_modelling_: CrmPreviewModalStateType['with_modelling'] = false;
   private with_postprocessing_: CrmPreviewModalState['with_postprocessing'] =
     false;
+  private original_: Pick<
+    CrmPreviewModalState,
+    'price' | 'orderStatus' | 'with_modelling' | 'with_postprocessing'
+  > = {
+    price: null,
+    orderStatus: null,
+    with_modelling: false,
+    with_postprocessing: false,
+  };
   constructor() {
     makeAutoObservable(this);
   }
@@ -152,6 +161,34 @@ class CrmPreviewModalState {
   get with_postprocessing() {
     return this.with_postprocessing_;
   }
+  get originalPrice() {
+    return this.original_.price;
+  }
+  get originalOrderStatus() {
+    return this.original_.orderStatus;
+  }
+  get originalWithModelling() {
+    return this.original_.with_modelling;
+  }
+  get originalWithPostProcessing() {
+    return this.original_.with_postprocessing;
+  }
+
+  set originalPrice(value: CrmPreviewModalStateType['price']) {
+    this.original_.price = value;
+  }
+  set originalOrderStatus(value: CrmPreviewModalStateType['orderStatus']) {
+    this.original_.orderStatus = value;
+  }
+  set originalWithModelling(value: CrmPreviewModalStateType['with_modelling']) {
+    this.original_.with_modelling = value;
+  }
+  set originalWithPostProcessing(
+    value: CrmPreviewModalStateType['with_postprocessing'],
+  ) {
+    this.original_.with_postprocessing = value;
+  }
+
   set with_postprocessing(
     value: CrmPreviewModalStateType['with_postprocessing'],
   ) {
@@ -219,6 +256,57 @@ class CrmPreviewModalState {
       with_postprocessing: this.with_postprocessing_,
     };
   }
+  refresh() {
+    this.pending = true;
+    if (this.id && this.orderType) {
+      getSubmitedOrderById({
+        id: this.id!,
+        type: this.orderType!,
+      })
+        .then(({ data }) => {
+          this.pending = false;
+          if (this.orderType === 'print_order') {
+            const {
+              created_at,
+              email,
+              phone,
+              plastic_type,
+              order_status,
+              payment_status,
+              file_path,
+              price,
+              with_modelling,
+              with_postprocessing,
+            } = data;
+            this.createdAt = created_at;
+            this.email = email;
+            this.phone = phone;
+            this.plasticType = plastic_type;
+            this.paymentStatus = payment_status;
+            this.filePath = file_path;
+            this.orderStatus = order_status;
+            this.price = price;
+            this.with_modelling = with_modelling;
+            this.with_postprocessing = with_postprocessing;
+            this.originalOrderStatus = order_status;
+            this.originalPrice = price;
+            this.originalWithModelling = with_modelling;
+            this.originalWithPostProcessing = with_postprocessing;
+          }
+          if (this.orderType === 'consultation') {
+            const { created_at, email, contact, order_status } = data;
+            this.createdAt = created_at;
+            this.email = email;
+            this.phone = contact;
+            this.orderStatus = order_status;
+          }
+        })
+        .catch(() => {
+          this.pending = false;
+          this.resetAllFields();
+        });
+    }
+  }
 }
 
 export const crmPreviewModalState = new CrmPreviewModalState();
@@ -249,12 +337,16 @@ autorun(() => {
           crmPreviewModalState.email = email;
           crmPreviewModalState.phone = phone;
           crmPreviewModalState.plasticType = plastic_type;
-          crmPreviewModalState.orderStatus = order_status;
           crmPreviewModalState.paymentStatus = payment_status;
           crmPreviewModalState.filePath = file_path;
+          crmPreviewModalState.orderStatus = order_status;
           crmPreviewModalState.price = price;
           crmPreviewModalState.with_modelling = with_modelling;
           crmPreviewModalState.with_postprocessing = with_postprocessing;
+          crmPreviewModalState.originalOrderStatus = order_status;
+          crmPreviewModalState.originalPrice = price;
+          crmPreviewModalState.originalWithModelling = with_modelling;
+          crmPreviewModalState.originalWithPostProcessing = with_postprocessing;
         }
         if (crmPreviewModalState.orderType === 'consultation') {
           const { created_at, email, contact, order_status } = data;

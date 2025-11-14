@@ -9,41 +9,57 @@ import s from './style.module.scss';
 import { calculatePrintPrice } from '@/services';
 
 export const OrderPriceField = observer(() => {
+  const [priceCalculating, setPriceCalculating] = useState(false);
   const id = crmPreviewModalState.id;
   const price = crmPreviewModalState.price || 0;
   const withModel = crmPreviewModalState.with_modelling;
   const withPostProc = crmPreviewModalState.with_postprocessing;
+  const originalPrice = crmPreviewModalState.originalPrice;
+  const originalWithModelling = crmPreviewModalState.originalWithModelling;
+  const originalWithPostProcessing =
+    crmPreviewModalState.originalWithPostProcessing;
+
   const type = crmPreviewModalState.orderType;
-  const [currentPriceValue, setCurrentPriceValue] = useState<number | null>(
-    price,
-  );
   const [currentStateHasBeenChanged, setCurrentStateHasBeenChanged] =
     useState(false);
 
   useEffect(() => {
-    const isChanged = price !== currentPriceValue;
+    const isChanged = originalPrice !== price;
     if (isChanged) {
       setCurrentStateHasBeenChanged(true);
     } else {
       setCurrentStateHasBeenChanged(false);
     }
-  }, [price, currentPriceValue]);
+  }, [originalPrice, price]);
 
   useEffect(() => {
-    setCurrentStateHasBeenChanged(true);
-  }, [withModel, withPostProc]);
+    if (
+      withModel !== originalWithModelling ||
+      withPostProc !== originalWithPostProcessing
+    ) {
+      setCurrentStateHasBeenChanged(true);
+    } else {
+      setCurrentStateHasBeenChanged(false);
+    }
+  }, [
+    withModel,
+    originalWithModelling,
+    withPostProc,
+    originalWithPostProcessing,
+  ]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
-      setCurrentPriceValue(Number(value));
+      crmPreviewModalState.price = Number(value);
     }
   };
   const handleRefresh = () => {
-    console.log('refresh');
+    crmPreviewModalState.refresh();
   };
   const handleCalculateOrderPrice = async () => {
     if (crmPreviewModalState.filePath) {
+      setPriceCalculating(true);
       const formData = new FormData();
       formData.append(
         'withModeling',
@@ -62,28 +78,32 @@ export const OrderPriceField = observer(() => {
         formData.append('fileUpload', blob as Blob);
         calculatePrintPrice(formData)
           .then((i) => {
-            setCurrentPriceValue(i.price);
+            setPriceCalculating(false);
+            crmPreviewModalState.price = i.price;
           })
           .catch(() => {
-            setCurrentPriceValue(0);
+            setPriceCalculating(false);
+            console.log('Ошибка расчета стоимости изделия');
           });
+      } else {
+        setPriceCalculating(false);
       }
     }
   };
   const handleSavePrice = async () => {
-    if (id && type && currentPriceValue) {
+    if (id && type && price) {
       try {
         await updateSubmitedOrderById({
           id,
           type,
           fields: {
-            price: currentPriceValue,
+            price,
             with_modelling: crmPreviewModalState.with_modelling || false,
             with_postprocessing:
               crmPreviewModalState.with_postprocessing || false,
           },
         });
-        crmPreviewModalState.price = currentPriceValue;
+        await crmPreviewModalState.refresh();
       } catch (_) {
         console.error('Ошибка сохранения изменений');
       }
@@ -95,23 +115,23 @@ export const OrderPriceField = observer(() => {
         className={s.containerInput}
         onChange={onChange}
         type="text"
-        value={currentPriceValue || ''}
+        value={price || ''}
       />
       <button
-        disabled={!currentStateHasBeenChanged}
+        disabled={priceCalculating}
         onClick={handleCalculateOrderPrice}
         className={cn(s.btn, s.btnCalculate)}
       >
-        {currentStateHasBeenChanged ? (
+        {priceCalculating ? (
           <Image
-            src={'/calculate_price_crm_green.svg'}
+            src={'/calculate_price_crm_lilac.svg'}
             width={20}
             height={20}
             alt="calculate_price_crm"
           />
         ) : (
           <Image
-            src={'/calculate_price_crm_white.svg'}
+            src={'/calculate_price_crm_green.svg'}
             width={20}
             height={20}
             alt="calculate_price_crm"
