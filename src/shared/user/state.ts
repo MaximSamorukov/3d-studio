@@ -6,6 +6,7 @@ import {
 } from '@/widgets/common/ui/CRMEnterButton/utils';
 import { ContactFormType } from '@/widgets/common/ui/OrderConsultationForm/types';
 import { action, makeAutoObservable } from 'mobx';
+import { PrintOrderType } from '../types';
 
 export type OrderType = Omit<OrderFormFields, 'file' | 'plasticType'> & {
   file_path?: string;
@@ -17,7 +18,7 @@ type UserStateType = {
   name?: string | null;
   email?: string | null;
   image?: string | null;
-  orders?: OrderType[];
+  orders?: PrintOrderType[];
   consultations?: ContactFormType[];
   role?: 'admin' | 'customer' | null;
 };
@@ -55,7 +56,7 @@ class UserState {
   setConsultations(data: ContactFormType[]) {
     this.consultations = data;
   }
-  setOrders(data: Omit<OrderType, 'file' | 'plasticType'>[]) {
+  setOrders(data: PrintOrderType[]) {
     this.orders = data;
   }
 

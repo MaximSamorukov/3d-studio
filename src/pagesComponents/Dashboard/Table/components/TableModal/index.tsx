@@ -28,8 +28,8 @@ export const TableModal = observer(() => {
         <div className={s.metaContainer}>
           <div className={s.container}>
             <ShowDataField
-              label="Тип заказа"
-              value={crmPreviewModalState.orderType}
+              label="Тип заказа - id"
+              value={`${crmPreviewModalState.orderType} - ${crmPreviewModalState.id}`}
               type="print_order"
             />
             <ShowDataField

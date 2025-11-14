@@ -1,21 +1,19 @@
 import React from 'react';
-import { OrderFormFields } from '@/pagesComponents/3dPrinting/OrderForm';
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './style.module.scss';
 import { userState } from '@/shared/user/state';
 import { observer } from 'mobx-react-lite';
+import { PrintOrderType } from '@/shared/types';
 
 type OrderDrawerCardProps = {
-  order: Omit<OrderFormFields, 'file' | 'plasticType'> & {
-    file_path?: string;
-    plastic_type?: string;
-  };
+  order: PrintOrderType;
 };
 export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
   const handleRemoveOrder = async (id: number) => {
     await userState.removeOrderById(id);
   };
+
   return (
     <div className={s.cardContainer}>
       <div className={s.cardHeader}>
@@ -61,7 +59,7 @@ export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Постобработка:</div>
         <div className={s.cardItemValue}>
-          {order.withPostprocessing ? 'Да' : 'Нет'}
+          {order.with_postprocessing ? 'Да' : 'Нет'}
         </div>
       </div>
       <div className={s.cardItemConatainer}>
@@ -87,15 +85,17 @@ export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Статус:</div>
-        <div className={s.cardItemValue}>В работе</div>
+        <div className={s.cardItemValue}>{order.order_status}</div>
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Стоимость заказа:</div>
-        <div className={s.cardItemValue}>2500 Р</div>
+        <div className={s.cardItemValue}>
+          {order.price ? `${order.price} Р` : 'не определена'}
+        </div>
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Статус оплаты:</div>
-        <div className={s.cardItemValue}>Оплачен</div>
+        <div className={s.cardItemValue}>{order.payment_status}</div>
       </div>
     </div>
   );

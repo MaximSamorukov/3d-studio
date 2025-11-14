@@ -4,38 +4,28 @@ import { Statuces } from '@/shared/constants';
 import { getSubmitedOrderById } from '@/pagesComponents/Dashboard/Table/components/TableModal/utils';
 import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
+import { PrintOrderType } from '../types';
 
-type CrmPreviewModalStateType = {
-  id: number | null;
-  pending: boolean;
+type CrmPreviewModalStateType = PrintOrderType & {
+  pending?: boolean;
   deletePending: boolean;
   modalOpen: boolean;
-  createdAt?: string | null;
-  email?: string | null;
-  phone?: string | null;
-  plasticType?: string | null;
-  orderType?: 'print_order' | 'consultation' | null;
-  orderStatus?: Statuces | null;
-  paymentStatus?: 'paid' | 'not_paid' | null;
-  filePath?: string | null;
-  price?: number | null;
-  with_modelling?: boolean;
-  with_postprocessing?: boolean;
+  orderType: 'consultation' | 'print_order' | null;
 };
 
 class CrmPreviewModalState {
   private id_: CrmPreviewModalStateType['id'] = null;
-  private createdAt_: CrmPreviewModalStateType['createdAt'] = null;
+  private createdAt_: CrmPreviewModalStateType['created_at'] = null;
   private email_: CrmPreviewModalStateType['email'] = null;
   private phone_: CrmPreviewModalStateType['phone'] = null;
-  private plasticType_: CrmPreviewModalStateType['plasticType'] = null;
+  private plasticType_: CrmPreviewModalStateType['plastic_type'] = null;
   private orderType_: CrmPreviewModalStateType['orderType'] = null;
-  private orderStatus_: CrmPreviewModalStateType['orderStatus'] = null;
-  private paymentStatus_: CrmPreviewModalStateType['paymentStatus'] = null;
+  private orderStatus_: CrmPreviewModalStateType['order_status'] = null;
+  private paymentStatus_: CrmPreviewModalStateType['payment_status'] = null;
   private pending_: CrmPreviewModalStateType['pending'] = false;
   private deletePending_: CrmPreviewModalStateType['deletePending'] = false;
   private modalOpen_: CrmPreviewModalStateType['modalOpen'] = false;
-  private filePath_: CrmPreviewModalStateType['filePath'] = null;
+  private filePath_: CrmPreviewModalStateType['file_path'] = null;
   private price_: CrmPreviewModalStateType['price'] = null;
   private with_modelling_: CrmPreviewModalStateType['with_modelling'] = false;
   private with_postprocessing_: CrmPreviewModalState['with_postprocessing'] =
@@ -70,7 +60,7 @@ class CrmPreviewModalState {
 
   resetField(type: keyof CrmPreviewModalStateType) {
     switch (type) {
-      case 'createdAt':
+      case 'created_at':
         this.createdAt_ = null;
         break;
       case 'email':
@@ -79,22 +69,22 @@ class CrmPreviewModalState {
       case 'phone':
         this.phone_ = null;
         break;
-      case 'plasticType':
+      case 'plastic_type':
         this.plasticType_ = null;
         break;
       case 'orderType':
         this.orderType_ = 'print_order';
         break;
-      case 'orderStatus':
+      case 'order_status':
         this.orderStatus_ = null;
         break;
-      case 'paymentStatus':
+      case 'payment_status':
         this.paymentStatus_ = null;
         break;
       case 'id':
         this.id_ = null;
         break;
-      case 'filePath':
+      case 'file_path':
         this.filePath_ = null;
         break;
       case 'price':
@@ -177,7 +167,7 @@ class CrmPreviewModalState {
   set originalPrice(value: CrmPreviewModalStateType['price']) {
     this.original_.price = value;
   }
-  set originalOrderStatus(value: CrmPreviewModalStateType['orderStatus']) {
+  set originalOrderStatus(value: CrmPreviewModalStateType['order_status']) {
     this.original_.orderStatus = value;
   }
   set originalWithModelling(value: CrmPreviewModalStateType['with_modelling']) {
@@ -201,7 +191,7 @@ class CrmPreviewModalState {
   set price(value: CrmPreviewModalStateType['price']) {
     this.price_ = value || null;
   }
-  set filePath(value: CrmPreviewModalStateType['filePath']) {
+  set filePath(value: CrmPreviewModalStateType['file_path']) {
     this.filePath_ = value || null;
   }
   set id(value: CrmPreviewModalStateType['id']) {
@@ -216,7 +206,7 @@ class CrmPreviewModalState {
   set deletePending(value: CrmPreviewModalStateType['deletePending']) {
     this.deletePending_ = value || false;
   }
-  set createdAt(value: CrmPreviewModalStateType['createdAt']) {
+  set createdAt(value: CrmPreviewModalStateType['created_at']) {
     this.createdAt_ = value || null;
   }
   set email(value: CrmPreviewModalStateType['email']) {
@@ -225,16 +215,16 @@ class CrmPreviewModalState {
   set phone(value: CrmPreviewModalStateType['phone']) {
     this.phone_ = value || null;
   }
-  set plasticType(value: CrmPreviewModalStateType['plasticType']) {
+  set plasticType(value: CrmPreviewModalStateType['plastic_type']) {
     this.plasticType_ = value || null;
   }
   set orderType(value: CrmPreviewModalStateType['orderType']) {
     this.orderType_ = value || null;
   }
-  set orderStatus(value: CrmPreviewModalStateType['orderStatus']) {
+  set orderStatus(value: CrmPreviewModalStateType['order_status']) {
     this.orderStatus_ = value || null;
   }
-  set paymentStatus(value: CrmPreviewModalStateType['paymentStatus']) {
+  set paymentStatus(value: CrmPreviewModalStateType['payment_status']) {
     this.paymentStatus_ = value || null;
   }
   get serialized(): Omit<
@@ -243,14 +233,14 @@ class CrmPreviewModalState {
   > {
     return {
       id: this.id_,
-      createdAt: this.createdAt_,
+      created_at: this.createdAt_,
       email: this.email_,
       phone: this.phone_,
-      plasticType: this.plasticType_,
+      plastic_type: this.plasticType_,
       orderType: this.orderType_,
-      orderStatus: this.orderStatus_,
-      paymentStatus: this.paymentStatus_,
-      filePath: this.filePath_,
+      order_status: this.orderStatus_,
+      payment_status: this.paymentStatus_,
+      file_path: this.filePath_,
       price: this.price_,
       with_modelling: this.with_modelling_,
       with_postprocessing: this.with_postprocessing_,
