@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
@@ -11,16 +11,36 @@ import { calculatePrintPrice } from '@/services';
 export const OrderPriceField = observer(() => {
   const id = crmPreviewModalState.id;
   const price = crmPreviewModalState.price || 0;
+  const withModel = crmPreviewModalState.with_modelling;
+  const withPostProc = crmPreviewModalState.with_postprocessing;
   const type = crmPreviewModalState.orderType;
   const [currentPriceValue, setCurrentPriceValue] = useState<number | null>(
     price,
   );
-  const currentStateHasBeenChanged = price !== currentPriceValue;
+  const [currentStateHasBeenChanged, setCurrentStateHasBeenChanged] =
+    useState(false);
+
+  useEffect(() => {
+    const isChanged = price !== currentPriceValue;
+    if (isChanged) {
+      setCurrentStateHasBeenChanged(true);
+    } else {
+      setCurrentStateHasBeenChanged(false);
+    }
+  }, [price, currentPriceValue]);
+
+  useEffect(() => {
+    setCurrentStateHasBeenChanged(true);
+  }, [withModel, withPostProc]);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
       setCurrentPriceValue(Number(value));
     }
+  };
+  const handleRefresh = () => {
+    console.log('refresh');
   };
   const handleCalculateOrderPrice = async () => {
     if (crmPreviewModalState.filePath) {
@@ -118,6 +138,14 @@ export const OrderPriceField = observer(() => {
             alt="approve_price_crm"
           />
         )}
+      </button>
+      <button onClick={handleRefresh} className={cn(s.btn, s.btnRefresh)}>
+        <Image
+          src={'/refresh_green.svg'}
+          width={20}
+          height={20}
+          alt="refresh_price_crm"
+        />
       </button>
     </div>
   );

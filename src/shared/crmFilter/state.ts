@@ -2,6 +2,7 @@ import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
 import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
+import { Statuces } from '../constants';
 
 type CrmFilterStateType = {
   pending: boolean;
@@ -10,7 +11,7 @@ type CrmFilterStateType = {
   phone?: string | null;
   plasticType?: string | null;
   orderType?: 'print_order' | 'consultation';
-  orderStatus?: 'in_work' | 'submited' | 'rejected' | null;
+  orderStatus?: Statuces | null;
   paymentStatus?: 'paid' | 'not_paid' | null;
   perPage?: number;
   page?: number;
