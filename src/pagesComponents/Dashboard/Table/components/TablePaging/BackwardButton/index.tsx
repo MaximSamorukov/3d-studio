@@ -2,7 +2,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { crmFilterState } from '@/shared/crmFilter/state';
+import { crmFilterState } from '@/shared/state/crmFilter/state';
 import s from './style.module.scss';
 
 export const BackwardButton = observer(() => {

@@ -3,7 +3,7 @@ import React from 'react';
 import s from './style.module.scss';
 import { get } from 'lodash';
 import { observer } from 'mobx-react-lite';
-import { crmFilterState } from '@/shared/crmFilter/state';
+import { crmFilterState } from '@/shared/state/crmFilter/state';
 import {
   consultationTypeColumns,
   orderTypeColumns,
