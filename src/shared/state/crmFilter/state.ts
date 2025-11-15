@@ -2,7 +2,7 @@ import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
 import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
-import { Statuces } from '../constants';
+import { Statuces } from '../../constants';
 
 type CrmFilterStateType = {
   pending: boolean;
