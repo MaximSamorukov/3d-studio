@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { ModalComponent } from '@/shared/common/Modal';
-import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
 import { ShowDataField } from './components/ShowDataField';
 import { EditDataField } from './components/EditDataField';

@@ -4,7 +4,7 @@ import { Statuces } from '@/shared/constants';
 import { getSubmitedOrderById } from '@/pagesComponents/Dashboard/Table/components/TableModal/utils';
 import { getSubmitedOrders } from '@/pagesComponents/Dashboard/Table/utils';
 import { autorun, makeAutoObservable } from 'mobx';
-import { PrintOrderType } from '../types';
+import { PrintOrderType } from '../../types';
 
 type CrmPreviewModalStateType = PrintOrderType & {
   pending?: boolean;

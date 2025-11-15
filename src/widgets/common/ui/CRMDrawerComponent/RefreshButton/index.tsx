@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 import Image from 'next/image';
 import { observer } from 'mobx-react-lite';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 import s from './style.module.scss';
 
 export const DrawerRefreshButton = observer(() => {

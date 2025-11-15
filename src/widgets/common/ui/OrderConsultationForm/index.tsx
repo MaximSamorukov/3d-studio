@@ -14,7 +14,7 @@ import s from './style.module.scss';
 import { usePathname } from 'next/navigation';
 import { orderConsultationHandler } from './utils';
 import { getConsultationsOnEmail } from '../LoginButton/utils';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 
 export const OrderConsultationForm = observer(() => {
   const session = useSession();

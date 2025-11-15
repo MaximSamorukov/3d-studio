@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { ContactFormType } from '../../OrderConsultationForm/types';
 import Image from 'next/image';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 import s from './style.module.scss';
 
 type ConsultationDrawerCardProps = {

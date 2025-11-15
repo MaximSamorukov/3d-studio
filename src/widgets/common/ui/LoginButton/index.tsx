@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ModalComponent } from '@/shared/common/Modal';
 import { LoginForm } from '../LoginForm';
 import { signOut, useSession } from 'next-auth/react';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
 import { getMaterials, getServices } from '@/services';

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import s from './style.module.scss';
 
 export const OrderAdditionalsField = observer(() => {

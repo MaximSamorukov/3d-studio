@@ -20,6 +20,8 @@ export default defineConfig({
           include: ['src/**/*.client.test.{tsx,ts}'],
           name: 'clients',
           environment: 'jsdom',
+          globals: true,
+          setupFiles: './vitest.setup.ts',
         },
       },
     ],

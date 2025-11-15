@@ -10,7 +10,7 @@ import { CircularProgress } from '@mui/material';
 import { signIn, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { getOrdersOnEmail } from '@/widgets/common/ui/LoginButton/utils';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { observer } from 'mobx-react-lite';
 import { schema } from './constants';

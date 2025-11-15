@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import Image from 'next/image';
 import { getUrl, updateSubmitedOrderById } from './utils';
 import s from './style.module.scss';

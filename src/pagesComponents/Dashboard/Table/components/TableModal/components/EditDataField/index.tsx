@@ -1,5 +1,5 @@
 'use client';
-import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Skeleton } from '@mui/material';

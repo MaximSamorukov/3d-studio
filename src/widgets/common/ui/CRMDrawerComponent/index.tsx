@@ -2,7 +2,7 @@
 import Drawer from '@mui/material/Drawer';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 import { observer } from 'mobx-react-lite';
 import s from './style.module.scss';
 import { CircularProgress, Tab, Tabs } from '@mui/material';

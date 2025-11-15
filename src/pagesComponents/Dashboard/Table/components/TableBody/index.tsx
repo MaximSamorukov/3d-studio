@@ -10,7 +10,7 @@ import {
 } from '../TableHeader/constants';
 import { hideNotvisible } from '../TableHeader/utils';
 import { CircularProgress } from '@mui/material';
-import { crmPreviewModalState } from '@/shared/crmPreviewModal/state';
+import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import { PrintOrderEntity } from '@/entities/order';
 import { ConsultationEntity } from '@/entities/consultation';
 import { getFileName } from '../TableModal/utils';

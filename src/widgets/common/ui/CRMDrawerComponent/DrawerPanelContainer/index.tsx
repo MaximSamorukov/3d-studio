@@ -3,7 +3,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { OrderDrawerCard } from '../OrdersDrawerCard';
 import { ConsultationDrawerCard } from '../ConsultationDrawerCard';
-import { userState } from '@/shared/user/state';
+import { userState } from '@/shared/state/user/state';
 
 import s from './style.module.scss';
 
