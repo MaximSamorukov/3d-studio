@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.priceValue {
+  width: fit-content;
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+.payButton {
+  all: unset;
+  box-sizing: border-box;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-color: transparent;
+  border: 1px solid green;
+  border-radius: 5px;
+  color: green;
+  cursor: pointer;
+}

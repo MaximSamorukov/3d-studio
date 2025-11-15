@@ -39,6 +39,8 @@
     "reflect-metadata": "^0.2.2",
     "sass": "^1.89.0",
     "server-only": "^0.0.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "three": "^0.181.1",
     "typeorm": "^0.3.27",
     "zod": "^4.1.12"

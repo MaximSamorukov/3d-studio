@@ -5,6 +5,7 @@ import s from './style.module.scss';
 import { userState } from '@/shared/user/state';
 import { observer } from 'mobx-react-lite';
 import { PrintOrderType } from '@/shared/types';
+import { PayButton } from '../PayButton';
 
 type OrderDrawerCardProps = {
   order: PrintOrderType;
@@ -90,7 +91,7 @@ export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Стоимость заказа:</div>
         <div className={s.cardItemValue}>
-          {order.price ? `${order.price} Р` : 'не определена'}
+          {order.price ? <PayButton order={order} /> : 'не определена'}
         </div>
       </div>
       <div className={s.cardItemConatainer}>

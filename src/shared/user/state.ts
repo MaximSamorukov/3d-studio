@@ -5,7 +5,7 @@ import {
   getOrdersOnEmail,
 } from '@/widgets/common/ui/CRMEnterButton/utils';
 import { ContactFormType } from '@/widgets/common/ui/OrderConsultationForm/types';
-import { action, makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, runInAction } from 'mobx';
 import { PrintOrderType } from '../types';
 
 export type OrderType = Omit<OrderFormFields, 'file' | 'plasticType'> & {
@@ -59,13 +59,44 @@ class UserState {
   setOrders(data: PrintOrderType[]) {
     this.orders = data;
   }
+  async getUserOrders() {
+    if (this.email) {
+      runInAction(() => {
+        this.loading = true;
+      });
 
+      try {
+        const [consultationsRes, ordersRes] = await Promise.allSettled([
+          getConsultationsOnEmail(this.email),
+          getOrdersOnEmail(this.email),
+        ]);
+
+        runInAction(() => {
+          if (consultationsRes.status === 'fulfilled') {
+            this.setConsultations(consultationsRes.value.consultations);
+          }
+
+          if (ordersRes.status === 'fulfilled') {
+            this.setOrders(ordersRes.value.orders);
+          }
+
+          this.loading = false;
+        });
+      } catch {
+        runInAction(() => {
+          this.loading = false;
+        });
+      }
+    }
+  }
   get isAuthorized() {
     return !!this.email;
   }
 
   removeConsultationById(id: number) {
-    this.loading = true;
+    runInAction(() => {
+      this.loading = true;
+    });
     removeConsultation(id).then(
       () => {
         if (this.email) {
@@ -87,7 +118,9 @@ class UserState {
     );
   }
   removeOrderById(id: number) {
-    this.loading = true;
+    runInAction(() => {
+      this.loading = true;
+    });
     removeOrder(id).then(
       () => {
         if (this.email) {

@@ -9,6 +9,7 @@ import { CircularProgress, Tab, Tabs } from '@mui/material';
 import { DrawerPanelContainer } from './DrawerPanelContainer';
 import { DrawerCloseButton } from './CloseButton';
 import { crmDrawerState } from './CRMDrawerComponentState';
+import { DrawerRefreshButton } from './RefreshButton';
 
 export const CRMDrawerComponent = observer(() => {
   const session = useSession();
@@ -39,7 +40,10 @@ export const CRMDrawerComponent = observer(() => {
       open={crmDrawerState.open}
     >
       <div className={s.drawerContainer}>
-        <DrawerCloseButton handleCloseDrawer={handleCloseModal} />
+        <div className={s.drawerControlsContainer}>
+          <DrawerCloseButton handleCloseDrawer={handleCloseModal} />
+          <DrawerRefreshButton />
+        </div>
         <Tabs
           indicatorColor="primary"
           textColor="primary"
