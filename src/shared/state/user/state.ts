@@ -6,7 +6,7 @@ import {
 } from '@/widgets/common/ui/CRMEnterButton/utils';
 import { ContactFormType } from '@/widgets/common/ui/OrderConsultationForm/types';
 import { action, makeAutoObservable, runInAction } from 'mobx';
-import { PrintOrderType } from '../types';
+import { PrintOrderType } from '../../types';
 
 export type OrderType = Omit<OrderFormFields, 'file' | 'plasticType'> & {
   file_path?: string;
