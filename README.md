@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 3D Printing Studio — Web Application
 
-## Getting Started
+Современное веб-приложение для расчёта, оформления и управления заказами 3D-печати.  
+Построено на **Next.js 15**, с применением современных инструментов: **React 19**, **TypeORM**, **NextAuth**, **Socket.IO**, **MobX** и **AWS S3**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📸 Демо
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+(при желании можешь вставить здесь GIF / скриншот)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Основные возможности
 
-## Learn More
+### 🔧 Расчёт 3D-печати
 
-To learn more about Next.js, take a look at the following resources:
+- Загрузка 3D-моделей (STL, OBJ)
+- Проверка валидности (размер, расширение, MIME)
+- Определение веса + стоимости модели
+- Поддержка материалов: **PLA, ABS, PETG, TPU, PA, HIPS, NYLON, ASA**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Услуги
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 3D-печать
+- Моделирование
+- Постобработка
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📤 Загрузка файлов в AWS S3
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Presigned URL
+- Безопасный upload
+- Управление файлами моделей
+
+---
+
+### 📦 Система заказов
+
+- Создание заказа
+- Личный кабинет пользователя
+- Панель администратора
+- Обновление статуса в реальном времени через **Socket.IO**
+
+---
+
+### 🖥 3D-просмотр моделей
+
+- **Three.js** + **React Three Fiber** + **Drei**
+- Орбитальная камера
+- Возможность предпросмотра изделия
+
+---
+
+### 🔐 Авторизация
+
+- **NextAuth v5**
+- **PostgreSQL** + **TypeORM**
+- Адаптеры **Neon** / **TypeORM**
+- Сессии, refresh tokens
+
+---
+
+### 📊 Dashboard (Админка)
+
+- Таблицы, сортировки
+- **MobX**-стейт менеджмент
+- SSR + CSR компоненты
+
+---
+
+## 🧱 Технологический стек
+
+### Frontend
+
+- **Next.js 15** (App Router)
+- **React 19**
+- **TypeScript**
+- **SCSS modules**
+- **React Hook Form** + **Zod**
+- **MobX** / **mobx-react-lite**
+- **Socket.IO client**
+- **Three.js** + **R3F** + **Drei**
+- **MUI** + **Emotion**
+- **classnames**
+
+### Backend (внутри Next.js)
+
+- **NextAuth v5**
+- **TypeORM**
+- **PostgreSQL**
+- **AWS SDK**
+- **Socket.IO server**
+- **API Routes** / **Server Actions**
+
+### Tests
+
+- **Vitest**
+- **Testing Library** (React / DOM)
+- **JSDOM**
+- Разделение на `server`/`client` проекты
+
+---
+
+### 📂 Структура проекта
+- **app/**
+- **api/**                 — серверные обработчики
+- **(routes)**             — страницы приложения
+- **components/**
+- **entities/**
+- **shared/**
+- **stores/**                — MobX стейт
+- **config/**                — константы, настройки
+- **pagesComponents/**       — сложные UI-компоненты
+- **public/**
+- **tests/**
+
+---
+
+## ⚡ Установка и запуск
+
+1. **Установка зависимостей**  
+
+   ```bash
+   npm install
+
+Запуск в dev-режимеbashnpm run dev
+Сборкаbashnpm run build
+npm start
+
+🧪 Тестирование
+Запуск всех тестов:
+bashnpm run test
+В проекте используются два окружения:
+
+client — JSDOM (компоненты, DOM)
+server — node environment (утилиты / серверный код)
+
+📚 Скрипты
+
+| Команда  | Описание                              |
+|----------|---------------------------------------|
+| `dev`    | Запуск разработки                     |
+| `build`  | Сборка production версии              |
+| `start`  | Запуск собранного приложения          |
+| `lint`   | Линтинг ESLint                        |
+| `format` | Prettier форматирование               |
+| `test`   | Запуск Vitest                         |
