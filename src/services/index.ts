@@ -14,7 +14,6 @@ export const calculatePrintPrice = (data: FormData) => {
 };
 
 export const login = (data: { login: string; password: string }) => {
-  'use client';
   return fetch('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -92,17 +91,31 @@ export const removeOrder = (id: number) => {
 };
 
 export const getMaterials = (): Promise<{ materials: MaterialType[] }> => {
-  return fetch('/api/crm/materials')
-    .then((res) => {
-      return res.json();
-    })
-    .catch(() => []);
+  return fetch('/api/crm/materials').then(async (res) => {
+    const json = await res.json();
+    if (!res.ok) throw json;
+    return json;
+  });
 };
 
 export const getServices = (): Promise<{ services: ServiceType[] }> => {
-  return fetch('/api/crm/services')
-    .then((res) => {
-      return res.json();
-    })
-    .catch(() => []);
+  return fetch('/api/crm/services').then(async (res) => {
+    const json = await res.json();
+    if (!res.ok) throw json;
+    return json;
+  });
+};
+
+export const adminRegister = (data: { login: string; password: string }) => {
+  return fetch('/api/admin_register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(async (res) => {
+    const json = await res.json();
+    if (!res.ok) throw json;
+    return json;
+  });
 };
