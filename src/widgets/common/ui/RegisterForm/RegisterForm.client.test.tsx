@@ -73,6 +73,7 @@ describe('RegisterForm authenticated user', () => {
     vi.spyOn(nextAuth, 'useSession').mockReturnValue({
       data: { user: { email: 'test_email@gmail.com' } },
       status: 'authenticated',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
   });
   afterEach(() => {
