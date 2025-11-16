@@ -1,7 +1,7 @@
 import {
   FormInputTypeEnum,
   FormItemType,
-} from '@/widgets/common/ui/LoginForm/types';
+} from '@/shared/common/FormItem/types';
 
 export const formFields: FormItemType[] = [
   {
@@ -47,6 +47,13 @@ export const formFields: FormItemType[] = [
         message:
           'Пароль должен содержать цифры, строчные и прописные символы латинского алфавита.',
       },
+      validate: (v, values) => {
+        const { repeat_password } = values;
+        if (v !== repeat_password) {
+          return 'Пароли должны совпадать';
+        }
+        return true;
+      },
     },
   },
   {
@@ -69,6 +76,13 @@ export const formFields: FormItemType[] = [
         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/,
         message:
           'Пароль должен содержать цифры, строчные и прописные символы латинского алфавита.',
+      },
+      validate: (v, values) => {
+        const { password } = values;
+        if (v !== password) {
+          return 'Пароли должны совпадать';
+        }
+        return true;
       },
     },
   },

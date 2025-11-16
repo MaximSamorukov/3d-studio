@@ -2,20 +2,28 @@
 import React, { FormEventHandler, useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { formFields } from './constants';
-import { LoginFormType, FormItemType } from '@/shared/common/FormItem/types';
+import { FormItemType } from '@/shared/common/FormItem/types';
 import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from '@/shared/common/SubmitButton';
 
 import s from './style.module.scss';
 import { Errors } from './Errors';
+import { RegisterFormType } from './types';
+import { useSession } from 'next-auth/react';
 
 export const RegisterForm = () => {
-  const methods = useForm<LoginFormType>();
-  const onSubmit: SubmitHandler<LoginFormType> = async (data, e) => {
-    e?.preventDefault();
-    console.log(data);
-  };
+  const session = useSession();
+  const userEmail = session.data?.user.email;
+  const methods = useForm<RegisterFormType>();
 
+  const onSubmit: SubmitHandler<RegisterFormType> = async (data, e) => {
+    console.log(data, methods);
+  };
+  useEffect(() => {
+    if (session.data?.user.email) {
+      methods.setValue('login', session.data?.user.email);
+    }
+  }, [userEmail]);
   return (
     <div className={s.formContainer}>
       <div className={s.formHead}>
