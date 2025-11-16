@@ -57,8 +57,8 @@ export const formFields: FormItemType[] = [
     },
   },
   {
-    label: 'Повтор',
-    placeholder: 'Пароль',
+    label: 'Пароль',
+    placeholder: 'Повтор пароля',
     name: 'repeat_password',
     formInputType: FormInputTypeEnum.password,
     defaultValue: undefined,

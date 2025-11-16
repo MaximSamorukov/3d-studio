@@ -20,6 +20,7 @@ export const RegisterForm = () => {
   const methods = useForm<RegisterFormType>();
 
   const onSubmit: SubmitHandler<RegisterFormType> = async (data) => {
+    methods.clearErrors();
     try {
       await adminRegister({
         login: data.login,
