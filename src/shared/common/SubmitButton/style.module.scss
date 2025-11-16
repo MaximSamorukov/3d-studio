@@ -1,0 +1,26 @@
+.button {
+  all: unset;
+  border: 1px solid white;
+  height: fit-content;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &Submit {
+    width: 300px;
+    height: 35px;
+    text-align: center;
+  }
+
+  &:hover {
+    color: #e49e00;
+    border-color: #e49e00;
+    transform: scale(1.001);
+    box-shadow: 0 0 8px #e49e00;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: pulseBorder 2s infinite;
+  }
+}
