@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
 import { formFields } from './constants';
 import { CalculationForm, FormItemType } from './types';
-import { FormItem } from './FormItem';
+import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { formCalculationState } from './formCalculationStore';
 import { CircularProgress } from '@mui/material';

@@ -189,9 +189,24 @@
       height: 100%;
       border: none;
     }
+    &Password {
+      position: relative;
+    }
   }
 }
-
+.passwordEye {
+  all: unset;
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .inputSelector {
   &Container {
     display: flex;

@@ -1,9 +1,9 @@
 'use client';
-import React, { FormEventHandler, useEffect } from 'react';
+import React, { FormEventHandler } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { formFields } from './constants';
 import { LoginFormType, FormItemType } from './types';
-import { FormItem } from './FormItem';
+import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { signIn } from 'next-auth/react';
 

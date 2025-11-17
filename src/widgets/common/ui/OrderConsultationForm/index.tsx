@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { formFields, formFieldsWithoutRules } from './constants';
 import { ContactFormType, FormItemType } from './types';
-import { FormItem } from './FormItem';
+import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { CircularProgress } from '@mui/material';
 import { useSession, signIn } from 'next-auth/react';
