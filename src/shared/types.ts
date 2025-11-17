@@ -57,7 +57,7 @@ export type ThreeDSecure = {
   applied: boolean;
 };
 
-export type Metadata = {};
+export type Metadata = object;
 
 export type PaymentMethod = {
   type: string;

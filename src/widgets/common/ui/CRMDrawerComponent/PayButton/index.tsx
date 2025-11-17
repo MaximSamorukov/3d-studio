@@ -39,7 +39,7 @@ export const PayButton = observer(({ order }: PayButtonProps) => {
         customization: {
           modal: true,
         },
-        error_callback: (e: any) => {
+        error_callback: (e: unknown) => {
           console.log(e);
         },
       });
