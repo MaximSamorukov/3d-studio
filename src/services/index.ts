@@ -65,6 +65,7 @@ export const checkUser = async (data: { login: string; password: string }) => {
     }
   } catch (e) {
     console.log('Error', e);
+    return false;
   }
 };
 
@@ -91,11 +92,15 @@ export const removeOrder = (id: number) => {
 };
 
 export const getMaterials = (): Promise<{ materials: MaterialType[] }> => {
-  return fetch('/api/crm/materials').then(async (res) => {
-    const json = await res.json();
-    if (!res.ok) throw json;
-    return json;
-  });
+  return fetch('/api/crm/materials')
+    .then(async (res) => {
+      const json = await res.json();
+      if (!res.ok) throw json;
+      return json;
+    })
+    .catch((e) => {
+      throw e;
+    });
 };
 
 export const getServices = (): Promise<{ services: ServiceType[] }> => {
