@@ -29,6 +29,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
       <body className={roboto.variable}>
         <Provider>
           <header>
