@@ -5,7 +5,6 @@
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import Script from 'next/script';
 import '@/app/(website)/globals.css';
 import Header from '@/widgets/common/ui/Header';
 import ActionPanel from '@/widgets/common/ui/ActionPanel';
@@ -31,10 +30,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <Script
-          src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"
-          strategy="afterInteractive"
-        />
         <Provider>
           <header>
             <Header />
