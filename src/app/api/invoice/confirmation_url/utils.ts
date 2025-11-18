@@ -2,8 +2,8 @@ import { PaymentDTOType } from '@/shared/types';
 import crypto from 'crypto';
 
 export function addTwoWeeksToUnix(unixTimestamp: number): string {
-  const TWO_WEEKS_IN_SECONDS = 14 * 24 * 60 * 60 * 1000;
-  const date = new Date(unixTimestamp + TWO_WEEKS_IN_SECONDS);
+  const TWO_WEEKS_IN_ML_SECONDS = 14 * 24 * 60 * 60 * 1000;
+  const date = new Date(unixTimestamp + TWO_WEEKS_IN_ML_SECONDS);
   return date.toISOString();
 }
 
