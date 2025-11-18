@@ -1,6 +1,5 @@
-import { PaymentDTOType, PaymentType } from '@/shared/types';
+import { InvoiceType, PaymentDTOType, PaymentType } from '@/shared/types';
 import { PaymentDTOSchema } from '@/shared/validateSchemas';
-import crypto from 'crypto';
 import * as z from 'zod';
 
 export type CreatePaymentError =
@@ -44,15 +43,43 @@ export const createPayment = async (
   }
 };
 
-export function createIdempotenceKey(description: string): string {
-  return crypto.createHash('sha256').update(description).digest('hex');
-}
+export type CreateInvoiceError =
+  | { type: 'validation'; issues: z.ZodIssue[] }
+  | { type: 'network'; message: string };
 
-export function createDescription(
-  email: string,
-  price: string,
-  orderId: number,
-) {
-  const description = `${email}-${price}-${orderId}`;
-  return description;
-}
+type CreateInvoiceResult = InvoiceType | CreateInvoiceError;
+
+export const createInvoice = async (
+  data: PaymentDTOType,
+): Promise<CreateInvoiceResult> => {
+  try {
+    PaymentDTOSchema.parse(data);
+    const rawInvoiceObject = await fetch('/api/invoice/confirmation_url', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!rawInvoiceObject.ok) {
+      return {
+        type: 'network',
+        message: `Ошибка API: ${rawInvoiceObject.status}`,
+      };
+    }
+    const invoiceObject = (await rawInvoiceObject.json()) as InvoiceType;
+    return invoiceObject;
+  } catch (e) {
+    if (e instanceof z.ZodError) {
+      return {
+        type: 'validation',
+        issues: e.issues,
+      };
+    } else {
+      return {
+        type: 'network',
+        message: 'Ошибка функции createPayment',
+      };
+    }
+  }
+};

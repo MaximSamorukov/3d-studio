@@ -1,4 +1,4 @@
-import { createDescription, createIdempotenceKey } from '@/services/payments';
+import { createDescription, createIdempotenceKey } from './utils';
 import { PaymentDTOType } from '@/shared/types';
 import { PaymentDTOSchema } from '@/shared/validateSchemas';
 import { NextResponse } from 'next/server';

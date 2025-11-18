@@ -28,6 +28,7 @@ class CrmPreviewModalState {
   private filePath_: CrmPreviewModalStateType['file_path'] = null;
   private price_: CrmPreviewModalStateType['price'] = null;
   private with_modelling_: CrmPreviewModalStateType['with_modelling'] = false;
+  private invoice_url_: CrmPreviewModalStateType['invoice_url'] = null;
   private with_postprocessing_: CrmPreviewModalState['with_postprocessing'] =
     false;
   private original_: Pick<
@@ -56,6 +57,7 @@ class CrmPreviewModalState {
     this.price_ = null;
     this.with_modelling_ = false;
     this.with_postprocessing_ = false;
+    this.invoice_url_ = null;
   }
 
   resetField(type: keyof CrmPreviewModalStateType) {
@@ -148,6 +150,9 @@ class CrmPreviewModalState {
   get with_modelling() {
     return this.with_modelling_;
   }
+  get invoice_url() {
+    return this.invoice_url_;
+  }
   get with_postprocessing() {
     return this.with_postprocessing_;
   }
@@ -163,7 +168,6 @@ class CrmPreviewModalState {
   get originalWithPostProcessing() {
     return this.original_.with_postprocessing;
   }
-
   set originalPrice(value: CrmPreviewModalStateType['price']) {
     this.original_.price = value;
   }
@@ -187,7 +191,9 @@ class CrmPreviewModalState {
   set with_modelling(value: CrmPreviewModalStateType['with_modelling']) {
     this.with_modelling_ = value || false;
   }
-
+  set invoice_url(value: CrmPreviewModalStateType['invoice_url']) {
+    this.invoice_url_ = value || null;
+  }
   set price(value: CrmPreviewModalStateType['price']) {
     this.price_ = value || null;
   }
@@ -244,6 +250,7 @@ class CrmPreviewModalState {
       price: this.price_,
       with_modelling: this.with_modelling_,
       with_postprocessing: this.with_postprocessing_,
+      invoice_url: this.invoice_url_,
     };
   }
   refresh() {
@@ -267,9 +274,11 @@ class CrmPreviewModalState {
               price,
               with_modelling,
               with_postprocessing,
+              invoice_url,
             } = data;
             this.createdAt = created_at;
             this.email = email;
+            this.invoice_url = invoice_url;
             this.phone = phone;
             this.plasticType = plastic_type;
             this.paymentStatus = payment_status;
@@ -322,6 +331,7 @@ autorun(() => {
             price,
             with_modelling,
             with_postprocessing,
+            invoice_url,
           } = data;
           crmPreviewModalState.createdAt = created_at;
           crmPreviewModalState.email = email;
@@ -337,6 +347,7 @@ autorun(() => {
           crmPreviewModalState.originalPrice = price;
           crmPreviewModalState.originalWithModelling = with_modelling;
           crmPreviewModalState.originalWithPostProcessing = with_postprocessing;
+          crmPreviewModalState.invoice_url = invoice_url;
         }
         if (crmPreviewModalState.orderType === 'consultation') {
           const { created_at, email, contact, order_status } = data;

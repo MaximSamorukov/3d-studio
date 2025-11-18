@@ -49,4 +49,7 @@ export class PrintOrderEntity {
 
   @Column({ type: 'float', nullable: true })
   price!: number | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  invoice_url!: string | null;
 }

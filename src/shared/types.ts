@@ -15,6 +15,7 @@ export type PrintOrderType = {
   price?: number | null;
   with_modelling?: boolean;
   with_postprocessing?: boolean;
+  invoice_url?: string | null;
 };
 
 export type PaymentDTOType = {
@@ -57,8 +58,6 @@ export type ThreeDSecure = {
   applied: boolean;
 };
 
-export type Metadata = object;
-
 export type PaymentMethod = {
   type: string;
   id: string;
@@ -86,4 +85,41 @@ export type CardProduct = {
 export type Recipient = {
   account_id: string;
   gateway_id: string;
+};
+
+export type InvoiceType = {
+  id: string;
+  status: string;
+  cart: Cart[];
+  delivery_method: DeliveryMethod;
+  payment_details?: PaymentDetails;
+  created_at: Date;
+  expires_at: Date;
+  description: string;
+  metadata: Metadata;
+};
+
+export type Cart = {
+  description: string;
+  price: Price;
+  discount_price?: Price;
+  quantity: number;
+};
+
+export type Price = {
+  value: string;
+  currency: string;
+};
+
+export type DeliveryMethod = {
+  type: string;
+  url?: string;
+};
+
+export type PaymentDetails = {
+  id: string;
+  status: 'waiting_for_capture' | 'succeeded' | 'canceled';
+};
+export type Metadata = {
+  order_id?: string;
 };
