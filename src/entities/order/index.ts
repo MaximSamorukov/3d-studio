@@ -52,4 +52,7 @@ export class PrintOrderEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   invoice_url!: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  invoice_id!: string | null;
 }

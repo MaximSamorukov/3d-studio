@@ -97,6 +97,8 @@ export const OrderPriceField = observer(() => {
           id,
           type,
           fields: {
+            invoice_url: null,
+            invoice_id: null,
             price,
             with_modelling: crmPreviewModalState.with_modelling || false,
             with_postprocessing:

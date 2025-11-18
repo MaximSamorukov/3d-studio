@@ -27,6 +27,7 @@ export async function POST(req: Request) {
       .update(PrintOrderEntity)
       .set({
         invoice_url: invoiceObject?.delivery_method?.url || null,
+        invoice_id: invoiceObject?.id || null,
       })
       .where('id = :id', { id: data.orderId })
       .execute();

@@ -6,7 +6,7 @@ export async function updateSubmitedOrderById({
 }: {
   id: number;
   type: 'print_order' | 'consultation';
-  fields: Record<string, string | number | boolean>;
+  fields: Record<string, string | number | boolean | null>;
 }) {
   try {
     const result = fetch('/api/crm/submited_order/update', {
