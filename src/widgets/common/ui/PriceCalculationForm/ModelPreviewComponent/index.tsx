@@ -18,7 +18,10 @@ export const ModelPreviewComponent = observer(() => {
       onClose={handleClose}
       style={{ width: 800, height: 800 }}
     >
-      <Preview3DModel url={formCalculationState.modelUrl!} />
+      <Preview3DModel
+        fileName={formCalculationState.fileName}
+        url={formCalculationState.modelUrl!}
+      />
     </ModalComponent>
   );
 });

@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import { ThreeMFLoader } from 'three/examples/jsm/loaders/3MFLoader.js';
+import { AMFLoader } from 'three/examples/jsm/loaders/AMFLoader.js';
+import { ALLOWED_EXTENSIONS_ENUM } from '../constants';
 
 /**
  * Вычисляет объем геометрии в кубических единицах (зависит от масштаба модели)
@@ -47,11 +50,80 @@ function signedVolumeOfTriangle(
   return p1.dot(p2.cross(p3)) / 6.0;
 }
 
-export async function getSTLVolume(file: File): Promise<number> {
+export async function getVolume(file: File): Promise<number> {
   const arrayBuffer = await file.arrayBuffer();
-  const loader = new STLLoader();
-  const geometry = loader.parse(arrayBuffer);
+  const loader = getLoader(file.name);
+  if (!loader) return 0;
+  const parsed = loader.parse(arrayBuffer);
 
-  const volume = computeVolume(geometry);
-  return volume;
+  if (parsed instanceof THREE.BufferGeometry) {
+    return computeVolume(parsed);
+  }
+
+  if (parsed instanceof THREE.Mesh) {
+    return computeVolume(parsed.geometry);
+  }
+
+  if (parsed instanceof THREE.Group) {
+    let total = 0;
+
+    parsed.traverse((obj) => {
+      if (
+        obj instanceof THREE.Mesh &&
+        obj.geometry instanceof THREE.BufferGeometry
+      ) {
+        total += computeVolume(obj.geometry);
+      }
+    });
+
+    return total;
+  }
+  return 0;
 }
+
+export function getVolumeByGeometry(
+  geom: THREE.BufferGeometry | THREE.Group | THREE.Mesh,
+): number {
+  if (geom instanceof THREE.BufferGeometry) {
+    return computeVolume(geom);
+  }
+
+  if (geom instanceof THREE.Mesh) {
+    if (geom.geometry instanceof THREE.BufferGeometry) {
+      return computeVolume(geom.geometry);
+    }
+    return 0;
+  }
+
+  if (geom instanceof THREE.Group) {
+    let total = 0;
+
+    geom.traverse((obj) => {
+      if (
+        obj instanceof THREE.Mesh &&
+        obj.geometry instanceof THREE.BufferGeometry
+      ) {
+        total += computeVolume(obj.geometry);
+      }
+    });
+
+    return total;
+  }
+  return 0;
+}
+
+export const getLoader = (
+  fileName: string | null,
+): STLLoader | ThreeMFLoader | AMFLoader => {
+  const extension = (fileName || '').split('.').pop()?.toLowerCase();
+  switch (extension) {
+    case ALLOWED_EXTENSIONS_ENUM.STL:
+      return new STLLoader();
+    case ALLOWED_EXTENSIONS_ENUM.THREE_MF:
+      return new ThreeMFLoader();
+    case ALLOWED_EXTENSIONS_ENUM.AMF:
+      return new AMFLoader();
+    default:
+      return new STLLoader();
+  }
+};

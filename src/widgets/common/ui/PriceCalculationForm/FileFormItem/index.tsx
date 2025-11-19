@@ -1,10 +1,13 @@
-import React from "react";
-import cn from "classnames";
-import { FormInputTypeEnum, FormItemType } from "../types";
-import { InnerFormItem } from "./InnerFormItem";
-import s from "./style.module.scss";
+import React from 'react';
+import cn from 'classnames';
+import { InnerFormItem } from './InnerFormItem';
+import s from './style.module.scss';
+import {
+  FormInputTypeEnum,
+  FormItemType,
+} from '@/shared/common/FormItem/types';
 
-export const FormItem: React.FC<{
+export const FileFormItem: React.FC<{
   field: FormItemType;
 }> = ({ field }) => {
   return (

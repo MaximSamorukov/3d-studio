@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
 import { useController, useFormContext } from 'react-hook-form';
-import { FormItemType } from '../types';
 import s from './style.module.scss';
 import { ModelPreviewComponent } from '../ModelPreviewComponent';
 import { formCalculationState } from '../formCalculationStore';
 import { observer } from 'mobx-react-lite';
+import { FormItemType } from '@/shared/common/FormItem/types';
 
-export const InputFile = observer(
+export const Input3DFile = observer(
   ({ field: { name } }: { field: FormItemType }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [active, setActive] = useState(false);
@@ -49,7 +49,9 @@ export const InputFile = observer(
 
       if (isValidSize && isValidExtension && isValidMimeType) {
         onChange(file);
+
         formCalculationState.setModelUrl(URL.createObjectURL(file));
+        formCalculationState.setFileName(file.name);
       } else {
         setError(name, { message: 'Файла не соответствует требованиям' });
         alert('Файла не соответствует требованиям');
