@@ -72,6 +72,7 @@ export const TableModal = observer(() => {
               label="Статус оплаты"
               value={crmPreviewModalState.paymentStatus!}
               type="print_order"
+              fieldType="paymentStatus"
             />
             <EditDataField
               label="Стоимость заказа"

@@ -10,7 +10,7 @@ export const POST = async (request: Request) => {
     const repository = db.getRepository(PrintOrderEntity);
     const file = printOrderFormData.get('file') as unknown as File | null;
 
-    let file_path = 'there is no file uploaded';
+    let file_path = null;
     if (file) {
       const pathToFile = await uploadFile(file);
       file_path = pathToFile;

@@ -1,4 +1,4 @@
-import { Statuces } from './constants';
+import { PaymentStatuces, Statuces } from './constants';
 
 export type PrintOrderType = {
   color?: string | null;
@@ -9,7 +9,7 @@ export type PrintOrderType = {
   id: number | null;
   name?: string | null;
   order_status?: Statuces | null;
-  payment_status?: 'paid' | 'not_paid' | null;
+  payment_status?: PaymentStatuces | null;
   phone?: string | null;
   plastic_type?: string | null;
   price?: number | null;

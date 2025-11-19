@@ -6,6 +6,8 @@ import { userState } from '@/shared/state/user/state';
 import { observer } from 'mobx-react-lite';
 import { PrintOrderType } from '@/shared/types';
 import { PayButton } from '../PayButton';
+import OrderStatusLabel from '../OrderStatusLabel';
+import PaymentStatusLabel from '../PaymentStatusLabel';
 
 type OrderDrawerCardProps = {
   order: PrintOrderType;
@@ -86,7 +88,9 @@ export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Статус:</div>
-        <div className={s.cardItemValue}>{order.order_status}</div>
+        <div className={s.cardItemValue}>
+          <OrderStatusLabel status={order.order_status} />
+        </div>
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Стоимость заказа:</div>
@@ -96,7 +100,9 @@ export const OrderDrawerCard = observer(({ order }: OrderDrawerCardProps) => {
       </div>
       <div className={s.cardItemConatainer}>
         <div className={s.cardItemLabel}>Статус оплаты:</div>
-        <div className={s.cardItemValue}>{order.payment_status}</div>
+        <div className={s.cardItemValue}>
+          <PaymentStatusLabel status={order.payment_status} />
+        </div>
       </div>
     </div>
   );

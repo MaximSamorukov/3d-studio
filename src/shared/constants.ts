@@ -20,3 +20,13 @@ export const STATUSES_DICT: Record<Statuces, string> = {
   [Statuces.accomplished]: 'Выполнен',
   [Statuces.rejected]: 'Отменен',
 };
+
+export enum PaymentStatuces {
+  paid = 'paid',
+  not_paid = 'not_paid',
+}
+
+export const PAYMENT_STATUCES_DICT: Record<PaymentStatuces, string> = {
+  [PaymentStatuces.paid]: 'Оплачен',
+  [PaymentStatuces.not_paid]: 'Не оплачен',
+};

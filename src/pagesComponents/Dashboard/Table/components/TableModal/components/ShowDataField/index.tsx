@@ -8,6 +8,8 @@ import { Skeleton } from '@mui/material';
 import Image from 'next/image';
 import { handleDownload } from './utils';
 import { getFileName } from '../../utils';
+import PaymentStatusLabel from '../PaymentStatusLabel';
+import { PaymentStatuces } from '@/shared/constants';
 
 type ShowDataFieldProps = {
   label: string;
@@ -62,6 +64,28 @@ export const ShowDataField: React.FC<ShowDataFieldProps> = observer(
                     />
                   )}
                 </button>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+    if (fieldType === 'paymentStatus') {
+      return (
+        <div className={s.container}>
+          <div className={s.containerLabel}>{label}</div>
+          <div className={s.containerField}>
+            {pending ? (
+              <Skeleton
+                sx={{ bgcolor: 'grey.900' }}
+                variant="rounded"
+                width={80}
+                height={20}
+                animation="pulse"
+              />
+            ) : (
+              <div className={s.containerFieldValue}>
+                <PaymentStatusLabel status={value as PaymentStatuces} />
               </div>
             )}
           </div>
