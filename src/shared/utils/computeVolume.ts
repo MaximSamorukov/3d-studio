@@ -52,7 +52,8 @@ function signedVolumeOfTriangle(
 
 export async function getVolume(file: File): Promise<number> {
   const arrayBuffer = await file.arrayBuffer();
-  const loader = getLoader(file.name);
+  const LoaderClass = getLoader(file.name);
+  const loader = new LoaderClass();
   if (!loader) return 0;
   const parsed = loader.parse(arrayBuffer);
 
@@ -114,16 +115,16 @@ export function getVolumeByGeometry(
 
 export const getLoader = (
   fileName: string | null,
-): STLLoader | ThreeMFLoader | AMFLoader => {
+): typeof STLLoader | typeof ThreeMFLoader | typeof AMFLoader => {
   const extension = (fileName || '').split('.').pop()?.toLowerCase();
   switch (extension) {
     case ALLOWED_EXTENSIONS_ENUM.STL:
-      return new STLLoader();
+      return STLLoader;
     case ALLOWED_EXTENSIONS_ENUM.THREE_MF:
-      return new ThreeMFLoader();
+      return ThreeMFLoader;
     case ALLOWED_EXTENSIONS_ENUM.AMF:
-      return new AMFLoader();
+      return AMFLoader;
     default:
-      return new STLLoader();
+      return STLLoader;
   }
 };

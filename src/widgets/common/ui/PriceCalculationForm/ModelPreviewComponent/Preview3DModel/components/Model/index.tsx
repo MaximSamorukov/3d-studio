@@ -14,16 +14,12 @@ type ThreeContext = {
 type LoadedModel = THREE.BufferGeometry | THREE.Group | THREE.Mesh;
 
 export const Model: React.FC<ModulePropsType> = ({ url, fileName }) => {
-  const loader = useMemo(() => {
-    return getLoader(fileName);
-  }, [fileName]);
-  console.log('asd', fileName);
+  const loader = useMemo(() => getLoader(fileName), [fileName]);
   const geometry: LoadedModel | null = useLoader(loader, url) as LoadedModel;
   const meshRef = React.useRef<THREE.Mesh>(null);
 
   const { camera } = useThree() as unknown as ThreeContext;
   useEffect(() => {
-    console.log('effect');
     if (meshRef.current) {
       const box = new THREE.Box3().setFromObject(meshRef.current);
       const center = new THREE.Vector3();

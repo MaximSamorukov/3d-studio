@@ -5,4 +5,8 @@ export const ALLOWED_MIME_TYPES = [
   'model/stl',
   'model/3mf',
   'application/x-amf',
+  'application/vnd.ms-3mfdocument',
+  'model/amf',
+  '',
+  'application/x-tgif',
 ];

@@ -44,8 +44,11 @@ export const Input3DFile = observer(
       const isValidMimeType =
         type === 'application/x-tgif' ||
         type === 'model/stl' ||
+        type === 'application/vnd.ms-3mfdocument' ||
         type === 'model/3mf' ||
-        type === 'model/amf';
+        type === 'model/amf' ||
+        type === 'application/x-amf' ||
+        type === '';
 
       if (isValidSize && isValidExtension && isValidMimeType) {
         onChange(file);
@@ -53,8 +56,8 @@ export const Input3DFile = observer(
         formCalculationState.setModelUrl(URL.createObjectURL(file));
         formCalculationState.setFileName(file.name);
       } else {
-        setError(name, { message: 'Файла не соответствует требованиям' });
-        alert('Файла не соответствует требованиям');
+        setError(name, { message: 'Файл не соответствует требованиям' });
+        alert('Файл не соответствует требованиям');
       }
     };
     const handleDragOver = useCallback((e: React.DragEvent) => {
