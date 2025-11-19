@@ -27,7 +27,7 @@ export const InnerFormItem: React.FC<{
     case FormInputTypeEnum.checkbox:
       return <InputCheckbox field={field} />;
     case FormInputTypeEnum.textField:
-    //return <TextField />;
+      return <TextField />;
     case FormInputTypeEnum.file:
       return <InputFile field={field} />;
     default:

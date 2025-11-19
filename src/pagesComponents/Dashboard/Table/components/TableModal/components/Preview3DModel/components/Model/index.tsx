@@ -1,9 +1,8 @@
 'use client';
-import React, { useEffect } from 'react';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import React, { useEffect, useMemo } from 'react';
 import { useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { computeVolume } from './utils';
+import { getLoader, getVolumeByGeometry } from '@/shared/utils/computeVolume';
 
 type ModulePropsType = {
   url: string;
@@ -13,16 +12,29 @@ type ModulePropsType = {
 type ThreeContext = {
   camera: THREE.PerspectiveCamera;
 };
+type LoadedModel = THREE.BufferGeometry | THREE.Group | THREE.Mesh;
+
 export const Model: React.FC<ModulePropsType> = ({
   url,
   setDimensions,
   setVolume,
 }) => {
-  const geometry = useLoader(STLLoader, url);
+  const loader = useMemo(() => getLoader(url), [url]);
+
+  const geometry: LoadedModel | null = useLoader(loader, url) as LoadedModel;
+
   const meshRef = React.useRef<THREE.Mesh>(null);
+
   const { camera } = useThree() as unknown as ThreeContext;
-  React.useEffect(() => {
-    const volume = computeVolume(geometry);
+
+  useEffect(() => {
+    if (!geometry) {
+      setVolume({ volume: '0' });
+      return;
+    }
+    const volume = getVolumeByGeometry(
+      geometry as THREE.BufferGeometry | THREE.Group | THREE.Mesh,
+    );
     setVolume({ volume: volume.toFixed(2) });
   }, [geometry]);
 
@@ -31,9 +43,10 @@ export const Model: React.FC<ModulePropsType> = ({
       const box = new THREE.Box3().setFromObject(meshRef.current);
       const center = new THREE.Vector3();
       const size = new THREE.Vector3();
-      setDimensions(size);
       box.getCenter(center);
       box.getSize(size);
+
+      setDimensions(size);
 
       meshRef.current.position.sub(center);
 
@@ -46,9 +59,27 @@ export const Model: React.FC<ModulePropsType> = ({
       camera.updateProjectionMatrix();
     }
   }, [geometry, camera]);
-  return (
-    <mesh ref={meshRef} geometry={geometry}>
-      <meshStandardMaterial color="#ff6b00" metalness={0.2} roughness={0.5} />
-    </mesh>
-  );
+
+  if (geometry instanceof THREE.Mesh) {
+    return (
+      <primitive object={geometry} ref={meshRef}>
+        <meshStandardMaterial color="#ff6b00" metalness={0.2} roughness={0.5} />
+      </primitive>
+    );
+  }
+  if (geometry instanceof THREE.Group) {
+    return (
+      <primitive object={geometry} ref={meshRef}>
+        <meshStandardMaterial color="#ff6b00" metalness={0.2} roughness={0.5} />
+      </primitive>
+    );
+  }
+  if (geometry instanceof THREE.BufferGeometry) {
+    return (
+      <mesh geometry={geometry} ref={meshRef}>
+        <meshStandardMaterial color="#ff6b00" metalness={0.2} roughness={0.5} />
+      </mesh>
+    );
+  }
+  return null;
 };

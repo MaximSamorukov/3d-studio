@@ -41,7 +41,7 @@ export const InputFile = ({
       if (isValidSize && isValidExtension && isValidMimeType) {
         onChange(file);
       } else {
-        alert('Файла не соответствует требованиям');
+        alert('Файл не соответствует требованиям');
       }
     },
     [onChange],
@@ -63,7 +63,7 @@ export const InputFile = ({
     if (isValidSize && isValidExtension && isValidMimeType) {
       onChange(file);
     } else {
-      alert('Файла не соответствует требованиям');
+      alert('Файл не соответствует требованиям');
     }
   };
   return (

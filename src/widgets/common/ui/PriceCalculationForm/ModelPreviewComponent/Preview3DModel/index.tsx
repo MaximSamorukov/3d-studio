@@ -8,7 +8,13 @@ import { observer } from 'mobx-react-lite';
 import { CircularProgress } from '@mui/material';
 import s from './style.module.scss';
 
-export const Preview3DModel = observer(({ url }: { url: string }) => {
+export const Preview3DModel = ({
+  url,
+  fileName,
+}: {
+  url: string;
+  fileName: string | null;
+}) => {
   if (!url) {
     return (
       <div className={s.container}>
@@ -27,7 +33,7 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} />
             <Suspense fallback={null}>
-              <Model url={url} />
+              <Model url={url} fileName={fileName} />
             </Suspense>
             <OrbitControls />
           </Canvas>
@@ -35,4 +41,4 @@ export const Preview3DModel = observer(({ url }: { url: string }) => {
       </div>
     </div>
   );
-});
+};

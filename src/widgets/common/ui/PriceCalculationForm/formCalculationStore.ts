@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { CalculationForm } from './types';
+import { CalculationForm } from '@/shared/common/FormItem/types';
 import { calculatePrintPrice } from '@/services';
 
 class FormCalculationState {
@@ -12,6 +12,7 @@ class FormCalculationState {
   isError = false;
   previewModalIsOpen = false;
   modelUrl: string | null = null;
+  fileName: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -79,6 +80,11 @@ class FormCalculationState {
   setModelUrl(url: string) {
     this.modelUrl = url;
   }
+
+  setFileName(fileName: string) {
+    this.fileName = fileName;
+  }
+
   getCalculationData() {
     return {
       weight: this.weight,

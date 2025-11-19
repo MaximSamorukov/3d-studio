@@ -30,3 +30,9 @@ export const PAYMENT_STATUCES_DICT: Record<PaymentStatuces, string> = {
   [PaymentStatuces.paid]: 'Оплачен',
   [PaymentStatuces.not_paid]: 'Не оплачен',
 };
+
+export enum ALLOWED_EXTENSIONS_ENUM {
+  STL = 'stl',
+  THREE_MF = '3mf',
+  AMF = 'amf',
+}

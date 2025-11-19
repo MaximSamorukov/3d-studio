@@ -1,15 +1,15 @@
-import { UseControllerProps } from "react-hook-form";
+import { UseControllerProps } from 'react-hook-form';
 
 export enum FormInputTypeEnum {
-  file = "file",
-  checkbox = "checkbox",
-  inputNumber = "inputNumber",
-  inputText = "inputText",
-  inputTextArea = "inputTextArea",
-  selector = "selector",
-  textField = "textField",
-  inputContacts = "inputContacts",
-  password = "password",
+  file = 'file',
+  checkbox = 'checkbox',
+  inputNumber = 'inputNumber',
+  inputText = 'inputText',
+  inputTextArea = 'inputTextArea',
+  selector = 'selector',
+  textField = 'textField',
+  inputContacts = 'inputContacts',
+  password = 'password',
 }
 
 export type Option = { key: string; value: string };
@@ -21,7 +21,7 @@ export type FormItemType = {
   formInputType: FormInputTypeEnum;
   defaultValue: number | string | boolean | undefined;
   values: undefined | string | number | Option[];
-  rules?: UseControllerProps["rules"];
+  rules?: UseControllerProps['rules'];
 };
 
 export type LoginFormType = {
@@ -35,4 +35,12 @@ export type CalculationDataResponseType = {
   volume: string;
   printTime: string;
   price: string;
+};
+
+export type CalculationForm = {
+  plasticType: string;
+  fileUpload: Blob;
+  inputContacts: string;
+  withModeling: boolean;
+  withPostProcessing: boolean;
 };

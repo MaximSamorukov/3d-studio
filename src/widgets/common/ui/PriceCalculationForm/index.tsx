@@ -3,13 +3,18 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
 import { formFields } from './constants';
-import { CalculationForm, FormItemType } from './types';
 import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { formCalculationState } from './formCalculationStore';
 import { CircularProgress } from '@mui/material';
+import { FileFormItem } from './FileFormItem';
 
 import s from './style.module.scss';
+import {
+  CalculationForm,
+  FormInputTypeEnum,
+  FormItemType,
+} from '@/shared/common/FormItem/types';
 
 export const PriceCalculationForm = observer(() => {
   const methods = useForm<CalculationForm>({
@@ -39,9 +44,15 @@ export const PriceCalculationForm = observer(() => {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <div className={s.formBody}>
-            {(formFields as FormItemType[]).map((field) => (
-              <FormItem key={field.name} field={field} />
-            ))}
+            {(formFields as FormItemType[]).map((field) => {
+              if (
+                field.formInputType === FormInputTypeEnum.file ||
+                field.formInputType === FormInputTypeEnum.textField
+              ) {
+                return <FileFormItem key={field.name} field={field} />;
+              }
+              return <FormItem key={field.name} field={field} />;
+            })}
           </div>
           <div className={s.formFooter}>
             <SubmitButton />

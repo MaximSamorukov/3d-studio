@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
 import { useController, useFormContext } from 'react-hook-form';
-import { FormItemType } from '../types';
 import s from './style.module.scss';
 import { ModelPreviewComponent } from '../ModelPreviewComponent';
 import { formCalculationState } from '../formCalculationStore';
 import { observer } from 'mobx-react-lite';
+import { FormItemType } from '@/shared/common/FormItem/types';
 
-export const InputFile = observer(
+export const Input3DFile = observer(
   ({ field: { name } }: { field: FormItemType }) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [active, setActive] = useState(false);
@@ -44,15 +44,20 @@ export const InputFile = observer(
       const isValidMimeType =
         type === 'application/x-tgif' ||
         type === 'model/stl' ||
+        type === 'application/vnd.ms-3mfdocument' ||
         type === 'model/3mf' ||
-        type === 'model/amf';
+        type === 'model/amf' ||
+        type === 'application/x-amf' ||
+        type === '';
 
       if (isValidSize && isValidExtension && isValidMimeType) {
         onChange(file);
+
         formCalculationState.setModelUrl(URL.createObjectURL(file));
+        formCalculationState.setFileName(file.name);
       } else {
-        setError(name, { message: 'Файла не соответствует требованиям' });
-        alert('Файла не соответствует требованиям');
+        setError(name, { message: 'Файл не соответствует требованиям' });
+        alert('Файл не соответствует требованиям');
       }
     };
     const handleDragOver = useCallback((e: React.DragEvent) => {

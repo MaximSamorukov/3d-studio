@@ -1,5 +1,5 @@
 import 'server-only';
-import { getSTLVolume } from '@/shared/utils/computeVolume';
+import { getVolume } from '@/shared/utils/computeVolume';
 import {
   APPROXIMATE_PRINT_SPEED,
   MM_PER_SM_POW_3,
@@ -20,7 +20,7 @@ export const POST = async (request: Request) => {
 
   if (file) {
     try {
-      const volumeInMM = await getSTLVolume(file as File);
+      const volumeInMM = await getVolume(file as File);
       const volumeInSM = volumeInMM / MM_PER_SM_POW_3;
       const plasticType = req.get('plasticType');
       if (!plasticType) {
