@@ -11,6 +11,7 @@ import ActionPanel from '@/widgets/common/ui/ActionPanel';
 import Footer from '@/widgets/common/ui/Footer';
 import { Provider } from '@/shared/common/Provider';
 import { Suspense } from 'react';
+import Head from 'next/head';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -29,6 +30,14 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          rel="preload"
+          href="/crm_icon.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+      </Head>
       <body className={roboto.variable}>
         <Provider>
           <header>
