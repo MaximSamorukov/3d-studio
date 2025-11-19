@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getLoader, getVolumeByGeometry } from '@/shared/utils/computeVolume';
@@ -19,9 +19,9 @@ export const Model: React.FC<ModulePropsType> = ({
   setDimensions,
   setVolume,
 }) => {
-  const loader = getLoader(url);
+  const loader = useMemo(() => getLoader(url), [url]);
 
-  const geometry = loader ? (useLoader(loader, url) as LoadedModel) : null;
+  const geometry: LoadedModel | null = useLoader(loader, url) as LoadedModel;
 
   const meshRef = React.useRef<THREE.Mesh>(null);
 
