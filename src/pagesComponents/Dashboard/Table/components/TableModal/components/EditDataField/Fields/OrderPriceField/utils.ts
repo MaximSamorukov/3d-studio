@@ -25,14 +25,15 @@ export async function updateSubmitedOrderById({
   }
 }
 
-export const getUrl = async (filePath: string) => {
+export const getFile = async (filePath: string) => {
   if (filePath) {
     try {
       const response = await fetch(filePath);
       if (!response.ok) throw new Error('Ошибка при загрузке файла');
 
       const blob = await response.blob();
-      return blob;
+      const file = new File([blob], filePath, { type: blob.type });
+      return file;
     } catch (_) {
       return null;
     }

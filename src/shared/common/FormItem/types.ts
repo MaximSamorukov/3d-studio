@@ -39,7 +39,7 @@ export type CalculationDataResponseType = {
 
 export type CalculationForm = {
   plasticType: string;
-  fileUpload: Blob;
+  fileUpload: File;
   inputContacts: string;
   withModeling: boolean;
   withPostProcessing: boolean;

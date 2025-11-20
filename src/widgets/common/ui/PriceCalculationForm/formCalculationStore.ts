@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { CalculationForm } from '@/shared/common/FormItem/types';
 import { calculatePrintPrice } from '@/services';
+import { getVolume } from '@/shared/utils/computeVolume';
 
 class FormCalculationState {
   weight = 'нет данных';
@@ -27,7 +28,7 @@ class FormCalculationState {
     this[key] = value;
   }
 
-  requestCalculation(info: CalculationForm) {
+  async requestCalculation(info: CalculationForm) {
     this.pending = true;
     this.isError = false;
     const formData = new FormData();
@@ -35,7 +36,9 @@ class FormCalculationState {
     formData.append('withModeling', info.withModeling.toString());
     formData.append('withPostProcessing', info.withPostProcessing.toString());
     formData.append('plasticType', info.plasticType);
-    formData.append('fileUpload', info.fileUpload);
+    const volume = await getVolume(info.fileUpload);
+
+    formData.append('volume', volume.toString());
     calculatePrintPrice(formData)
       .then((result) => {
         const {

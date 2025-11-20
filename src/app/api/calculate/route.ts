@@ -1,5 +1,4 @@
 import 'server-only';
-import { getVolume } from '@/shared/utils/computeVolume';
 import {
   APPROXIMATE_PRINT_SPEED,
   MM_PER_SM_POW_3,
@@ -12,15 +11,11 @@ import { MaterialsEntity } from '@/entities/materials';
 export const POST = async (request: Request) => {
   const req = await request.formData();
 
-  const rawFile = req.get('fileUpload');
+  const volume = req.get('volume');
 
-  const isFileLike =
-    rawFile && typeof (rawFile as Blob).arrayBuffer === 'function';
-  const file = isFileLike ? rawFile : null;
-
-  if (file) {
+  if (volume) {
     try {
-      const volumeInMM = await getVolume(file as File);
+      const volumeInMM = Number(volume);
       const volumeInSM = volumeInMM / MM_PER_SM_POW_3;
       const plasticType = req.get('plasticType');
       if (!plasticType) {

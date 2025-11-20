@@ -4,9 +4,11 @@ import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import Image from 'next/image';
-import { getUrl, updateSubmitedOrderById } from './utils';
-import s from './style.module.scss';
+import { getFile, updateSubmitedOrderById } from './utils';
 import { calculatePrintPrice } from '@/services';
+import { getVolume } from '@/shared/utils/computeVolume';
+
+import s from './style.module.scss';
 
 export const OrderPriceField = observer(() => {
   const [priceCalculating, setPriceCalculating] = useState(false);
@@ -73,9 +75,10 @@ export const OrderPriceField = observer(() => {
         'plasticType',
         crmPreviewModalState.plasticType as string,
       );
-      const blob = await getUrl(crmPreviewModalState.filePath as string);
-      if (blob) {
-        formData.append('fileUpload', blob as Blob);
+      const file = await getFile(crmPreviewModalState.filePath as string);
+      if (file) {
+        const volume = await getVolume(file);
+        formData.append('volume', volume.toString());
         calculatePrintPrice(formData)
           .then((i) => {
             setPriceCalculating(false);
