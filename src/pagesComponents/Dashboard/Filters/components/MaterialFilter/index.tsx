@@ -26,6 +26,7 @@ export const MaterialFilter = observer(
       }
     };
     const value = crmFilterState.plasticType ?? EMPTY;
+    console.log(data);
     return (
       <div className={s.container}>
         <div
@@ -45,7 +46,7 @@ export const MaterialFilter = observer(
             onChange={handleSelectMaterial}
             value={value}
           >
-            {[null, ...(data || [])].map((i) => {
+            {[null, ...(data || []).filter(Boolean)].map((i) => {
               const label = i ?? '---';
               const key = i ?? EMPTY;
               return (
