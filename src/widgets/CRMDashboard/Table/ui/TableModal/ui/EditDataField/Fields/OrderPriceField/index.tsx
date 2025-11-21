@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import Image from 'next/image';
 import { getFile, updateSubmitedOrderById } from './api/utils';
-import { calculatePrintPrice } from '@/services';
+import { calculatePrintPrice } from '@/shared/api';
 import { getVolume } from '@/shared/utils/computeVolume';
 
 import s from './style.module.scss';

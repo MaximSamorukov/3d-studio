@@ -6,9 +6,9 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '@/app/(website)/globals.css';
-import Header from '@/widgets/common/ui/Header';
-import ActionPanel from '@/widgets/common/ui/ActionPanel';
-import Footer from '@/widgets/common/ui/Footer';
+import { Header } from '@/widgets/WebsiteLayoutWidgets';
+import { ActionPanel } from '@/widgets/WebsiteLayoutWidgets';
+import { Footer } from '@/widgets/WebsiteLayoutWidgets';
 import { Provider } from '@/shared/common/Provider';
 import { Suspense } from 'react';
 import Head from 'next/head';

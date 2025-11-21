@@ -8,7 +8,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { userState } from '@/shared/state/user/state';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
-import { getMaterials, getServices } from '@/services';
+import { getMaterials, getServices } from '@/shared/api';
 import { materialsState } from '@/shared/state/materials/state';
 import { serviceState } from '@/shared/state/services/state';
 

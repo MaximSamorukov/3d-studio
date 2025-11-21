@@ -1,10 +1,10 @@
-import { OrderFormFields } from '@/widgets/3dPrinting/OrderForm';
-import { removeConsultation, removeOrder } from '@/services';
+import { OrderFormFields } from '@/shared/common/OrderForm';
+import { removeConsultation, removeOrder } from '@/shared/api';
 import {
   getConsultationsOnEmail,
   getOrdersOnEmail,
-} from '@/widgets/common/ui/CRMEnterButton/utils';
-import { ContactFormType } from '@/widgets/common/ui/OrderConsultationForm/types';
+} from '@/features/CRMEnterButton/utils';
+import { ContactFormType } from '@/shared/types';
 import { action, makeAutoObservable, runInAction } from 'mobx';
 import { PrintOrderType } from '../../types';
 

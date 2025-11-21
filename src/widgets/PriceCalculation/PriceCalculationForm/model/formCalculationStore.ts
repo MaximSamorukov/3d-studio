@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { CalculationForm } from '@/shared/common/FormItem/types';
-import { calculatePrintPrice } from '@/services';
+import { calculatePrintPrice } from '@/shared/api';
 import { getVolume } from '@/shared/utils/computeVolume';
 
 class FormCalculationState {

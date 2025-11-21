@@ -3,7 +3,7 @@ import NextAuth, { User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { TypeORMAdapter } from '@auth/typeorm-adapter';
-import { checkUser } from '@/services';
+import { checkUser } from '@/shared/api';
 import * as entities from '@/shared/common/auth/entities';
 
 export const {

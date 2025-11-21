@@ -1,8 +1,8 @@
-import Link from "next/link";
-import ContactWidget from "../../../widgets/common/ui/MainMenuItemContactWidget";
-import s from "./style.module.scss";
-import Image from "next/image";
-import { menuItems, socials } from "@/app/config/constants";
+import Link from 'next/link';
+import ContactWidget from '../../../widgets/MainMenuContactWidget';
+import s from './style.module.scss';
+import Image from 'next/image';
+import { menuItems, socials } from '@/app/config/constants';
 
 export const FooterMenuItem = ({
   type,
@@ -11,7 +11,7 @@ export const FooterMenuItem = ({
   type: string;
   header: string;
 }) => {
-  if (type === "baseMenuItems") {
+  if (type === 'baseMenuItems') {
     return (
       <div className={s.container}>
         <div className={s.header}>{header}</div>
@@ -25,7 +25,7 @@ export const FooterMenuItem = ({
       </div>
     );
   }
-  if (type === "contacts") {
+  if (type === 'contacts') {
     return (
       <div className={s.container}>
         <div className={s.header}>{header}</div>
@@ -35,7 +35,7 @@ export const FooterMenuItem = ({
       </div>
     );
   }
-  if (type === "socials") {
+  if (type === 'socials') {
     return (
       <div className={s.container}>
         <div className={s.header}>{header}</div>

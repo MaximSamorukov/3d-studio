@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './style.module.scss';
-import { plastics } from '@/widgets/common/ui/Plastics/constants';
+import { plastics } from '@/features/Plastics/constants';
 import { useController, useFormContext } from 'react-hook-form';
 import { FormItemType } from './types';
 
