@@ -1,10 +1,10 @@
 import { expect, test, vi, describe, beforeEach, type Mock } from 'vitest';
 import { getFinalPriceAsync } from './utils';
 import { SERVICES } from './constants';
-import { getServicesDataSource } from '@/shared/common/db/services';
+import { getServicesDataSource } from '@/shared/db/services';
 
 vi.mock('server-only', () => ({}));
-vi.mock('@/shared/common/db/services', () => ({
+vi.mock('@/shared/db/services', () => ({
   getServicesDataSource: vi.fn(),
 }));
 

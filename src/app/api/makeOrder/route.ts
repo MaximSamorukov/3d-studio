@@ -1,6 +1,6 @@
 import 'server-only';
 import { PrintOrderEntity } from '@/entities/order';
-import { getOrderDataSource } from '@/shared/common/db/orders';
+import { getOrderDataSource } from '@/shared/db/orders';
 import { uploadFile } from './uploadFile';
 
 export const POST = async (request: Request) => {

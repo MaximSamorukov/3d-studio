@@ -1,5 +1,5 @@
 import { PrintOrderEntity } from '@/entities/order';
-import { getOrderDataSource } from '@/shared/common/db/orders';
+import { getOrderDataSource } from '@/shared/db/orders';
 import { NextResponse } from 'next/server';
 // export const runtime = 'nodejs';
 

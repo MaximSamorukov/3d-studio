@@ -1,14 +1,6 @@
-import { Filters } from '@/pagesComponents/Dashboard/Filters';
-import { Header } from '@/pagesComponents/Dashboard/Header';
-import { Table } from '@/pagesComponents/Dashboard/Table';
 import React from 'react';
+import { CRMDashboard } from '@/pages_layer/Dashboard';
 
-export default function Dashboard() {
-  return (
-    <>
-      <Header />
-      <Filters />
-      <Table />
-    </>
-  );
+export default function Dashboards() {
+  return <CRMDashboard />;
 }

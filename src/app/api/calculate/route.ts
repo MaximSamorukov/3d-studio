@@ -5,7 +5,7 @@ import {
   MODEL_DENSITY,
 } from './constants';
 import { getFinalPriceAsync } from './utils';
-import { getMaterialsDataSource } from '@/shared/common/db/materials';
+import { getMaterialsDataSource } from '@/shared/db/materials';
 import { MaterialsEntity } from '@/entities/materials';
 
 export const POST = async (request: Request) => {

@@ -1,7 +1,7 @@
-import { Filters } from '@/pagesComponents/Dashboard/Filters';
-import { Header } from '@/pagesComponents/Dashboard/Header';
-import { Table } from '@/pagesComponents/Dashboard/Table';
-import { LoginButton } from '@/widgets/common/ui/LoginButton';
+import { Filters } from '@/widgets/CRMDashboard/Filters';
+import { Header } from '@/widgets/CRMDashboard/Header';
+import { Table } from '@/widgets/CRMDashboard/Table';
+import { LoginButton } from '@/shared/ui/LoginButton';
 import Link from 'next/link';
 import React from 'react';
 

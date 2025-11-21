@@ -1,7 +1,7 @@
 import { createFetchObject } from './utils';
-import { PaymentDTOSchema } from '@/shared/validateSchemas';
+import { PaymentDTOSchema } from '@/shared/schemas/validateSchemas';
 import { PrintOrderEntity } from '@/entities/order';
-import { getOrderDataSource } from '@/shared/common/db/orders';
+import { getOrderDataSource } from '@/shared/db/orders';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
