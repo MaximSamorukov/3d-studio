@@ -1,6 +1,6 @@
-import { Filters } from '@/pagesComponents/Dashboard/Filters';
-import { Header } from '@/pagesComponents/Dashboard/Header';
-import { Table } from '@/pagesComponents/Dashboard/Table';
+import { Filters } from '@/pages_layer/Dashboard/Filters';
+import { Header } from '@/pages_layer/Dashboard/Header';
+import { Table } from '@/pages_layer/Dashboard/Table';
 import React from 'react';
 
 export default function Dashboard() {

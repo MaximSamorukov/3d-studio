@@ -1,6 +1,5 @@
 import React from 'react';
-import { Contacts } from '@/pagesComponents/Contacts';
-// export const runtime = 'nodejs';
+import { Contacts } from '@/pages_layer/Contacts';
 
 export default function Printing3D() {
   return (

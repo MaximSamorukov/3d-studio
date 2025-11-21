@@ -1,5 +1,5 @@
 import React from 'react';
-import { PricePage } from '@/pagesComponents/price/page';
+import { PricePage } from '@/pages_layer/price/page';
 // export const runtime = 'nodejs';
 
 export default function Price() {
