@@ -1,6 +1,6 @@
 'use client';
 
-import { EXTENSIONS } from '@/shared/constants';
+import { EXTENSIONS } from '@/shared/constants/constants';
 
 export async function getSubmitedOrders({
   page,

@@ -9,7 +9,7 @@ import '@/app/(website)/globals.css';
 import { Header } from '@/widgets/WebsiteLayoutWidgets';
 import { ActionPanel } from '@/widgets/WebsiteLayoutWidgets';
 import { Footer } from '@/widgets/WebsiteLayoutWidgets';
-import { Provider } from '@/shared/common/Provider';
+import { Provider } from '@/shared/Provider';
 import { Suspense } from 'react';
 import Head from 'next/head';
 

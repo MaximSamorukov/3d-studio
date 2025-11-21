@@ -4,7 +4,7 @@ import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { TypeORMAdapter } from '@auth/typeorm-adapter';
 import { checkUser } from '@/shared/api';
-import * as entities from '@/shared/common/auth/entities';
+import * as entities from '@/shared/auth/entities';
 
 export const {
   auth,

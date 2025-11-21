@@ -1,4 +1,4 @@
-import { ContactFormType } from '@/shared/types';
+import { ContactFormType } from '@/shared/types/types';
 import { orderConsultation } from '@/shared/api';
 
 export async function orderConsultationHandler(data: ContactFormType) {

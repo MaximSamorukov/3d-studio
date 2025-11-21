@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import s from './style.module.scss';
-import { FooterMenuItem } from '@/shared/common/FooterMenuItem';
+import { FooterMenuItem } from '@/shared/ui/FooterMenuItem';
 import { footerMenu, logoText } from '@/app/config/constants';
 
 export default function Footer() {

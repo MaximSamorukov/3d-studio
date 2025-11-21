@@ -1,7 +1,4 @@
-import {
-  FormInputTypeEnum,
-  FormItemType,
-} from '@/shared/common/FormItem/types';
+import { FormInputTypeEnum, FormItemType } from '@/shared/ui/FormItem/types';
 
 export const formFields: FormItemType[] = [
   {

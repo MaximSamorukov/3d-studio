@@ -1,4 +1,4 @@
-import { s3 } from '@/shared/common/db/s3';
+import { s3 } from '@/shared/db/s3';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 // export const runtime = 'nodejs';
 

@@ -2,7 +2,11 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { ORDER_STATUSES, Statuces, STATUSES_DICT } from '@/shared/constants';
+import {
+  ORDER_STATUSES,
+  Statuces,
+  STATUSES_DICT,
+} from '@/shared/constants/constants';
 import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import Image from 'next/image';
 import { updateSubmitedOrderById } from './api/utils';

@@ -3,7 +3,7 @@
 import cn from 'classnames';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { makeOrder } from '@/shared/api';
-import { OrderSuccesModal } from '@/shared/common/OrderSuccesModal';
+import { OrderSuccesModal } from '@/shared/ui/OrderSuccesModal';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';

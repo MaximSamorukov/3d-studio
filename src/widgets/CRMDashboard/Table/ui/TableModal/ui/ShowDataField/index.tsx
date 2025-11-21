@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { handleDownload } from './utils';
 import { getFileName } from '@/widgets/CRMDashboard/Table/api/utils';
 import PaymentStatusLabel from '../PaymentStatusLabel';
-import { PaymentStatuces } from '@/shared/constants';
+import { PaymentStatuces } from '@/shared/constants/constants';
 import s from './style.module.scss';
 
 type ShowDataFieldProps = {

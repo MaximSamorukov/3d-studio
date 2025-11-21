@@ -1,4 +1,4 @@
-import { FormInputTypeEnum } from '@/shared/types';
+import { FormInputTypeEnum } from '@/shared/types/types';
 import { omit } from 'lodash';
 
 export const formFields = [

@@ -1,7 +1,7 @@
 import { PrintOrderEntity } from '@/entities/order/index';
-import { getOrderDataSource } from '@/shared/common/db/orders';
+import { getOrderDataSource } from '@/shared/db/orders';
 import { ConsultationEntity } from '@/entities/consultation';
-import { getConsultationDataSource } from '@/shared/common/db/consultations';
+import { getConsultationDataSource } from '@/shared/db/consultations';
 
 export const POST = async (request: Request) => {
   const data = await request.json();

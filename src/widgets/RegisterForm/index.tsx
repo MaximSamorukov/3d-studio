@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { formFields } from './constants';
-import { FormItemType } from '@/shared/common/FormItem/types';
-import { FormItem } from '@/shared/common/FormItem';
-import { SubmitButton } from '@/shared/common/SubmitButton';
+import { FormItemType } from '@/shared/ui/FormItem/types';
+import { FormItem } from '@/shared/ui/FormItem';
+import { SubmitButton } from '@/shared/ui/SubmitButton';
 import { Errors } from './Errors';
 import { RegisterFormType } from './types';
 import { useSession } from 'next-auth/react';

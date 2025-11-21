@@ -1,7 +1,7 @@
 import * as entities from '@/entities/masterUsers/index';
 // export const runtime = 'nodejs';
 
-import { getMasterUsersDataSource } from '@/shared/common/db/masterUsers';
+import { getMasterUsersDataSource } from '@/shared/db/masterUsers';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { ModalComponent } from '@/shared/common/Modal';
+import { ModalComponent } from '@/shared/ui/Modal';
 import { OrderConsultationForm } from './ui/OrderConsultationForm';
 
 type ModalComponentProps = {

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import { ModalComponent } from '@/shared/common/Modal';
+import { ModalComponent } from '@/shared/ui/Modal';
 import { Box } from '@mui/material';
 import s from './style.module.scss';
 

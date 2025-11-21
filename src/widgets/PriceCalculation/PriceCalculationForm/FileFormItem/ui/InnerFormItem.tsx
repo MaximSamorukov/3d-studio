@@ -1,7 +1,4 @@
-import {
-  FormInputTypeEnum,
-  FormItemType,
-} from '@/shared/common/FormItem/types';
+import { FormInputTypeEnum, FormItemType } from '@/shared/ui/FormItem/types';
 import { Input3DFile } from './Input3DFile';
 import { TextField } from './TextField';
 

@@ -1,5 +1,5 @@
 import { UseControllerProps } from 'react-hook-form';
-import { PaymentStatuces, Statuces } from './constants';
+import { PaymentStatuces, Statuces } from '../constants/constants';
 
 export type PrintOrderType = {
   color?: string | null;

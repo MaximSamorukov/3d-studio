@@ -1,12 +1,12 @@
-import { OrderFormFields } from '@/shared/common/OrderForm';
+import { OrderFormFields } from '@/shared/ui/OrderForm';
 import { removeConsultation, removeOrder } from '@/shared/api';
 import {
   getConsultationsOnEmail,
   getOrdersOnEmail,
 } from '@/features/CRMEnterButton/utils';
-import { ContactFormType } from '@/shared/types';
+import { ContactFormType } from '@/shared/types/types';
 import { action, makeAutoObservable, runInAction } from 'mobx';
-import { PrintOrderType } from '../../types';
+import { PrintOrderType } from '../../types/types';
 
 export type OrderType = Omit<OrderFormFields, 'file' | 'plasticType'> & {
   file_path?: string;

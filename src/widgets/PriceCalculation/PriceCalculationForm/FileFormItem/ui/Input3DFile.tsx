@@ -6,7 +6,7 @@ import s from '../style.module.scss';
 import { ModelPreviewComponent } from '../../ModelPreviewComponent';
 import { formCalculationState } from '../../model/formCalculationStore';
 import { observer } from 'mobx-react-lite';
-import { FormItemType } from '@/shared/common/FormItem/types';
+import { FormItemType } from '@/shared/ui/FormItem/types';
 
 export const Input3DFile = observer(
   ({ field: { name } }: { field: FormItemType }) => {

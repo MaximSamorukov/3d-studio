@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
 import { formFields } from './model/constants';
-import { FormItem } from '@/shared/common/FormItem';
+import { FormItem } from '@/shared/ui/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { formCalculationState } from './model/formCalculationStore';
 import { CircularProgress } from '@mui/material';
@@ -14,7 +14,7 @@ import {
   CalculationForm,
   FormInputTypeEnum,
   FormItemType,
-} from '@/shared/common/FormItem/types';
+} from '@/shared/ui/FormItem/types';
 
 export const PriceCalculationForm = observer(() => {
   const methods = useForm<CalculationForm>({

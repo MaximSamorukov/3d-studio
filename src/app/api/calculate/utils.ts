@@ -1,5 +1,5 @@
 import 'server-only';
-import { getServicesDataSource } from '@/shared/common/db/services';
+import { getServicesDataSource } from '@/shared/db/services';
 import {
   MODELLING_PRICE,
   POST_PROCESSING_PRICE,

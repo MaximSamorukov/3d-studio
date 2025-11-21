@@ -2,7 +2,7 @@
 import 'server-only';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import * as entities from '@/shared/common/auth/entities';
+import * as entities from '@/shared/auth/entities';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

@@ -1,10 +1,10 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
-import { Statuces } from '@/shared/constants';
+import { Statuces } from '@/shared/constants/constants';
 import { getSubmitedOrderById } from '@/widgets/CRMDashboard/Table/ui/TableModal/api/utils';
 import { getSubmitedOrders } from '@/widgets/CRMDashboard/Table/api/utils';
 import { autorun, makeAutoObservable } from 'mobx';
-import { PrintOrderType } from '../../types';
+import { PrintOrderType } from '../../types/types';
 
 type CrmPreviewModalStateType = PrintOrderType & {
   pending?: boolean;

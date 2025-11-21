@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginButton } from '@/shared/common/LoginButton';
+import { LoginButton } from '@/shared/ui/LoginButton';
 import { WebsiteLink } from './ui/WebsiteLink';
 import { EmailComponent } from './ui/EmailComponent';
 import { Romb } from './ui/Romb';

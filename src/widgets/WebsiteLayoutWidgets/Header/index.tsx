@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ContactWidget from '../../MainMenuContactWidget';
 import s from './style.module.scss';
 import { menuItems } from './constants';
-import MenuItem from '@/shared/common/MenuItem';
+import MenuItem from '@/shared/ui/MenuItem';
 
 export default function Header() {
   return (

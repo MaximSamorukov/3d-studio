@@ -3,7 +3,7 @@ import React, { FormEventHandler } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { formFields } from './constants';
 import { LoginFormType, FormItemType } from './types';
-import { FormItem } from '@/shared/common/FormItem';
+import { FormItem } from '@/shared/ui/FormItem';
 import { SubmitButton } from './SubmitButton';
 import { signIn } from 'next-auth/react';
 

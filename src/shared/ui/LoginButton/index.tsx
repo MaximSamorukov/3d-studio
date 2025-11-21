@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import cn from 'classnames';
 import { useCallback, useEffect, useState } from 'react';
-import { ModalComponent } from '@/shared/common/Modal';
+import { ModalComponent } from '@/shared/ui/Modal';
 import { LoginForm } from '../LoginForm';
 import { signOut, useSession } from 'next-auth/react';
 import { userState } from '@/shared/state/user/state';

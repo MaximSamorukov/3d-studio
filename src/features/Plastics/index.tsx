@@ -1,4 +1,4 @@
-import { getMaterialsDataSource } from '@/shared/common/db/materials';
+import { getMaterialsDataSource } from '@/shared/db/materials';
 import { MaterialsEntity } from '@/entities/materials';
 import s from './style.module.scss';
 

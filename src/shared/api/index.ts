@@ -150,8 +150,8 @@ export async function getOrdersOnEmail(email: string) {
     return [];
   }
 }
-import { InvoiceType, PaymentDTOType, PaymentType } from '@/shared/types';
-import { PaymentDTOSchema } from '@/shared/validateSchemas';
+import { InvoiceType, PaymentDTOType, PaymentType } from '@/shared/types/types';
+import { PaymentDTOSchema } from '@/shared/schemas/validateSchemas';
 import * as z from 'zod';
 
 export type CreatePaymentError =

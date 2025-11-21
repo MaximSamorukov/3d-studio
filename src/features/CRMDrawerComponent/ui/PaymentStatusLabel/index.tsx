@@ -1,4 +1,7 @@
-import { PAYMENT_STATUCES_DICT, PaymentStatuces } from '@/shared/constants';
+import {
+  PAYMENT_STATUCES_DICT,
+  PaymentStatuces,
+} from '@/shared/constants/constants';
 import React from 'react';
 
 export const PaymentStatusLabel = ({

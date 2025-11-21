@@ -1,6 +1,6 @@
 import { createDescription, createIdempotenceKey } from './utils';
-import { PaymentDTOType } from '@/shared/types';
-import { PaymentDTOSchema } from '@/shared/validateSchemas';
+import { PaymentDTOType } from '@/shared/types/types';
+import { PaymentDTOSchema } from '@/shared/schemas/validateSchemas';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {

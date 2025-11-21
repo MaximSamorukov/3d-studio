@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import s from "./style.module.scss";
-import { PlasicItem } from "@/shared/common/PlasticItem";
-import { filaments } from "./constants";
+import s from './style.module.scss';
+import { PlasicItem } from '@/shared/ui/PlasticItem';
+import { filaments } from './constants';
 
 export default function PlasticTypes() {
   return (

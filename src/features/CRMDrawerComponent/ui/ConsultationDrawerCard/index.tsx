@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { ContactFormType } from '@/shared/types';
+import { ContactFormType } from '@/shared/types/types';
 import Image from 'next/image';
 import { userState } from '@/shared/state/user/state';
 import s from './style.module.scss';

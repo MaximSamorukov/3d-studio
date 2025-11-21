@@ -1,7 +1,11 @@
 import React from 'react';
 import s from './style.module.scss';
 import { observer } from 'mobx-react-lite';
-import { InvoiceType, PaymentDTOType, PrintOrderType } from '@/shared/types';
+import {
+  InvoiceType,
+  PaymentDTOType,
+  PrintOrderType,
+} from '@/shared/types/types';
 import { createInvoice } from '@/shared/api';
 type PayButtonProps = {
   order: PrintOrderType;

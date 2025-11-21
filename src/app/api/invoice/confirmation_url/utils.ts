@@ -1,4 +1,4 @@
-import { PaymentDTOType } from '@/shared/types';
+import { PaymentDTOType } from '@/shared/types/types';
 import crypto from 'crypto';
 
 export function addTwoWeeksToUnix(unixTimestamp: number): string {

@@ -1,7 +1,7 @@
 // export const runtime = 'nodejs';
 
 import { User } from '@/entities/user/index';
-import { getDataSource } from '@/shared/common/db';
+import { getDataSource } from '@/shared/db';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {

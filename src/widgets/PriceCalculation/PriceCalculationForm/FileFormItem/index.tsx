@@ -2,10 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { InnerFormItem } from './ui';
 import s from './style.module.scss';
-import {
-  FormInputTypeEnum,
-  FormItemType,
-} from '@/shared/common/FormItem/types';
+import { FormInputTypeEnum, FormItemType } from '@/shared/ui/FormItem/types';
 
 export const FileFormItem: React.FC<{
   field: FormItemType;

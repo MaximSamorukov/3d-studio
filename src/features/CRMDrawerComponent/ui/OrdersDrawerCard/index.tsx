@@ -4,7 +4,7 @@ import Image from 'next/image';
 import s from './style.module.scss';
 import { userState } from '@/shared/state/user/state';
 import { observer } from 'mobx-react-lite';
-import { PrintOrderType } from '@/shared/types';
+import { PrintOrderType } from '@/shared/types/types';
 import { PayButton } from '../PayButton';
 import OrderStatusLabel from '../OrderStatusLabel';
 import PaymentStatusLabel from '../PaymentStatusLabel';

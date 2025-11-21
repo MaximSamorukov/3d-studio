@@ -1,4 +1,4 @@
-import { STATUSES_DICT } from '@/shared/constants';
+import { STATUSES_DICT } from '@/shared/constants/constants';
 import React from 'react';
 
 export const OrderStatusLabel = ({

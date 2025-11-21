@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { ThreeMFLoader } from 'three/examples/jsm/loaders/3MFLoader.js';
 import { AMFLoader } from 'three/examples/jsm/loaders/AMFLoader.js';
-import { ALLOWED_EXTENSIONS_ENUM } from '../constants';
+import { ALLOWED_EXTENSIONS_ENUM } from '../constants/constants';
 
 /**
  * Вычисляет объем геометрии в кубических единицах (зависит от масштаба модели)
