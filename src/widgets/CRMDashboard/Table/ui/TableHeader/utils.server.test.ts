@@ -1,5 +1,5 @@
 import { expect, test, describe } from 'vitest';
-import { hideNotvisible } from '../../model/utils';
+import { hideNotvisible } from '../../model';
 
 describe('test hideNotvisible', () => {
   test('должен возвращать true', () => {
