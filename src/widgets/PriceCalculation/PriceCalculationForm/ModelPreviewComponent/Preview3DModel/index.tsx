@@ -2,9 +2,8 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Model } from './components/Model';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { observer } from 'mobx-react-lite';
+import { Model } from './ui/Model';
+import { ErrorBoundary } from './ui/ErrorBoundary';
 import { CircularProgress } from '@mui/material';
 import s from './style.module.scss';
 

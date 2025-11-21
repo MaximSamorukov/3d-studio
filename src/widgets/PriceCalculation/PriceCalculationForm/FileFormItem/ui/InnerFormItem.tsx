@@ -3,7 +3,7 @@ import {
   FormItemType,
 } from '@/shared/common/FormItem/types';
 import { Input3DFile } from './Input3DFile';
-import { TextField } from '../FileFormItem/TextField';
+import { TextField } from './TextField';
 
 export const InnerFormItem: React.FC<{
   field: FormItemType;

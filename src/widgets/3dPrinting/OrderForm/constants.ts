@@ -1,4 +1,4 @@
-import { ALLOWED_MIME_TYPES } from '@/widgets/common/ui/PriceCalculationForm/FileFormItem/constants';
+import { ALLOWED_MIME_TYPES } from '@/shared/constants/mimeTypes';
 import { z } from 'zod';
 
 export const fields = [

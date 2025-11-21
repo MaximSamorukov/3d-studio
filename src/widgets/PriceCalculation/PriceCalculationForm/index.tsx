@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { observer } from 'mobx-react-lite';
-import { formFields } from './constants';
+import { formFields } from './model/constants';
 import { FormItem } from '@/shared/common/FormItem';
 import { SubmitButton } from './SubmitButton';
-import { formCalculationState } from './formCalculationStore';
+import { formCalculationState } from './model/formCalculationStore';
 import { CircularProgress } from '@mui/material';
 import { FileFormItem } from './FileFormItem';
 

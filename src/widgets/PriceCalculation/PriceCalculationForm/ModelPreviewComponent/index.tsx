@@ -1,8 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { ModalComponent } from '@/shared/common/Modal';
 import { observer } from 'mobx-react-lite';
-import { formCalculationState } from '../formCalculationStore';
+import { formCalculationState } from '../model/formCalculationStore';
 import { Preview3DModel } from './Preview3DModel';
 
 export const ModelPreviewComponent = observer(() => {

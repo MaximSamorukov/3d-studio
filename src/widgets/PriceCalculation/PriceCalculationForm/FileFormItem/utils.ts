@@ -2,7 +2,7 @@ import {
   ALLOWED_EXTENSIONS,
   ALLOWED_MIME_TYPES,
   MAX_FILE_SIZE_MB,
-} from './constants';
+} from '@/shared/constants/mimeTypes';
 
 export const checkFileValidity = (file: File) => {
   const { name, type, size } = file;

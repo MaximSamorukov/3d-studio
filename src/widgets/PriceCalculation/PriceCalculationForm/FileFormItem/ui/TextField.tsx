@@ -1,9 +1,10 @@
-"use client";
-import React from "react";
-import s from "./style.module.scss";
-import { technicalData } from "../constants";
-import { formCalculationState } from "../formCalculationStore";
-import { observer } from "mobx-react-lite";
+'use client';
+import React from 'react';
+import s from '../style.module.scss';
+
+import { formCalculationState } from '../../model/formCalculationStore';
+import { observer } from 'mobx-react-lite';
+import { technicalData } from '../../model/constants';
 
 export const TextField = observer(() => {
   const data = {
@@ -20,7 +21,7 @@ export const TextField = observer(() => {
             <span>{`${i.label}, ${i.units}`}</span>
           </div>
           <div className={s.textFieldRowValue}>
-            <span>{data[i.key as keyof typeof data] || "нет данных"}</span>
+            <span>{data[i.key as keyof typeof data] || 'нет данных'}</span>
           </div>
         </div>
       ))}

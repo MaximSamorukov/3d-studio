@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { InnerFormItem } from './InnerFormItem';
+import { InnerFormItem } from './ui';
 import s from './style.module.scss';
 import {
   FormInputTypeEnum,

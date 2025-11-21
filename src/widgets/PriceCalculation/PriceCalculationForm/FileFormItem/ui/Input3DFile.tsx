@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
 import { useController, useFormContext } from 'react-hook-form';
-import s from './style.module.scss';
-import { ModelPreviewComponent } from '../ModelPreviewComponent';
-import { formCalculationState } from '../formCalculationStore';
+import s from '../style.module.scss';
+import { ModelPreviewComponent } from '../../ModelPreviewComponent';
+import { formCalculationState } from '../../model/formCalculationStore';
 import { observer } from 'mobx-react-lite';
 import { FormItemType } from '@/shared/common/FormItem/types';
 
