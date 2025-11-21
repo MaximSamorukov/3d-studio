@@ -2,7 +2,7 @@ import Image from 'next/image';
 import cn from 'classnames';
 import s from './style.module.scss';
 import Link from 'next/link';
-import { LoginButton } from '../LoginButton';
+import { LoginButton } from '../../../../shared/common/LoginButton';
 import { CRMEnterButton } from '../CRMEnterButton';
 
 export default function ContactWidget({

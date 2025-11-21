@@ -13,7 +13,7 @@ import { useSession, signIn } from 'next-auth/react';
 import s from './style.module.scss';
 import { usePathname } from 'next/navigation';
 import { orderConsultationHandler } from './utils';
-import { getConsultationsOnEmail } from '../LoginButton/utils';
+import { getConsultationsOnEmail } from '../../../../shared/common/LoginButton/utils';
 import { userState } from '@/shared/state/user/state';
 
 export const OrderConsultationForm = observer(() => {

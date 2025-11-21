@@ -1,8 +1,8 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
 import { Statuces } from '@/shared/constants';
-import { getSubmitedOrderById } from '@/pages_layer/Dashboard/Table/components/TableModal/utils';
-import { getSubmitedOrders } from '@/pages_layer/Dashboard/Table/utils';
+import { getSubmitedOrderById } from '@/widgets/CRMDashboard/Table/ui/TableModal/api/utils';
+import { getSubmitedOrders } from '@/widgets/CRMDashboard/Table/api/utils';
 import { autorun, makeAutoObservable } from 'mobx';
 import { PrintOrderType } from '../../types';
 

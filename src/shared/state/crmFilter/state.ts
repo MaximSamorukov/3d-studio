@@ -1,6 +1,6 @@
 import { ConsultationEntity } from '@/entities/consultation';
 import { PrintOrderEntity } from '@/entities/order';
-import { getSubmitedOrders } from '@/pages_layer/Dashboard/Table/utils';
+import { getSubmitedOrders } from '@/widgets/CRMDashboard/Table/api/utils';
 import { autorun, makeAutoObservable } from 'mobx';
 import { Statuces } from '../../constants';
 

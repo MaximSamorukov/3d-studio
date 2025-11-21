@@ -4,7 +4,7 @@ import s from './style.module.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { MakeOrderModal } from '../MakeOrderModal';
-import { OrderForm } from '@/pages_layer/3dPrinting/OrderForm';
+import { OrderForm } from '@/widgets/3dPrinting/OrderForm';
 
 export function OrderButton() {
   const [openModal, setOpenModal] = useState(false);

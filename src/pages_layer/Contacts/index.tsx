@@ -1,7 +1,7 @@
-import React from "react";
-import s from "./style.module.scss";
-import { contacts } from "./contacts";
-import { ContactItem } from "./ContactItem";
+import React from 'react';
+import s from './style.module.scss';
+import { contacts } from './model/contacts';
+import { ContactItem } from './ui/ContactItem';
 
 export const Contacts = () => {
   return (

@@ -1,9 +1,11 @@
-import { Benefits } from "./Benefits";
-import { MakeOrder } from "./MakeOrder";
-import { MakeOrderButton } from "./MakeOrderButton";
-import { OrderForm } from "./OrderForm";
-import s from "./style.module.scss";
-import Plastics from "@/widgets/common/ui/Plastics";
+import {
+  Benefits,
+  MakeOrder,
+  MakeOrderButton,
+  OrderForm,
+} from '@/widgets/3dPrinting';
+import Plastics from '@/widgets/common/ui/Plastics';
+import s from './style.module.scss';
 
 export const Printing3D = () => {
   return (
