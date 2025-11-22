@@ -96,6 +96,7 @@
       }
       @media (max-width: 1090px) {
         height: 200px;
+        margin-right: 0;
       }
       @media (max-width: 950px) {
         height: 150px;
@@ -103,7 +104,7 @@
       }
       @media (max-width: 840px) {
         height: 60px;
-        width: 80%;
+        width: 90%;
         overflow: hidden;
       }
     }
