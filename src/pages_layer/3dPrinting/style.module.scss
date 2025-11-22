@@ -5,7 +5,7 @@
   }
 
   &Header {
-    background-image: url("/photos/3d_printing/1.png");
+    background-image: url('/photos/3d_printing/1.png');
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -38,8 +38,24 @@
     grid-row-start: r-second;
     grid-row-end: r-second;
 
+    @media (max-width: 820px) {
+      font-size: 140px;
+    }
+    @media (max-width: 680px) {
+      font-size: 120px;
+    }
+    @media (max-width: 580px) {
+      font-size: 100px;
+    }
+    @media (max-width: 480px) {
+      font-size: 80px;
+    }
+    @media (max-width: 400px) {
+      font-size: 60px;
+    }
+
     &Container {
-      background-image: url("/photos/3d_printing/1.png");
+      background-image: url('/photos/3d_printing/1.png');
       background-size: cover;
       background-position: bottom;
       background-repeat: no-repeat;
@@ -49,6 +65,26 @@
       display: grid;
       grid-template-columns: [first] minmax(10px, 400px) [second] 1fr [end];
       grid-template-rows: [r-first] 60px [r-second] 170px [r-third] 70px [r-fourth] 70px [r-end];
+      @media (max-width: 820px) {
+        grid-template-rows: [r-first] 50px [r-second] 140px [r-third] 50px [r-fourth] 50px [r-end];
+        height: 300px;
+      }
+      @media (max-width: 680px) {
+        grid-template-rows: [r-first] 40px [r-second] 120px [r-third] 40px [r-fourth] 40px [r-end];
+        height: 250px;
+      }
+      @media (max-width: 580px) {
+        grid-template-rows: [r-first] 30px [r-second] 100px [r-third] 35px [r-fourth] 35px [r-end];
+        height: 210px;
+      }
+      @media (max-width: 480px) {
+        grid-template-rows: [r-first] 20px [r-second] 80px [r-third] 30px [r-fourth] 30px [r-end];
+        height: 170px;
+      }
+      @media (max-width: 400px) {
+        grid-template-rows: [r-first] 10px [r-second] 60px [r-third] 25px [r-fourth] 20px [r-end];
+        height: 125px;
+      }
     }
   }
 
@@ -60,6 +96,21 @@
       grid-column-end: end;
       grid-row-start: r-third;
       grid-row-end: r-third;
+      @media (max-width: 820px) {
+        font-size: 40px;
+      }
+      @media (max-width: 680px) {
+        font-size: 35px;
+      }
+      @media (max-width: 580px) {
+        font-size: 30px;
+      }
+      @media (max-width: 480px) {
+        font-size: 25px;
+      }
+      @media (max-width: 400px) {
+        font-size: 20px;
+      }
     }
 
     &Two {
@@ -69,6 +120,21 @@
       grid-column-end: end;
       grid-row-start: r-fourth;
       grid-row-end: r-fourth;
+      @media (max-width: 820px) {
+        font-size: 40px;
+      }
+      @media (max-width: 680px) {
+        font-size: 35px;
+      }
+      @media (max-width: 580px) {
+        font-size: 30px;
+      }
+      @media (max-width: 480px) {
+        font-size: 25px;
+      }
+      @media (max-width: 400px) {
+        font-size: 20px;
+      }
     }
   }
 }

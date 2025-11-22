@@ -50,6 +50,12 @@
       width: 300px;
       height: 35px;
       margin-right: 30px;
+      @media (max-width: 350px) {
+        width: 90%;
+      }
+      @media (max-width: 290px) {
+        font-size: 16px;
+      }
     }
   }
 

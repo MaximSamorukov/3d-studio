@@ -3,7 +3,6 @@
   height: fit-content;
   font-size: 20px;
   font-weight: 700;
-
   &Active {
     color: #e49e00;
   }
@@ -12,6 +11,9 @@
     height: fit-content;
     font-size: 20px;
     font-weight: 700;
+    @media (max-width: 1110px) {
+      font-size: 18px;
+    }
 
     &:hover {
       color: #e49e00;

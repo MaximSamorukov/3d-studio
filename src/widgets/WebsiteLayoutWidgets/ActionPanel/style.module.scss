@@ -16,6 +16,18 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
+
+  @media (max-width: 570px) {
+    flex-direction: column;
+    gap: 5px;
+    height: fit-content;
+    box-sizing: border-box;
+    padding-right: 10px;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
 }
 
 .button {
@@ -34,9 +46,7 @@
     border-color: #e49e00;
     transform: scale(1.001);
     box-shadow: 0 0 8px #e49e00;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: pulseBorder 2s infinite;
   }
 
