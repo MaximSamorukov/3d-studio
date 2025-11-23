@@ -11,9 +11,17 @@ export default function ContactWidget({
   footer?: boolean;
 }) {
   return (
-    <div className={s.contactWidgetContainer}>
-      <div className={s.itemContainer}>
-        <Link href="tel:+79250261737" className={s.itemIcon}>
+    <div
+      className={cn(
+        s.contactWidgetContainer,
+        footer && s.contactWidgetContainerFooterAdaptivity,
+      )}
+    >
+      <div className={cn(s.itemContainer)}>
+        <Link
+          href="tel:+79250261737"
+          className={cn(s.itemIcon, footer && s.itemIconFooterAdaptivity)}
+        >
           <Image src="/phone.svg" width={24} height={24} alt="phone" />
         </Link>
         <Link
@@ -26,7 +34,7 @@ export default function ContactWidget({
       <div className={s.itemContainer}>
         <Link
           href="mailto:zakaz.print.3d@gmail.com?subject=Заказ"
-          className={s.itemIcon}
+          className={cn(s.itemIcon, footer && s.itemIconFooterAdaptivity)}
         >
           <Image src="/email.svg" width={24} height={24} alt="email" />
         </Link>
