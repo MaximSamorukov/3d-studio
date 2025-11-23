@@ -1,6 +1,8 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { IconProps, IconType } from './types';
+import { useWindowWidth } from '@/shared/hooks';
 
 const ICON_MAP: Record<IconType, string> = {
   login: '/login_icon.svg',
@@ -35,10 +37,102 @@ export const Icon: React.FC<IconProps> = ({
   width = 24,
   height = 24,
   className,
-  onClick,
 }) => {
-  const src = ICON_MAP[type];
+  const windowWidth = useWindowWidth();
 
+  const src = ICON_MAP[type];
+  if (type === 'phone') {
+    if (windowWidth > 540) {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={16}
+          height={16}
+          className={className}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={14}
+          height={14}
+          className={className}
+        />
+      );
+    }
+  }
+  if (type === 'email') {
+    if (windowWidth > 540) {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={16}
+          height={16}
+          className={className}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={14}
+          height={14}
+          className={className}
+        />
+      );
+    }
+  }
+  if (type === 'login') {
+    if (windowWidth > 540) {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={16}
+          height={16}
+          className={className}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={14}
+          height={14}
+          className={className}
+        />
+      );
+    }
+  }
+  if (type === 'crm') {
+    if (windowWidth > 540) {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={20}
+          height={20}
+          className={className}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={src}
+          alt={type}
+          width={16}
+          height={16}
+          className={className}
+        />
+      );
+    }
+  }
   return (
     <Image
       src={src}
@@ -46,7 +140,6 @@ export const Icon: React.FC<IconProps> = ({
       width={width}
       height={height}
       className={className}
-      onClick={onClick}
     />
   );
 };

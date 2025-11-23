@@ -11,6 +11,7 @@ import { observer } from 'mobx-react-lite';
 import { getMaterials, getServices } from '@/shared/api';
 import { materialsState } from '@/shared/state/materials/state';
 import { serviceState } from '@/shared/state/services/state';
+import { Icon } from '@/shared/ui/Icon';
 
 type LoginButtonProps = {
   withIcon?: boolean;
@@ -59,12 +60,7 @@ export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
           onClick={handleOpenModal}
           className={cn(s.unset, s.itemIcon, s.pointer)}
         >
-          <Image
-            src="/login_icon.svg"
-            width={24}
-            height={24}
-            alt="login_icon"
-          />
+          <Icon type="login" />
         </button>
       )}
       <button

@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { menuItems } from '../../constants';
 import MenuItem from '@/shared/ui/MenuItem';
 import { useWindowWidth } from '@/shared/hooks';
+import { menuItems } from '@/shared/constants/mainMenu';
 import s from './style.module.scss';
 
 export function MenuItems() {
@@ -11,7 +11,7 @@ export function MenuItems() {
     return <div className={s.container} />;
   }
   if (width <= 1070) {
-    return <div className={s.container}>Студия 3d печати</div>;
+    return <div className={s.container}>Студия 3D-печати</div>;
   }
   return (
     <>

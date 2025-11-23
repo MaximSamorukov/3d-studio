@@ -7,6 +7,10 @@
   flex-direction: row;
   height: 30px;
 
+  @media (max-width: 420px) {
+    min-width: fit-content;
+    margin-right: 20px;
+  }
   &Short {
     min-width: fit-content;
   }
@@ -20,16 +24,24 @@
 }
 
 .itemIcon {
-  width: 25%;
+  width: 15px;
   margin-right: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  @media (max-width: 420px) {
+    width: 15px;
+    margin-right: 8px;
+  }
 }
 
 .itemLabel {
   font-size: 16px;
   span {
     white-space: nowrap;
+  }
+  @media (max-width: 540px) {
+    font-size: 14px;
   }
 }
