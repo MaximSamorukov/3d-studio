@@ -1,21 +1,19 @@
 'use client';
 import cn from 'classnames';
-import { useRouter } from 'next/navigation';
-
-import s from './style.module.scss';
 import { MenuDrawer } from './ui/MenuDrawer';
 import { useCallback, useState } from 'react';
+import s from './style.module.scss';
 
 export const MainMenuBurger = () => {
   const [open, setOpen] = useState(false);
+
   const handleOpenModal = () => {
-    setOpen((v) => !v);
+    setOpen(() => true);
   };
   const handleCloseDrawer = useCallback(() => {
-    console.log('on close');
-    //setOpen(false);
+    setOpen(false);
   }, []);
-  console.log('open', open);
+
   return (
     <div className={s.container}>
       <button
@@ -25,7 +23,7 @@ export const MainMenuBurger = () => {
       >
         <div></div>
       </button>
-      <MenuDrawer open={false} onCloseDrawer={handleCloseDrawer} />
+      <MenuDrawer open={open} onCloseDrawer={handleCloseDrawer} />
     </div>
   );
 };

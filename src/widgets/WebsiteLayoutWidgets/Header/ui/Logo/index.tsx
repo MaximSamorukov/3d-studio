@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { getDimension } from './utils';
+import { MainMenuBurger } from '@/widgets/WebsiteLayoutWidgets/MainMenuBurger';
 
 export function Logo() {
   const width = useWindowWidth();
   const imgDim = getDimension(width);
   if (width <= 1070) {
-    return <div>M</div>;
+    return <MainMenuBurger />;
   }
   return (
     <Link href={'/3d_printing'}>
