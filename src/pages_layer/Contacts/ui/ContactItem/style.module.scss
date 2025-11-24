@@ -6,12 +6,18 @@
     justify-content: flex-start;
     margin-bottom: 30px;
     width: 700px;
+    @media (max-width: 710px) {
+      width: fit-content;
+    }
   }
 
   &Label {
     font-size: 16px;
     font-weight: bold;
     height: 30px;
+    @media (max-width: 310px) {
+      height: fit-content;
+    }
   }
 
   &Description {

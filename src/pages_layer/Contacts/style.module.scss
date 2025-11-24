@@ -1,6 +1,14 @@
 .container {
   min-width: 700px;
   height: fit-content;
+  @media (max-width: 710px) {
+    min-width: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 
 .header {
@@ -17,6 +25,9 @@
     font-size: 20px;
     font-weight: 700;
     color: #e49e00;
+    @media (max-width: 710px) {
+      width: min-content;
+    }
   }
 }
 
@@ -29,7 +40,15 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-
+    @media (max-width: 710px) {
+      width: 100%;
+      box-sizing: border-box;
+      padding-right: 10px;
+      padding-left: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
     &Column {
       &First {
         width: 300px;
@@ -37,6 +56,9 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        @media (max-width: 310px) {
+          width: 100%;
+        }
       }
       &Second {
         width: 300px;
@@ -44,6 +66,9 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        @media (max-width: 310px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -73,5 +98,8 @@
   &Item {
     font-size: 16px;
     height: 30px;
+    @media (max-width: 310px) {
+      height: fit-content;
+    }
   }
 }
