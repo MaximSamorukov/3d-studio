@@ -11,6 +11,10 @@
     &WithNoLabel {
       justify-content: center;
     }
+    @media (max-width: 520px) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 
   &Label {
