@@ -13,6 +13,7 @@
     }
     @media (max-width: 520px) {
       flex-direction: column;
+      align-items: center;
       gap: 10px;
     }
   }
@@ -169,6 +170,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    @media (max-width: 370px) {
+      width: 100%;
+      flex-direction: column;
+    }
   }
 
   &Item {
@@ -181,6 +186,9 @@
     border: 2px solid #e49e00;
     padding-right: 4px;
     padding-left: 4px;
+    @media (max-width: 370px) {
+      width: 100%;
+    }
 
     &:hover {
       color: #e49e00;
