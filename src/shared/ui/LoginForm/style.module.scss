@@ -32,12 +32,12 @@
     }
   }
   &Footer {
-    height: fit-content;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: fit-content;
+    box-sizing: border-box;
     padding: 15px;
   }
   &OtherProviders {
@@ -47,13 +47,29 @@
     justify-content: center;
     position: relative;
 
+    form {
+      @media (max-width: 390px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+        box-sizing: border-box;
+        width: 90%;
+      }
+    }
+
     &::before {
-      content: "";
+      content: '';
       width: 350px;
       height: 1px;
       background-color: #888888;
       position: absolute;
       top: -8px;
+
+      @media (max-width: 390px) {
+        width: 90%;
+      }
     }
   }
 }
