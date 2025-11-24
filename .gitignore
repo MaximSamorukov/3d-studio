@@ -43,3 +43,6 @@ next-env.d.ts
 # app secrets
 /src/.secrets
 .secret_key.txt
+
+# reviews
+reviews/
