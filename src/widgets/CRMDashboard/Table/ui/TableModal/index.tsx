@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ModalComponent } from '@/shared/ui/Modal';
 import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import { observer } from 'mobx-react-lite';
@@ -8,21 +8,33 @@ import { EditDataField } from './ui/EditDataField';
 import { DeleteBtn } from './ui/DeleteBtn';
 import s from './style.module.scss';
 import { Preview3DModel } from './ui/Preview3DModel';
+import { useWindowWidth } from '@/shared/hooks';
 
 export const TableModal = observer(() => {
+  const width = useWindowWidth();
   const open = crmPreviewModalState.modalOpen;
   const loading = crmPreviewModalState.deletePending;
   const handleClose = () => {
     crmPreviewModalState.modalOpen = false;
     crmPreviewModalState.resetAllFields();
   };
+  const isPrintOrder = crmPreviewModalState.orderType === 'print_order';
+
+  const modalWidth = isPrintOrder ? 880 : 440;
+
+  const style = useMemo(() => {
+    return {
+      width: width >= modalWidth ? modalWidth : width - 20,
+      height: 'fitContent',
+    };
+  }, [width, modalWidth]);
   return (
     <ModalComponent
       open={open}
       loading={loading}
       withControl={false}
       onClose={handleClose}
-      style={{ width: 800, height: 'fitContent' }}
+      style={style}
     >
       {crmPreviewModalState.orderType === 'print_order' ? (
         <div className={s.metaContainer}>
