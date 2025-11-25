@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '@/app/(website)/globals.css';
 import { Provider } from '@/shared/Provider';
+import Head from 'next/head';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -26,6 +27,18 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          rel="preload"
+          href="/crm_icon.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </Head>
       <body className={roboto.variable}>
         <Provider>{children}</Provider>
       </body>

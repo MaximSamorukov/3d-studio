@@ -4,12 +4,15 @@ import { TableHeader } from './ui/TableHeader';
 import { TableBody } from './ui/TableBody';
 import { TablePaging } from './ui/TablePaging';
 import { TableModal } from './ui/TableModal';
+import { Container } from '@/shared/ui/Container';
 
 export const Table = () => {
   return (
     <div className={s.container}>
       <TableHeader />
-      <TableBody />
+      <Container>
+        <TableBody />
+      </Container>
       <TablePaging />
       <TableModal />
     </div>

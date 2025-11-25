@@ -1,15 +1,22 @@
 .container {
   width: 100%;
-  min-height: 155px;
-  height: fit-content;
+  max-height: 155px;
+  height: 155px;
   box-sizing: border-box;
   padding: 3px;
   border: 1px solid rgba(white, 0.1);
+
+  @media (max-width: 775px) {
+    max-height: 178px;
+    height: 178px;
+  }
   @media (max-width: 590px) {
-    height: auto;
+    max-height: 228px;
+    height: 228px;
   }
   @media (max-width: 400px) {
-    min-height: 30px;
+    max-height: 64px;
+    height: 64px;
   }
 }
 
