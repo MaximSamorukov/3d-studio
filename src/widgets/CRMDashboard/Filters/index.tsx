@@ -11,8 +11,8 @@ import { getOrderDataSource } from '@/shared/db/orders';
 import { getConsultationDataSource } from '@/shared/db/consultations';
 import { PrintOrderEntity } from '@/entities/order';
 import { ConsultationEntity } from '@/entities/consultation';
-import { SubmitButton } from './ui/SubmitButton';
 import { ResetFiltersButton } from './ui/ResetFiltersButton';
+import { FilterLayout } from './ui/FilterLayout';
 
 type OrderFilterTypes = {
   createdAt: Date[];
@@ -52,18 +52,24 @@ export async function Filters() {
     <div className={s.container}>
       <div className={s.border}>
         <div className={s.borderLabel}>Фильтры</div>
-        <DateFilter
-          orderData={result?.createdAt}
-          consData={consData?.createdAt}
-        />
-        <EmailFilter orderData={result?.email} consData={consData?.email} />
-        <PhoneFilter orderData={result?.phone} consData={consData?.contact} />
-        <MaterialFilter data={result?.plasticType} />
-        <TypeFilter />
-        <StatusFilter />
-        <PaymentStatusFilter />
-        <SubmitButton />
-        <ResetFiltersButton />
+        <FilterLayout>
+          <>
+            <DateFilter
+              orderData={result?.createdAt}
+              consData={consData?.createdAt}
+            />
+            <EmailFilter orderData={result?.email} consData={consData?.email} />
+            <PhoneFilter
+              orderData={result?.phone}
+              consData={consData?.contact}
+            />
+            <MaterialFilter data={result?.plasticType} />
+            <TypeFilter />
+            <StatusFilter />
+            <PaymentStatusFilter />
+            <ResetFiltersButton />
+          </>
+        </FilterLayout>
       </div>
     </div>
   );

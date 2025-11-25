@@ -48,7 +48,6 @@ export const DateFilter = observer(
           >
             {[null, ...(data || []).filter(Boolean)].map((i) => {
               const label = i ? new Date(i).toLocaleDateString('ru-RU') : '---';
-              const key = i ? new Date(i).toUTCString() : EMPTY;
 
               return (
                 <option key={keyPrefix + label} value={label}>

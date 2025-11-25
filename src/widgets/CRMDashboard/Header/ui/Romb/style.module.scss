@@ -1,9 +1,15 @@
 $SIDE: 6px;
+$SMALL_SIDE: 5px;
 
 .romb {
   width: $SIDE;
   height: $SIDE;
   background-color: currentColor;
-  transform: scaleY(1.6) scaleX(0.8) rotate(45deg); /* делает выше */
+  transform: scaleY(1.6) scaleX(0.8) rotate(45deg);
   display: inline-block;
+
+  @media (max-width: 550px) {
+    width: $SMALL_SIDE;
+    height: $SMALL_SIDE;
+  }
 }

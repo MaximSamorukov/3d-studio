@@ -3,7 +3,9 @@
   height: 25px;
   box-sizing: border-box;
   position: relative;
-
+  @media (max-width: 400px) {
+    width: 100%;
+  }
   &Label {
     position: absolute;
     left: 2px;

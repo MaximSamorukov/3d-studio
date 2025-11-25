@@ -6,7 +6,7 @@ export const WebsiteLink = () => {
   return (
     <div className={cn(s.itemContainer)}>
       <Link href={'/'} className={cn(s.unset, s.itemLabel, s.pointer)}>
-        Переход на сайт
+        Сайт
       </Link>
     </div>
   );

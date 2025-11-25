@@ -1,0 +1,11 @@
+.container {
+  height: 68vh;
+  width: 100%;
+  overflow-y: scroll;
+  @media (max-width: 590px) {
+    height: 57vh;
+  }
+  @media (max-width: 400px) {
+    flex: 1;
+  }
+}
