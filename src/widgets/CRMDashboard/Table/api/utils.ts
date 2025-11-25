@@ -57,6 +57,6 @@ export const getFileName = (url: string) => {
       throw Error();
     }
   } catch (_) {
-    return 'не поддерживаемый формат файла';
+    return '---';
   }
 };

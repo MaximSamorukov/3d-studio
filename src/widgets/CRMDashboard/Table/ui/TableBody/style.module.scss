@@ -28,11 +28,3 @@
     left: calc(50% - 20px);
   }
 }
-
-.cell {
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 13px;
-}

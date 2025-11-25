@@ -9,10 +9,13 @@ import {
   hideNotvisible,
 } from '../../model';
 import cn from 'classnames';
+import { ColumnLabel } from './ui/ColumnLabel';
+import { useWindowWidth } from '@/shared/hooks';
 
 export const TableHeader = observer(() => {
   const { orderType } = crmFilterState;
-
+  const width = useWindowWidth();
+  const isMobile = width <= 450;
   if (orderType === 'print_order') {
     return (
       <div className={s.container}>
@@ -23,7 +26,7 @@ export const TableHeader = observer(() => {
               [s.columnWithBorder]: index < a.length - 1,
             })}
           >
-            {i.label}
+            <ColumnLabel isMobile={isMobile} type={i.key} label={i.label} />
           </div>
         ))}
       </div>
@@ -39,7 +42,7 @@ export const TableHeader = observer(() => {
               [s.columnWithBorder]: index < a.length - 1,
             })}
           >
-            {i.label}
+            <ColumnLabel isMobile={isMobile} type={i.key} label={i.label} />
           </div>
         ))}
       </div>

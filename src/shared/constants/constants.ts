@@ -21,6 +21,13 @@ export const STATUSES_DICT: Record<Statuces, string> = {
   [Statuces.rejected]: 'Отменен',
 };
 
+export const STATUSES_MOBILE_DICT: Record<Statuces, string> = {
+  [Statuces.submited]: '📝',
+  [Statuces.in_work]: '⚙️',
+  [Statuces.accomplished]: '🟢',
+  [Statuces.rejected]: '❌',
+};
+
 export enum PaymentStatuces {
   paid = 'paid',
   not_paid = 'not_paid',
@@ -29,6 +36,11 @@ export enum PaymentStatuces {
 export const PAYMENT_STATUCES_DICT: Record<PaymentStatuces, string> = {
   [PaymentStatuces.paid]: 'Оплачен',
   [PaymentStatuces.not_paid]: 'Не оплачен',
+};
+
+export const PAYMENT_STATUCES_MOBILE_DICT: Record<PaymentStatuces, string> = {
+  [PaymentStatuces.paid]: '🟢',
+  [PaymentStatuces.not_paid]: '🔴',
 };
 
 export enum ALLOWED_EXTENSIONS_ENUM {
