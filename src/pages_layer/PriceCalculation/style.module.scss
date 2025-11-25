@@ -7,4 +7,9 @@
   justify-content: flex-start;
   box-sizing: border-box;
   padding-top: 20px;
+
+  @media (max-width: 720px) {
+    padding: 10px;
+    padding-top: 20px;
+  }
 }

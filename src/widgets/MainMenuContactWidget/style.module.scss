@@ -14,14 +14,28 @@
   flex-direction: row;
   height: 30px;
   gap: 5px;
+  @media (max-width: 420px) {
+    width: 170px;
+    justify-content: flex-start;
+  }
 }
 
 .itemIcon {
-  width: 25%;
+  width: 15px;
   margin-right: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  &FooterAdaptivity {
+    @media (max-width: 420px) {
+      width: 15px;
+    }
+  }
+  &HeaderAdaptivity {
+    @media (max-width: 420px) {
+      width: 15px;
+    }
+  }
 }
 
 .itemLabel {
@@ -33,4 +47,12 @@
 
 .footer {
   color: rgba(white, 0.5);
+  @media (max-width: 1050px) {
+    font-size: 14px;
+  }
+}
+.header {
+  @media (max-width: 540px) {
+    font-size: 14px;
+  }
 }

@@ -4,6 +4,7 @@ import s from './style.module.scss';
 import Link from 'next/link';
 import { LoginButton } from '@/shared/ui/LoginButton';
 import { CRMEnterButton } from '@/features/CRMEnterButton';
+import { Icon } from '@/shared/ui/Icon';
 
 export default function ContactWidget({
   footer = false,
@@ -11,14 +12,29 @@ export default function ContactWidget({
   footer?: boolean;
 }) {
   return (
-    <div className={s.contactWidgetContainer}>
-      <div className={s.itemContainer}>
-        <Link href="tel:+79250261737" className={s.itemIcon}>
-          <Image src="/phone.svg" width={24} height={24} alt="phone" />
+    <div
+      className={cn(
+        s.contactWidgetContainer,
+        footer && s.contactWidgetContainerFooterAdaptivity,
+      )}
+    >
+      <div className={cn(s.itemContainer)}>
+        <Link
+          href="tel:+79250261737"
+          className={cn(
+            s.itemIcon,
+            footer && s.itemIconFooterAdaptivity,
+            !footer && s.itemIconHeaderAdaptivity,
+          )}
+        >
+          <Icon type="phone" />
         </Link>
         <Link
           href="tel:+79250261737"
-          className={cn(s.itemLabel, { [s.footer]: footer })}
+          className={cn(s.itemLabel, {
+            [s.footer]: footer,
+            [s.header]: !footer,
+          })}
         >
           <span>+7-925-026-17-37</span>
         </Link>
@@ -26,13 +42,20 @@ export default function ContactWidget({
       <div className={s.itemContainer}>
         <Link
           href="mailto:zakaz.print.3d@gmail.com?subject=Заказ"
-          className={s.itemIcon}
+          className={cn(
+            s.itemIcon,
+            footer && s.itemIconFooterAdaptivity,
+            !footer && s.itemIconHeaderAdaptivity,
+          )}
         >
-          <Image src="/email.svg" width={24} height={24} alt="email" />
+          <Icon type="email" />
         </Link>
         <Link
           href="mailto:zakaz.print.3d@gmail.com?subject=Заказ"
-          className={cn(s.itemLabel, { [s.footer]: footer })}
+          className={cn(s.itemLabel, {
+            [s.footer]: footer,
+            [s.header]: !footer,
+          })}
         >
           <span>zakaz.print.3d@gmail.com</span>
         </Link>

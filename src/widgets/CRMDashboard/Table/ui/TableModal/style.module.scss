@@ -7,6 +7,11 @@
   justify-content: flex-start;
   box-sizing: border-box;
   padding: 0;
+
+  @media (max-width: 880px) {
+    width: 95%;
+    flex-direction: column-reverse;
+  }
 }
 .container {
   width: 100%;

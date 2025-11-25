@@ -1,0 +1,55 @@
+$WIDTH: 36px;
+
+.unset {
+  all: unset;
+}
+.container {
+  box-sizing: border-box;
+  padding: 2px;
+}
+.burger {
+  width: $WIDTH;
+  height: $WIDTH;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div,
+  div::before,
+  div::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ededed;
+    transition: all 0.3s ease-in-out;
+  }
+
+  div::before {
+    content: '';
+    top: -12px;
+  }
+
+  div::after {
+    content: '';
+    top: 12px;
+  }
+
+  &.active {
+    div {
+      background-color: transparent;
+    }
+
+    div::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    div::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+}

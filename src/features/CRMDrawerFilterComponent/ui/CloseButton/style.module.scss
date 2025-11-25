@@ -1,0 +1,41 @@
+.btn {
+  &Container {
+    all: unset;
+    height: auto;
+    width: auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 3px;
+    cursor: pointer;
+  }
+  &Cross {
+    color: white;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 15px;
+      top: 0px;
+      left: 7px;
+      background-color: white;
+      transform: rotate(45deg);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 15px;
+      top: 0px;
+      left: 7px;
+      background-color: white;
+      transform: rotate(-45deg);
+    }
+  }
+}

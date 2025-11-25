@@ -15,6 +15,9 @@
   }
   &Label {
     font-size: 14px;
+    @media (max-width: 440px) {
+      font-size: 12px;
+    }
   }
 }
 

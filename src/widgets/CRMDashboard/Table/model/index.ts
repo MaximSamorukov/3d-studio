@@ -54,10 +54,9 @@ export const orderTypeColumns = [
     label: 'оплата',
     visible: true,
   },
-
   {
     key: 'created_at',
-    label: 'дата создания',
+    label: 'дата',
     visible: true,
   },
 ];
@@ -90,8 +89,19 @@ export const consultationTypeColumns = [
   },
   {
     key: 'created_at',
-    label: 'дата создания',
+    label: 'дата',
     visible: true,
   },
 ];
 export const hideNotvisible = (i: { visible: boolean }) => i.visible;
+
+export const EMOJI_LABELS = {
+  file_path: '📄',
+  phone: '☎️',
+  email: '✉️',
+  order_status: '📦',
+  payment_status: '💳',
+  created_at: '📅',
+  contact: '💬',
+  name: '👤',
+};

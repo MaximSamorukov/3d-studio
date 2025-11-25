@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  width: 95%;
   height: fit-content;
   margin-bottom: 20px;
   display: flex;
@@ -43,7 +43,9 @@
     height: 30px;
     box-sizing: border-box;
     padding: 10px;
-
+    @media (max-width: 820px) {
+      height: fit-content;
+    }
     span {
       display: inline-block;
     }
@@ -64,7 +66,9 @@
     height: 30px;
     box-sizing: border-box;
     padding: 10px;
-
+    @media (max-width: 820px) {
+      height: fit-content;
+    }
     span {
       display: inline-block;
     }
@@ -85,7 +89,9 @@
     height: 30px;
     box-sizing: border-box;
     padding: 10px;
-
+    @media (max-width: 820px) {
+      height: fit-content;
+    }
     span {
       display: inline-block;
     }
@@ -100,6 +106,9 @@
     margin-right: 5px;
     color: rgba(#e49e00, 0.7);
     padding-left: 30px;
+    @media (max-width: 5150px) {
+      padding-left: 0;
+    }
   }
   &Value {
     font-size: 16px;

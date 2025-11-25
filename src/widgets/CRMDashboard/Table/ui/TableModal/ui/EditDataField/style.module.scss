@@ -11,10 +11,16 @@
     width: 150px;
     height: 30px;
     font-size: 14px;
+    @media (max-width: 440px) {
+      font-size: 12px;
+    }
   }
   &Field {
     width: fit-content;
     height: 30px;
     font-size: 14px;
+    @media (max-width: 440px) {
+      font-size: 12px;
+    }
   }
 }

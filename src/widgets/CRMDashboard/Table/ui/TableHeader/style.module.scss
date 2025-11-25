@@ -17,6 +17,9 @@
   justify-content: center;
   align-items: center;
   font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+
   &WithBorder {
     &::after {
       position: absolute;

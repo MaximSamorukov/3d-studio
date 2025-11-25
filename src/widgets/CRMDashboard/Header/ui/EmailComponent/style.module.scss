@@ -7,6 +7,9 @@
   flex-direction: row;
   height: 30px;
 
+  @media (max-width: 300px) {
+    min-width: 10;
+  }
   &Short {
     min-width: fit-content;
   }
@@ -30,6 +33,14 @@
 .itemLabel {
   font-size: 16px;
   span {
+    white-space: nowrap;
+  }
+  @media (max-width: 550px) {
+    font-size: 14px;
+  }
+  @media (max-width: 450px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 }

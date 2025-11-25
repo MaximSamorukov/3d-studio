@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import cn from 'classnames';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ModalComponent } from '@/shared/ui/Modal';
 import { LoginForm } from '../LoginForm';
 import { signOut, useSession } from 'next-auth/react';
@@ -11,6 +11,8 @@ import { observer } from 'mobx-react-lite';
 import { getMaterials, getServices } from '@/shared/api';
 import { materialsState } from '@/shared/state/materials/state';
 import { serviceState } from '@/shared/state/services/state';
+import { Icon } from '@/shared/ui/Icon';
+import { useWindowWidth } from '@/shared/hooks';
 
 type LoginButtonProps = {
   withIcon?: boolean;
@@ -51,7 +53,21 @@ export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
       userState.removeUserFromState();
     }
   }, [session.data?.user]);
-
+  const windowWidth = useWindowWidth();
+  const style = useMemo(() => {
+    if (windowWidth > 520) return { height: 300 };
+    if (windowWidth >= 420)
+      return {
+        height: 'fit-content',
+        ['padding-bottom']: 10,
+        ['boz-sizing']: 'border-box',
+      };
+    return {
+      height: 'fit-content',
+      width: windowWidth - 20,
+      ['padding-bottom']: 10,
+    };
+  }, [windowWidth]);
   return (
     <div className={cn(s.itemContainer, { [s.itemContainerShort]: !withIcon })}>
       {withIcon && (
@@ -59,12 +75,7 @@ export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
           onClick={handleOpenModal}
           className={cn(s.unset, s.itemIcon, s.pointer)}
         >
-          <Image
-            src="/login_icon.svg"
-            width={24}
-            height={24}
-            alt="login_icon"
-          />
+          <Icon type="login" />
         </button>
       )}
       <button
@@ -77,9 +88,7 @@ export const LoginButton = observer(({ withIcon = true }: LoginButtonProps) => {
         onClose={handleCloseModal}
         open={open}
         withControl={false}
-        style={{
-          height: 300,
-        }}
+        style={style}
       >
         <LoginForm />
       </ModalComponent>

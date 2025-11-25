@@ -12,7 +12,7 @@ import { CircularProgress } from '@mui/material';
 import { crmPreviewModalState } from '@/shared/state/crmPreviewModal/state';
 import { PrintOrderEntity } from '@/entities/order';
 import { ConsultationEntity } from '@/entities/consultation';
-import { getFileName } from '../../api/utils';
+import { Cell } from '../Cell';
 import s from './style.module.scss';
 
 export const TableBody = observer(() => {
@@ -37,20 +37,13 @@ export const TableBody = observer(() => {
             key={i.id}
             className={s.containerRow}
           >
-            {orderTypeColumns.filter(hideNotvisible).map((value) => {
-              if (value.key === 'file_path') {
-                return (
-                  <div key={value.key} className={s.cell}>
-                    {getFileName(get(i, value.key, '') || '')}
-                  </div>
-                );
-              }
-              return (
-                <div key={value.key} className={s.cell}>
-                  {get(i, value.key, '-')}
-                </div>
-              );
-            })}
+            {orderTypeColumns.filter(hideNotvisible).map((value) => (
+              <Cell
+                key={value.key}
+                path={value.key}
+                value={get(i, value.key, '---')}
+              />
+            ))}
           </button>
         ))}
         {pending ? (
@@ -73,9 +66,11 @@ export const TableBody = observer(() => {
             className={s.containerRow}
           >
             {consultationTypeColumns.filter(hideNotvisible).map((value) => (
-              <div key={value.key} className={s.cell}>
-                {get(i, value.key, '-')}
-              </div>
+              <Cell
+                key={value.key}
+                path={value.key}
+                value={get(i, value.key, '-')}
+              />
             ))}
           </button>
         ))}
