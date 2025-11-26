@@ -17,6 +17,9 @@
       top: calc(190px / 2 - 5px);
       right: 185px;
     }
+    @media (max-height: 670px) {
+      height: 200px;
+    }
   }
   &Controls {
     height: 40px;

@@ -35,10 +35,10 @@ export const CRMDrawerFilterComponent: React.FC<CRMDrawerFilterComponentProps> =
         open={crmDraweFilterState.open}
       >
         <div className={s.drawerContainer}>
-          <div className={s.drawerControlsContainer}>
-            <DrawerCloseButton handleCloseDrawer={handleCloseModal} />
-          </div>
           <div className={s.drawerFiltersContainer}>{children}</div>
+        </div>
+        <div className={s.drawerControlsContainer}>
+          <DrawerCloseButton handleCloseDrawer={handleCloseModal} />
         </div>
       </Drawer>
     );

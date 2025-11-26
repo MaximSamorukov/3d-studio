@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
+
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .crm {
@@ -19,5 +22,8 @@
     justify-content: flex-start;
     gap: 10px;
     box-sizing: border-box;
+
+    overflow: auto;
+    scrollbar-width: none;
   }
 }

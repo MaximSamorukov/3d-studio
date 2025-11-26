@@ -7,8 +7,10 @@ export function DrawerCloseButton({
   handleCloseDrawer,
 }: DrawerCloseButtonProps) {
   return (
-    <button className={s.btnContainer} onClick={handleCloseDrawer}>
-      <div className={s.btnCross} />
-    </button>
+    <div className={s.container}>
+      <button onClick={handleCloseDrawer} className={s.btn}>
+        Закрыть
+      </button>
+    </div>
   );
 }
