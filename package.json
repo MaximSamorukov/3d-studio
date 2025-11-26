@@ -12,6 +12,14 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "browserslist": [
+    "> 0.2%",
+    "last 5 versions",
+    "not dead",
+    "Chrome >= 115",
+    "ChromeAndroid >= 115",
+    "Android >= 8"
+  ],
   "dependencies": {
     "@a2seven/yoo-checkout": "^1.1.4",
     "@auth/neon-adapter": "^1.11.0",
