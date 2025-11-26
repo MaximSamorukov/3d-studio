@@ -7,4 +7,8 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+
+  @media (max-width: 420px) {
+    width: fit-content;
+  }
 }
