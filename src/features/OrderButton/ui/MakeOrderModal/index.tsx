@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { ModalComponent } from '@/shared/ui/Modal';
-import { useWindowWidth } from '@/shared/hooks';
+import { useWindowHeight, useWindowWidth } from '@/shared/hooks';
 
 type ModalComponentProps = {
   open: boolean;
@@ -15,13 +15,16 @@ export const MakeOrderModal: React.FC<ModalComponentProps> = ({
   children,
 }) => {
   const windowWidth = useWindowWidth();
-  const width = windowWidth >= 820 ? 800 : '90%';
+  const windowHeight = useWindowHeight();
+  const width = windowWidth >= 820 ? 800 : '85%';
+  const height = windowHeight >= 700 ? 645 : '90%';
+
   return (
     <ModalComponent
       open={open}
       onClose={onClose}
       withControl={false}
-      style={{ height: 645, width, border: 'none' }}
+      style={{ height, width, border: 'none' }}
     >
       {children}
     </ModalComponent>

@@ -42,6 +42,10 @@ $WIDTH: 800px;
   position: relative;
   background-color: #0a0a0a;
 
+  @media (max-width: 820px) and (max-height: 900px) {
+    overflow-y: scroll;
+    max-height: 100%;
+  }
   @media (max-width: 820px) {
     width: 100%;
     padding: 20px;
@@ -59,7 +63,11 @@ $WIDTH: 800px;
     justify-content: center;
     align-items: center;
     @media (max-width: 820px) {
-      width: 90%;
+      width: 100%;
+    }
+
+    @media (max-width: 820px) and (max-height: 900px) {
+      max-height: 100%;
     }
   }
   &HeaderLabel {
