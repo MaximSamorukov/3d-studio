@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .unauthorized {
   display: flex;
   flex-direction: column;
@@ -5,8 +7,8 @@
   justify-content: center;
   height: 100vh;
 
-  background: #0e0e0e;
-  color: #fff;
+  background: $ALMOST_BLACK;
+  color: $WHITE;
   text-align: center;
 
   h1 {
@@ -20,6 +22,6 @@
     opacity: 0.85;
   }
   a > p {
-    color: orange;
+    color: $BRIGHT_ORANGE;
   }
 }

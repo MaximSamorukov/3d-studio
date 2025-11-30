@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   width: 40px;
   height: 35px;
@@ -9,12 +11,12 @@
   &Select {
     all: unset;
     width: 40px;
-    border: 1px solid rgba(white, 0.1);
+    border: 1px solid $WHITE_BORDER;
     box-sizing: border-box;
     padding-left: 10px;
     user-select: none;
     option {
-      background-color: #0a0a0a;
+      background-color: $DARK_BG;
     }
   }
 }

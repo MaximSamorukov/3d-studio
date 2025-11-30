@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .field {
   &Container {
     width: 100%;
@@ -77,7 +79,7 @@
     padding-top: 0;
   }
   &Item {
-    box-shadow: 0 0 0 0.2px #e49e00;
+    box-shadow: 0 0 0 0.2px $PRIMARY_GOLD;
     border-radius: 10px;
     display: flex;
     height: 70px;
@@ -87,19 +89,19 @@
     width: 100%;
     font-size: 12px;
     &Active {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
@@ -110,7 +112,7 @@
     }
   }
   &Red {
-    color: red;
+    color: $ERROR_RED;
   }
 }
 

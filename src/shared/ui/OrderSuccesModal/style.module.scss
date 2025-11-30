@@ -1,10 +1,12 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   padding: 20px;
-  background-color: #0a0a0a;
+  background-color: $DARK_BG;
 }
 .button {
   all: unset;
-  border: 1px solid white;
+  border: 1px solid $WHITE;
   height: fit-content;
   font-size: 20px;
   font-weight: 700;
@@ -19,10 +21,10 @@
     height: fit-content;
   }
   &:hover {
-    color: #e49e00;
-    border-color: #e49e00;
+    color: $PRIMARY_GOLD;
+    border-color: $PRIMARY_GOLD;
     transform: scale(1.001);
-    box-shadow: 0 0 8px #e49e00;
+    box-shadow: 0 0 8px $PRIMARY_GOLD;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: pulseBorder 2s infinite;
   }

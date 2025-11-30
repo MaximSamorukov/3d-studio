@@ -1,3 +1,4 @@
+@import '@/shared/styles/colors.scss';
 .container {
   width: 100%;
   box-sizing: border-box;
@@ -16,8 +17,8 @@
     cursor: pointer;
     box-sizing: border-box;
     &:hover {
-      border-top: 1px solid rgba(white, 0.1);
-      border-bottom: 1px solid rgba(white, 0.1);
+      border-top: 1px solid $WHITE_BORDER;
+      border-bottom: 1px solid $WHITE_BORDER;
     }
   }
   &Loader {

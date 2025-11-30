@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .btn {
   &Container {
     all: unset;
@@ -12,7 +14,7 @@
     cursor: pointer;
   }
   &Cross {
-    color: #ebebeb;
+    color: $GREY_EBEBEB;
     width: 32px;
     height: 32px;
     position: relative;
@@ -23,7 +25,7 @@
       height: 32px;
       top: 0px;
       left: 15px;
-      background-color: #ebebeb;
+      background-color: $GREY_EBEBEB;
       transform: rotate(45deg);
     }
     &::before {
@@ -33,7 +35,7 @@
       height: 32px;
       top: 0px;
       left: 15px;
-      background-color: #ebebeb;
+      background-color: $GREY_EBEBEB;
       transform: rotate(-45deg);
     }
   }

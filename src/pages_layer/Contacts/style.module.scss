@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   min-width: 700px;
   height: fit-content;
@@ -24,7 +26,7 @@
     width: fit-content;
     font-size: 20px;
     font-weight: 700;
-    color: #e49e00;
+    color: $PRIMARY_GOLD;
     @media (max-width: 710px) {
       width: min-content;
     }

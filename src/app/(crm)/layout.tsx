@@ -6,7 +6,7 @@
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import '@/app/(website)/globals.css';
+import '@/app/(website)/globals.scss';
 import { Provider } from '@/shared/Provider';
 import Head from 'next/head';
 

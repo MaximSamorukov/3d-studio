@@ -1,10 +1,12 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   width: 100%;
   max-height: 155px;
   height: 155px;
   box-sizing: border-box;
   padding: 3px;
-  border: 1px solid rgba(white, 0.1);
+  border: 1px solid $WHITE_BORDER;
 
   @media (max-width: 775px) {
     max-height: 178px;
@@ -51,6 +53,6 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background-color: #0a0a0a;
+    background-color: $DARK_BG;
   }
 }

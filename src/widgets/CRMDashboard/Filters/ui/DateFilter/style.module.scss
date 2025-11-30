@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   width: 150px;
   height: 25px;
@@ -22,7 +24,7 @@
     font-size: 13px;
 
     &Disabled {
-      color: rgba(white, 0.1);
+      color: $WHITE_BORDER;
     }
   }
 }
@@ -30,7 +32,7 @@
 .input {
   width: 100%;
   height: 100%;
-  border: 1px solid rgba(white, 0.2);
+  border: 1px solid $WHITE_BORDER;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,10 +46,10 @@
     box-sizing: border-box;
   }
   option {
-    background-color: #0a0a0a;
+    background-color: $DARK_BG;
   }
   &Disabled {
     cursor: not-allowed;
-    color: rgba(white, 0.1);
+    color: $WHITE_BORDER;
   }
 }

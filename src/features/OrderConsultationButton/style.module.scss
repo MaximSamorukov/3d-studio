@@ -1,12 +1,14 @@
+@import '@/shared/styles/colors.scss';
+
 @keyframes pulseBorder {
   0% {
-    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+    box-shadow: 0 0 4px rgba($PRIMARY_GOLD, 0.5);
   }
   50% {
-    box-shadow: 0 0 8px rgba(228, 158, 0, 1);
+    box-shadow: 0 0 8px rgba($PRIMARY_GOLD, 1);
   }
   100% {
-    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+    box-shadow: 0 0 4px rgba($PRIMARY_GOLD, 0.5);
   }
 }
 .container {
@@ -20,7 +22,7 @@
 
 .button {
   all: unset;
-  border: 1px solid white;
+  border: 1px solid $WHITE;
   height: fit-content;
   font-size: 20px;
   font-weight: 700;
@@ -30,10 +32,10 @@
   cursor: pointer;
 
   &:hover {
-    color: #e49e00;
-    border-color: #e49e00;
+    color: $PRIMARY_GOLD;
+    border-color: $PRIMARY_GOLD;
     transform: scale(1.001);
-    box-shadow: 0 0 8px #e49e00;
+    box-shadow: 0 0 8px $PRIMARY_GOLD;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: pulseBorder 2s infinite;
   }
@@ -62,14 +64,14 @@
     }
   }
   &Disabled {
-    border: 1px solid grey;
-    color: grey;
+    border: 1px solid $GREY_888;
+    color: $GREY_888;
     cursor: not-allowed;
     &:hover {
-      color: grey;
-      border-color: grey;
+      color: $GREY_888;
+      border-color: $GREY_888;
       transform: scale(1.001);
-      box-shadow: 0 0 8px grey;
+      box-shadow: 0 0 8px $GREY_888;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }

@@ -1,14 +1,16 @@
+@import '@/shared/styles/colors.scss';
+
 @keyframes pulseBorder {
   0% {
-    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+    box-shadow: 0 0 4px rgba($PRIMARY_GOLD, 0.5);
   }
 
   50% {
-    box-shadow: 0 0 8px rgba(228, 158, 0, 1);
+    box-shadow: 0 0 8px rgba($PRIMARY_GOLD, 1);
   }
 
   100% {
-    box-shadow: 0 0 4px rgba(228, 158, 0, 0.5);
+    box-shadow: 0 0 4px rgba($PRIMARY_GOLD, 0.5);
   }
 }
 
@@ -25,35 +27,35 @@
     cursor: pointer;
     width: 400px;
     height: 50px;
-    border: 2px solid white;
-    background-color: #000000;
+    border: 2px solid $WHITE;
+    background-color: $BLACK;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: $WHITE;
     @media (max-width: 450px) {
       width: 90%;
     }
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
 
     &:active {
       transform: scale(0.98);
-      box-shadow: 0 0 10px #e49e00;
+      box-shadow: 0 0 10px $PRIMARY_GOLD;
     }
   }
 
   &Label {
     font-weight: bold;
     font-size: 20px;
-    text-shadow: 0 0 8px rgba(228, 158, 0, 0.4);
+    text-shadow: 0 0 8px rgba($PRIMARY_GOLD, 0.4);
   }
 }

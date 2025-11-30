@@ -1,13 +1,14 @@
+@import '@/shared/styles/colors.scss';
 
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --background: #{$WHITE};
+  --foreground: #{$DARK_GREY};
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #{$DARK_BG};
+    --foreground: #{$LIGHT_GREY};
   }
 }
 

@@ -1,3 +1,4 @@
+@import '@/shared/styles/colors.scss';
 .container {
   width: 40px;
   height: 35px;
@@ -13,7 +14,7 @@
   &Inner {
     all: unset;
     width: 40px;
-    border: 1px solid rgba(white, 0.1);
+    border: 1px solid $WHITE_BORDER;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -21,7 +22,7 @@
     justify-content: center;
     user-select: none;
     &Disabled {
-      color: rgba(white, 0.1);
+      color: $WHITE_BORDER;
     }
   }
 }

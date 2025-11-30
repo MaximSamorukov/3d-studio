@@ -1,8 +1,10 @@
+@import '@/shared/styles/colors.scss';
+
 $WIDTH: 700px;
 .form {
   &Container {
     width: $WIDTH;
-    border: 2px solid rgba(#e49e00, 0.5);
+    border: 2px solid rgba($PRIMARY_GOLD, 0.5);
     position: relative;
     &Loader {
       position: absolute;
@@ -25,7 +27,7 @@ $WIDTH: 700px;
       padding: 5px;
     }
     span {
-      color: #e49e00;
+      color: $PRIMARY_GOLD;
       font-size: 20px;
       @media (max-width: 400px) {
         text-align: center;

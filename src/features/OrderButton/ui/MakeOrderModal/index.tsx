@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ModalComponent } from '@/shared/ui/Modal';
 import { useWindowHeight, useWindowWidth } from '@/shared/hooks';
 
@@ -18,13 +18,16 @@ export const MakeOrderModal: React.FC<ModalComponentProps> = ({
   const windowHeight = useWindowHeight();
   const width = windowWidth >= 820 ? 800 : '85%';
   const height = windowHeight >= 700 ? 645 : '90%';
-
+  const styleConfig = useMemo(
+    () => ({ height, width, border: 'none' }),
+    [height, width],
+  );
   return (
     <ModalComponent
       open={open}
       onClose={onClose}
       withControl={false}
-      style={{ height, width, border: 'none' }}
+      style={styleConfig}
     >
       {children}
     </ModalComponent>

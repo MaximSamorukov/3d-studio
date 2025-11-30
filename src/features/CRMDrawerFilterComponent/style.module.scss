@@ -1,3 +1,4 @@
+@import '@/shared/styles/colors.scss';
 $WIDTH: 100%;
 
 .drawer {
@@ -10,9 +11,9 @@ $WIDTH: 100%;
     justify-content: space-between;
     box-sizing: border-box;
     padding: 5px 15px 25px;
-    border-bottom: 1px solid rgba(white, 0.1);
-    border-right: 1px solid rgba(white, 0.1);
-    border-left: 1px solid rgba(white, 0.1);
+    border-bottom: 1px solid $WHITE_BORDER;
+    border-right: 1px solid $WHITE_BORDER;
+    border-left: 1px solid $WHITE_BORDER;
   }
   &FiltersContainer {
     height: 100%;
@@ -25,8 +26,8 @@ $WIDTH: 100%;
     padding: 15px;
     padding-top: 30px;
     color: white;
-    border-right: 1px solid rgba(white, 0.1);
-    border-left: 1px solid rgba(white, 0.1);
+    border-right: 1px solid $WHITE_BORDER;
+    border-left: 1px solid $WHITE_BORDER;
 
     @media (max-width: 590px) {
       height: fit-content;

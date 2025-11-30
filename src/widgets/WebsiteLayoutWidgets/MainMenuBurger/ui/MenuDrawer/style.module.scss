@@ -1,4 +1,5 @@
 @use 'sass:math';
+@import '@/shared/styles/colors.scss';
 $WIDTH: 300px;
 
 .drawer {
@@ -20,7 +21,7 @@ $WIDTH: 300px;
     gap: 30px;
   }
   &Container {
-    background-color: black;
+    background-color: $BLACK;
     width: $WIDTH;
     height: auto;
     &Loader {
@@ -43,12 +44,12 @@ $WIDTH: 300px;
 
   &Label {
     all: unset;
-    color: #ededed;
+    color: $LIGHT_GREY;
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
     &Active {
-      color: #e49e00;
+      color: $PRIMARY_GOLD;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 $WIDTH: 36px;
 
 .unset {
@@ -23,7 +25,7 @@ $WIDTH: 36px;
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #ededed;
+    background-color: $LIGHT_GREY;
     transition: all 0.3s ease-in-out;
   }
 

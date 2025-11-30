@@ -1,3 +1,4 @@
+@import '@/shared/styles/colors.scss';
 .field {
   &Container {
     width: 100%;
@@ -70,17 +71,17 @@
       background-color: black;
       width: 35px;
       height: 35px;
-      border: 2px solid #e49e00;
+      border: 2px solid $PRIMARY_GOLD;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
 
       &:hover {
-        color: #e49e00;
-        border-color: #e49e00;
+        color: $PRIMARY_GOLD;
+        border-color: $PRIMARY_GOLD;
         transform: scale(1.001);
-        box-shadow: 0 0 8px #e49e00;
+        box-shadow: 0 0 8px $PRIMARY_GOLD;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         animation: pulseBorder 2s infinite;
       }
@@ -140,16 +141,16 @@
     justify-content: center;
     width: 300px;
     height: 35px;
-    border: 2px solid #e49e00;
+    border: 2px solid $PRIMARY_GOLD;
     box-sizing: border-box;
     padding-right: 4px;
     padding-left: 4px;
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
@@ -183,7 +184,7 @@
     justify-content: center;
     width: 300px;
     height: 35px;
-    border: 2px solid #e49e00;
+    border: 2px solid $PRIMARY_GOLD;
     padding-right: 4px;
     padding-left: 4px;
     @media (max-width: 370px) {
@@ -191,10 +192,10 @@
     }
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
@@ -238,16 +239,16 @@
     justify-content: center;
     width: 300px;
     height: 35px;
-    border: 2px solid #e49e00;
+    border: 2px solid $PRIMARY_GOLD;
     box-sizing: border-box;
     padding-right: 5px;
     padding-left: 5px;
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
@@ -291,7 +292,7 @@
     padding-top: 0;
   }
   &Item {
-    box-shadow: 0 0 0 0.2px #e49e00;
+    box-shadow: 0 0 0 0.2px $PRIMARY_GOLD;
     border-radius: 10px;
     display: flex;
     height: 70px;
@@ -301,19 +302,19 @@
     width: 100%;
     font-size: 12px;
     &Active {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }
 
     &:hover {
-      color: #e49e00;
-      border-color: #e49e00;
+      color: $PRIMARY_GOLD;
+      border-color: $PRIMARY_GOLD;
       transform: scale(1.001);
-      box-shadow: 0 0 8px #e49e00;
+      box-shadow: 0 0 8px $PRIMARY_GOLD;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pulseBorder 2s infinite;
     }

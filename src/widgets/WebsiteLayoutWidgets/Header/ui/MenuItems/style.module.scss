@@ -1,3 +1,5 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   flex: 1;
   display: flex;
@@ -7,7 +9,7 @@
   @media (max-width: 1070px) {
     box-sizing: border-box;
     font-size: 35px;
-    color: #e49e00;
+    color: $PRIMARY_GOLD;
   }
   @media (max-width: 630px) {
     font-size: 30px;

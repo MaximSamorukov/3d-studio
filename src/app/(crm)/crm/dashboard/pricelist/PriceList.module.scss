@@ -1,9 +1,11 @@
+@import '@/shared/styles/colors.scss';
+
 .container {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 2rem 3rem;
   font-family: 'Inter', Arial, sans-serif;
-  color: #222;
+  color: $DARK_GREY_222;
 }
 
 .title {
@@ -11,7 +13,7 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: #926e6e;
+  color: $BROWNISH_GREY;
 }
 
 .section {
@@ -22,9 +24,9 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #eee;
+  border-bottom: 3px solid $GREY_EEE;
   padding-bottom: 0.5rem;
-  color: #333;
+  color: $DARK_GREY_333;
 }
 
 .cards {
@@ -34,16 +36,16 @@
 }
 
 .card {
-  background: linear-gradient(145deg, #fff6f0, #ffe6d6);
+  background: linear-gradient(145deg, $VERY_LIGHT_ORANGE_BG, $LIGHT_ORANGE_BG);
   border-radius: 16px;
   padding: 2rem 2rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba($BLACK, 0.08);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 24px rgba($BLACK, 0.15);
   }
 }
 
@@ -51,18 +53,18 @@
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #d9534f;
+  color: $ERROR_RED;
 }
 
 .cardPrice {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #ff6b00;
+  color: $BRIGHT_ORANGE;
 }
 
 .plasticList {
   font-size: 1.2rem;
-  color: #555;
+  color: $GREY_555;
   margin-top: 1rem;
   text-align: center;
   letter-spacing: 1px;

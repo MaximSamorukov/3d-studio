@@ -5,7 +5,7 @@
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import '@/app/(website)/globals.css';
+import '@/app/(website)/globals.scss';
 import { Header } from '@/widgets/WebsiteLayoutWidgets';
 import { ActionPanel } from '@/widgets/WebsiteLayoutWidgets';
 import { Footer } from '@/widgets/WebsiteLayoutWidgets';
