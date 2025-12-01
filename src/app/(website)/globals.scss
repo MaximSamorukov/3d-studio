@@ -11,6 +11,12 @@
     --foreground: #{$LIGHT_GREY};
   }
 }
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #{$DARK_BG};
+    --foreground: #{$LIGHT_GREY};
+  }
+}
 
 html,
 body {
