@@ -135,7 +135,7 @@ export const LABELS = {
     DELETE_FILE: 'удалить файл',
     VIEW_FILE: 'просмотр файла',
     FILE_LINK: 'ссылка на файл',
-    CALCULATE: 'Расчитать',
+    CALCULATE: 'Рассчитать',
   },
 
   // Карточка заказа

@@ -7,7 +7,7 @@ export const SubmitButton = ({ label }: { label?: string }) => {
     <input
       className={cn(s.button, s.buttonSubmit)}
       type="submit"
-      value={label || "Расчитать"}
+      value={label || "Рассчитать"}
     />
   );
 };
